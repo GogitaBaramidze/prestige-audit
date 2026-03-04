@@ -21,6 +21,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     valuation: (await import(`../messages/${locale}/valuation.json`)).default,
     legal: (await import(`../messages/${locale}/legal.json`)).default,
     consulting: (await import(`../messages/${locale}/consulting.json`)).default,
+    team: (await import(`../messages/${locale}/team.json`)).default,
   };
 
   return {

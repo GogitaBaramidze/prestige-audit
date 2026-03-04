@@ -20,9 +20,6 @@
   "fieldPhonePlaceholder": "+995 XXX XXX XXX",
   "fieldService": "Service Required",
   "fieldServicePlaceholder": "Choose a service",
-  "serviceOption1": "Financial Audit",
-  "serviceOption2": "Tax & Audit",
-  "serviceOption3": "Business Consulting",
   "fieldMessage": "How can we help?",
   "fieldMessagePlaceholder": "Tell us about your goals...",
   "submitBtn": "Send My Inquiry",
@@ -31,7 +28,15 @@
   "mapLabel": "Find Us",
   "mapTitle": "Visit Our",
   "mapTitleHighlight": "Office",
-  "mapSubtitle": "We're located in the heart of Tbilisi.",
+  "mapSubtitle": "We're located in the heart of Batumi.",
   "mapMarkerTitle": "Prestige Audit Office",
-  "heroBadge": "Contact Us"
+  "heroBadge": "Contact Us",
+  "departments": {
+    "financial-audit": "Financial Audit",
+    "tax-services": "Tax Services",
+    "accounting-services": "Accounting Services",
+    "valuation-services": "Valuation Services",
+    "legal-support": "Legal Support",
+    "business-consulting": "Business Consulting"
+  }
 }

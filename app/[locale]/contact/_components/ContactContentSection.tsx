@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -19,12 +18,53 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useTranslations } from "next-intl";
 import MapboxMap from "./MapBox";
 
-const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.55, delay, ease: "easeOut" as const },
-});
+function FadeUp({
+  delay = 0,
+  children,
+  className,
+}: {
+  delay?: number;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 767px)").matches) {
+      setVisible(true);
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -40px 0px" },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(20px)",
+        transition: `opacity 0.55s ease ${delay}ms, transform 0.55s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+        willChange: "opacity, transform",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function ContactContentSection() {
   const t = useTranslations("contact");
@@ -80,10 +120,10 @@ export default function ContactContentSection() {
   ];
 
   return (
-    <section className="pt-20 pb-24 px-6">
+    <section className="pt-10 pb-12 px-6">
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          <motion.div {...fadeUp(0)} className="lg:col-span-4">
+          <FadeUp className="lg:col-span-4">
             <Card className="rounded-[40px] p-10 border-none shadow-sm h-full flex flex-col bg-white">
               <CardHeader className="p-0 mb-8 text-left">
                 <CardTitle className="text-3xl font-bold leading-tight text-gray-900">
@@ -135,9 +175,9 @@ export default function ContactContentSection() {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </FadeUp>
 
-          <motion.div {...fadeUp(0.12)} className="lg:col-span-8">
+          <FadeUp delay={120} className="lg:col-span-8">
             <Card className="border-none shadow-sm rounded-[40px] bg-white overflow-hidden h-full">
               <CardContent className="p-10">
                 {submitStatus === "success" && (
@@ -165,7 +205,7 @@ export default function ContactContentSection() {
                         onChange={handleChange}
                         required
                         placeholder={t("fieldNamePlaceholder")}
-                        className="h-14 rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-all"
+                        className="h-14 rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-colors"
                       />
                     </div>
                     <div className="space-y-2">
@@ -183,7 +223,7 @@ export default function ContactContentSection() {
                         onChange={handleChange}
                         required
                         placeholder={t("fieldEmailPlaceholder")}
-                        className="h-14 rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-all"
+                        className="h-14 rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-colors"
                       />
                     </div>
                   </div>
@@ -217,22 +257,30 @@ export default function ContactContentSection() {
                         onValueChange={(v) =>
                           setFormData({ ...formData, subject: v })
                         }
-                        required
                       >
-                        <SelectTrigger className="h-14 rounded-2xl border-gray-100 bg-gray-50/50">
+                        <SelectTrigger className="h-14 w-full rounded-2xl border-gray-100 bg-gray-50/50">
                           <SelectValue
                             placeholder={t("fieldServicePlaceholder")}
                           />
                         </SelectTrigger>
                         <SelectContent className="rounded-2xl">
-                          <SelectItem value="financial">
-                            {t("serviceOption1")}
+                          <SelectItem value="financial-audit">
+                            {t("departments.financial-audit")}
                           </SelectItem>
-                          <SelectItem value="audit">
-                            {t("serviceOption2")}
+                          <SelectItem value="tax-services">
+                            {t("departments.tax-services")}
                           </SelectItem>
-                          <SelectItem value="consulting">
-                            {t("serviceOption3")}
+                          <SelectItem value="accounting-services">
+                            {t("departments.accounting-services")}
+                          </SelectItem>
+                          <SelectItem value="valuation-services">
+                            {t("departments.valuation-services")}
+                          </SelectItem>
+                          <SelectItem value="legal-support">
+                            {t("departments.legal-support")}
+                          </SelectItem>
+                          <SelectItem value="business-consulting">
+                            {t("departments.business-consulting")}
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -261,7 +309,7 @@ export default function ContactContentSection() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white rounded-full py-7 px-10 w-full md:w-fit flex items-center gap-2 group transition-all font-bold"
+                    className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white rounded-full py-7 px-10 w-full flex items-center justify-center gap-2 group transition-colors font-bold"
                   >
                     {isSubmitting ? t("submitting") : t("submitBtn")}
                     <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -269,10 +317,10 @@ export default function ContactContentSection() {
                 </form>
               </CardContent>
             </Card>
-          </motion.div>
+          </FadeUp>
         </div>
 
-        <motion.div {...fadeUp(0.2)}>
+        <FadeUp delay={200}>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-0.5 bg-[#2563eb]" />
             <span className="text-[#2563eb] font-bold uppercase tracking-widest text-xs">
@@ -290,8 +338,8 @@ export default function ContactContentSection() {
           </p>
 
           <MapboxMap
-            latitude={41.6415}
-            longitude={41.6367}
+            latitude={41.64240373778514}
+            longitude={41.62775985779333}
             title={t("mapMarkerTitle")}
             address={t("addressValue")}
             zoom={16}
@@ -301,7 +349,7 @@ export default function ContactContentSection() {
             showDirections={true}
             className="w-full h-[350px] sm:h-[450px] lg:h-[500px]"
           />
-        </motion.div>
+        </FadeUp>
       </div>
     </section>
   );

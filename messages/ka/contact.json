@@ -7,8 +7,8 @@
   "infoPhone": "ტელეფონი",
   "infoEmail": "ელ-ფოსტა",
   "infoOffice": "ოფისი",
-  "phoneValue": "+995 XXX XXX XXX",
-  "emailValue": "info@prestige.ge",
+  "phoneValue": "+995 577 43 83 08",
+  "emailValue": "info.prestigeaudit@gmail.com",
   "addressValue": "საქართველო, ბათუმი, ჭავჭავაძის 77/88 ბ. 1-2",
   "hoursTitle": "ხელმისაწვდომია",
   "hoursValue": "ორშ-პარ: 9:00 - 18:00",
@@ -20,9 +20,6 @@
   "fieldPhonePlaceholder": "+995 XXX XXX XXX",
   "fieldService": "სასურველი სერვისი",
   "fieldServicePlaceholder": "აირჩიეთ სერვისი",
-  "serviceOption1": "ფინანსური აუდიტი",
-  "serviceOption2": "საგადასახადო სერვისები",
-  "serviceOption3": "ბიზნეს კონსულტაცია",
   "fieldMessage": "როგორ შეგვიძლია დაგეხმაროთ?",
   "fieldMessagePlaceholder": "მოგვიყევით თქვენი მიზნების შესახებ...",
   "submitBtn": "შეკითხვის გაგზავნა",
@@ -31,7 +28,15 @@
   "mapLabel": "გვიპოვეთ",
   "mapTitle": "ეწვიეთ ჩვენს",
   "mapTitleHighlight": "ოფისს",
-  "mapSubtitle": "ჩვენ ვმდებარეობთ თბილისის ცენტრში.",
+  "mapSubtitle": "ჩვენ ვმდებარეობთ ბათუმის ცენტრში.",
   "mapMarkerTitle": "პრესტიჟ აუდიტის ოფისი",
-  "heroBadge": "დაგვიკავშირდით"
+  "heroBadge": "დაგვიკავშირდით",
+  "departments": {
+    "financial-audit": "ფინანსური აუდიტი",
+    "tax-services": "საგადასახადო სერვისები",
+    "accounting-services": "ბუღალტრული მომსახურება",
+    "valuation-services": "შეფასების სერვისები",
+    "legal-support": "იურიდიული მხარდაჭერა",
+    "business-consulting": "ბიზნეს კონსულტაცია"
+  }
 }

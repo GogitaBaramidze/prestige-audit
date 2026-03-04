@@ -49,7 +49,7 @@ export default function MapboxMap({
 
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: "mapbox://styles/mapbox/light-v11", // Changed back to Light for a clean look
+      style: "mapbox://styles/mapbox/light-v11",
       center: [longitude, latitude],
       zoom,
       pitch: is3D ? pitch3D : 0,
@@ -64,7 +64,6 @@ export default function MapboxMap({
 
     mapRef.current = map;
 
-    // Custom Premium Marker
     const el = document.createElement("div");
     el.className = "custom-marker";
     el.innerHTML = `
@@ -106,7 +105,7 @@ export default function MapboxMap({
             ["linear"],
             ["get", "height"],
             0,
-            "#dbeafe", // Soft light blue for buildings
+            "#dbeafe",
             50,
             "#bfdbfe",
             100,
@@ -133,7 +132,6 @@ export default function MapboxMap({
     <div className="relative rounded-[40px] overflow-hidden shadow-xl border border-gray-100 bg-white">
       <div ref={mapContainerRef} className={className} />
 
-      {/* Control Buttons - Floating Style */}
       <div className="absolute top-6 left-6 flex flex-col gap-3 z-10">
         {enable3D && (
           <button
@@ -159,7 +157,6 @@ export default function MapboxMap({
         )}
       </div>
 
-      {/* Info Badge - Bottom Overlay */}
       <div className="absolute bottom-6 left-6 right-6 lg:right-auto z-10">
         <div className="bg-white/90 backdrop-blur-md border border-gray-100 p-4 rounded-3xl shadow-xl flex items-center gap-4 max-w-xs">
           <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">

@@ -1,9 +1,48 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Users } from "lucide-react";
 
+function useIsMobile(bp = 768) {
+  const [m, setM] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${bp - 1}px)`);
+    setM(mq.matches);
+    const h = (e: MediaQueryListEvent) => setM(e.matches);
+    mq.addEventListener("change", h);
+    return () => mq.removeEventListener("change", h);
+  }, [bp]);
+  return m;
+}
+
 export default function TeamHeroMotion({ badgeLabel }: { badgeLabel: string }) {
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return (
+      <section className="relative w-full bg-[#0a1a3f] pt-40 pb-40 px-5 overflow-hidden text-center">
+        <div
+          className="absolute inset-0 z-0 opacity-40 mix-blend-overlay pointer-events-none"
+          style={{
+            backgroundImage: `url('/background.png')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <div className="absolute top-1/4 left-0 w-64 h-64 bg-blue-500/20 rounded-full blur-[80px] pointer-events-none" />
+
+        <div className="mx-auto max-w-7xl relative z-10 px-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-blue-200 text-xs font-bold uppercase tracking-widest animate-fadeInUp">
+            <Users size={14} />
+            {badgeLabel}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <motion.section
       className="relative w-full bg-[#0a1a3f] pt-40 pb-40 px-5 overflow-hidden text-center"

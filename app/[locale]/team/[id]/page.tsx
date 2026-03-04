@@ -5,9 +5,12 @@ import { TeamMemberProfile } from "./_components/TeamMemberProfile";
 interface Props {
   params: Promise<{ locale: string; id: string }>;
 }
+import { locales } from "@/i18n/routing"; // or wherever your locales are defined
 
 export async function generateStaticParams() {
-  return TEAM_MEMBERS.map((m) => ({ id: m.id }));
+  return locales.flatMap((locale) =>
+    TEAM_MEMBERS.map((m) => ({ locale, id: m.id })),
+  );
 }
 
 export default async function TeamMemberPage({ params }: Props) {

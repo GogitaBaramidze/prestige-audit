@@ -4,7 +4,7 @@ export interface MemberMeta {
   phone: string;
   email: string;
   address: string;
-  department: string;
+  departments: string[];
 }
 
 export const TEAM_MEMBERS: MemberMeta[] = [
@@ -14,7 +14,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 595 91 22 96",
     email: "Gobaramidze@gmail.com",
     address: "Apt 12, 7a Aghmashenebeli St., Batumi",
-    department: "financial-audit",
+    departments: ["financial-audit", "valuation-services"],
   },
   {
     id: "tamar-mzhavanadze",
@@ -22,7 +22,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 514 81 00 11",
     email: "Tmjavanadze1984@gmail.com",
     address: "Sh. Khimshiashvili Street N 41, Batumi",
-    department: "accounting-services",
+    departments: ["accounting-services"],
   },
   {
     id: "tamta-ustalishvili",
@@ -30,7 +30,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 595 46 84 36",
     email: "ttamta274@gmail.com",
     address: "Legva Village, Kobuleti, Georgia",
-    department: "accounting-services",
+    departments: ["accounting-services"],
   },
   {
     id: "tornike-sergeevi",
@@ -38,7 +38,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 598 26 70 91",
     email: "tornikesergeevi@gmail.com",
     address: "Batumi, Georgia",
-    department: "business-consulting",
+    departments: ["business-consulting"],
   },
   {
     id: "lali-chigogidze",
@@ -46,7 +46,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 577 11 21 02",
     email: "lalichigogidze@gmail.com",
     address: "Batumi, Georgia",
-    department: "financial-audit",
+    departments: ["financial-audit"],
   },
   {
     id: "maia-pheikrishvili",
@@ -54,7 +54,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 577 43 83 08",
     email: "maiaph19@gmail.com",
     address: "78/88 Chavchavadze, Batumi, Georgia",
-    department: "financial-audit",
+    departments: ["financial-audit", "tax-services", "business-consulting"],
   },
   {
     id: "marine-lominadze",
@@ -62,7 +62,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 577 588 584",
     email: "marikalominadze78@gmail.com",
     address: "5 Abuseridze St., 6000, Batumi, Georgia",
-    department: "financial-audit",
+    departments: ["financial-audit"],
   },
   {
     id: "mzia-gegechkori",
@@ -70,7 +70,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 593 20 93 83",
     email: "mziagege62@mail.ru",
     address: "26 May Street No. 78, Apt. 18, Batumi, Georgia",
-    department: "financial-audit",
+    departments: ["financial-audit"],
   },
   {
     id: "mzia-melikishvili",
@@ -78,7 +78,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 597 97 14 83",
     email: "mzia1988@gmail.com",
     address: "48 J. Katamadze St., Batumi, 6000",
-    department: "accounting-services",
+    departments: ["financial-audit"],
   },
   {
     id: "natia-khajishvili",
@@ -86,7 +86,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 593 95 18 95",
     email: "natiakhajisvili@mail.ru",
     address: "78/88 Chavchavadze Street, Batumi",
-    department: "financial-audit",
+    departments: ["financial-audit"],
   },
   {
     id: "nato-romanadze",
@@ -94,7 +94,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 558 16 28 23",
     email: "nato.romanadze@mail.ru",
     address: "N54/62 Gorgiladze Street, Batumi, Georgia",
-    department: "financial-audit",
+    departments: ["financial-audit"],
   },
   {
     id: "nato-jabnidze",
@@ -102,7 +102,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 595 30 49 04",
     email: "n.jabnidze@gmail.com",
     address: "Batumi, Georgia",
-    department: "accounting-services",
+    departments: ["accounting-services"],
   },
   {
     id: "nutsa-jincharadze",
@@ -110,7 +110,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 557 38 26 47",
     email: "Nutsa.jincharadze05@gmail.com",
     address: "Village Tskavroka, Kobuleti, Georgia",
-    department: "accounting-services",
+    departments: ["accounting-services"],
   },
   {
     id: "romili-beridze",
@@ -118,7 +118,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 599 41 22 31",
     email: "beridze.romili@gmail.com",
     address: "Batumi, Georgia",
-    department: "financial-audit",
+    departments: ["financial-audit"],
   },
   {
     id: "rusudan-baramidze",
@@ -126,7 +126,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 551 80 08 68",
     email: "rubaramidze@gmail.com",
     address: "Davit Agmashenebeli Street, No. 5, Batumi, Georgia",
-    department: "financial-audit",
+    departments: ["accounting-services"],
   },
   {
     id: "rusudan-gugeshashvili",
@@ -134,7 +134,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 593 40 80 01",
     email: "r.gugeshashvili@gmail.com",
     address: "58 May 26 Street, Batumi",
-    department: "financial-audit",
+    departments: ["financial-audit"],
   },
   {
     id: "giorgi-seperteladze",
@@ -142,7 +142,15 @@ export const TEAM_MEMBERS: MemberMeta[] = [
     phone: "+995 598 68 68 46",
     email: "sepherteladze.g@gmail.com",
     address: "Gorgiladze St. N96, Batumi, 6000",
-    department: "financial-audit",
+    departments: ["financial-audit"],
+  },
+  {
+    id: "lasha-seperteladze",
+    image: "/team/lasha-seperteladze.jpg",
+    phone: "+995 514 600 070",
+    email: "info@cohen.ge",
+    address: "Batumi, Georgia",
+    departments: ["legal-support"],
   },
 ];
 

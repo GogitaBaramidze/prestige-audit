@@ -10,7 +10,7 @@
     "readyToWorkWith": "Ready to work with",
     "sendEmail": "Send Email",
     "callNow": "Call Now",
-    "meetTheExperts": "Meet the Experts",
+    "meetTheExperts": "Our Team",
     "viewProfile": "View Profile",
     "showingMembers": "Showing {count} member",
     "showingMembersPlural": "Showing {count} members",
@@ -383,6 +383,27 @@
         "FINA & ORIS Software",
         "3+ Years Audit Experience",
         "Tax Compliance"
+      ]
+    },
+    "lasha-seperteladze": {
+      "name": "Lasha Seperteladze",
+      "title": "CEO & Founder, Lawyer",
+      "summary": "Accomplished lawyer and CEO & Founder of Prestige-Audit with an LLM from Northeastern University School of Law and graduate-level studies at Harvard University Extension School. Brings over a decade of experience spanning tax advisory, international law, civil litigation, and corporate legal counsel. Has represented clients before the Georgian Revenue Service, Ministry of Finance, and Court of Justice, and previously practiced law in Boston, USA.",
+      "expertise": [
+        "Tax Advisory & Dispute Resolution",
+        "Civil & Administrative Litigation",
+        "International Law",
+        "Corporate Legal Counsel",
+        "Contract Drafting & Negotiation",
+        "Revenue Service Representation",
+        "Criminal Defense",
+        "Business Founding & Leadership"
+      ],
+      "certifications": [
+        "LLM — Northeastern University School of Law, Boston",
+        "Harvard University Extension School",
+        "LLB — University of Georgia, Tbilisi",
+        "Georgian, English, French & Russian Speaker"
       ]
     }
   }

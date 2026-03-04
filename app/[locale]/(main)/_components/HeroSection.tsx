@@ -3,7 +3,6 @@
 import { useState, useEffect, JSX } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
 
 const SLIDES = ["/bg2.jpg", "/b3.jpg", "/b4.jpg"];
 const FADE = { duration: 0.5, ease: "easeOut" as const };
@@ -37,7 +36,7 @@ export default function HeroSection(): JSX.Element {
               backgroundSize: "cover",
             }}
           >
-            <div className="absolute inset-0 bg-black/45" />
+            <div className="absolute inset-0 bg-black/60" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -65,10 +64,10 @@ export default function HeroSection(): JSX.Element {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...FADE, delay: 0.25 }}
-            className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-snug tracking-widest"
+            className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal leading-snug tracking-widest"
           >
             <span className="block">{t("heroTitleLine1")}</span>
-            <span className="block text-blue-500">
+            <span className="block text-blue-400 font-semibold">
               {t("heroTitleHighlight")}
             </span>
             <span className="block">{t("heroTitleLine2")}</span>

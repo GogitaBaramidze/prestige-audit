@@ -7,9 +7,9 @@
   "infoPhone": "Phone",
   "infoEmail": "Email",
   "infoOffice": "Office",
-  "phoneValue": "+995 XXX XXX XXX",
-  "emailValue": "info@prestige.ge",
-  "addressValue": "თბილისი, საქართველო",
+  "phoneValue": "+995 577 43 83 08",
+  "emailValue": "info.prestigeaudit@gmail.com",
+  "addressValue": "Georgia, Batumi, Cavchavadze ST# 77/88 B. 1-2",
   "hoursTitle": "Available Now",
   "hoursValue": "Mon-Fri: 9AM - 6PM",
   "fieldName": "Full Name",
@@ -32,5 +32,6 @@
   "mapTitle": "Visit Our",
   "mapTitleHighlight": "Office",
   "mapSubtitle": "We're located in the heart of Tbilisi.",
-  "mapMarkerTitle": "Prestige Audit Office"
+  "mapMarkerTitle": "Prestige Audit Office",
+  "heroBadge": "Contact Us"
 }

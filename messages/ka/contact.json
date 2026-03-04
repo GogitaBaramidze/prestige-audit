@@ -9,7 +9,7 @@
   "infoOffice": "ოფისი",
   "phoneValue": "+995 XXX XXX XXX",
   "emailValue": "info@prestige.ge",
-  "addressValue": "თბილისი, საქართველო",
+  "addressValue": "საქართველო, ბათუმი, ჭავჭავაძის 77/88 ბ. 1-2",
   "hoursTitle": "ხელმისაწვდომია",
   "hoursValue": "ორშ-პარ: 9:00 - 18:00",
   "fieldName": "სრული სახელი",
@@ -32,5 +32,6 @@
   "mapTitle": "ეწვიეთ ჩვენს",
   "mapTitleHighlight": "ოფისს",
   "mapSubtitle": "ჩვენ ვმდებარეობთ თბილისის ცენტრში.",
-  "mapMarkerTitle": "პრესტიჟ აუდიტის ოფისი"
+  "mapMarkerTitle": "პრესტიჟ აუდიტის ოფისი",
+  "heroBadge": "დაგვიკავშირდით"
 }

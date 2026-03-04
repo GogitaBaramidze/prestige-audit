@@ -5,7 +5,7 @@ import { TeamMemberProfile } from "./_components/TeamMemberProfile";
 interface Props {
   params: Promise<{ locale: string; id: string }>;
 }
-import { locales } from "@/i18n/routing"; // or wherever your locales are defined
+import { locales } from "@/i18n/routing";  
 
 export async function generateStaticParams() {
   return locales.flatMap((locale) =>

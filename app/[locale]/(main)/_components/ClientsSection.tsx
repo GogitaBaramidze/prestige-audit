@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
 type Clients = {
   name: string;
@@ -24,71 +25,54 @@ const partnersRow2: Clients[] = [
   { name: "BTM Textile", type: "text" },
 ];
 
-const LogoCard = ({ logo, name, type }: Clients) => {
+const LogoCard = ({
+  logo,
+  name,
+  type,
+  isTouch,
+}: Clients & { isTouch: boolean }) => {
   const isTextLogo = type === "text" || !logo;
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.05, y: -4 }}
-      transition={{ type: "spring" as const, stiffness: 400, damping: 25 }}
+    <div
+      className={`my-2 min-w-[180px] md:min-w-[220px] mx-3 ${!isTouch ? "transition-transform duration-300 hover:-translate-y-1 hover:scale-105" : ""}`}
     >
-      <Card className="flex items-center my-2 justify-center min-w-[180px] md:min-w-[220px] h-[100px] bg-white border-none rounded-[24px] shadow-sm hover:shadow-md transition-all duration-300 mx-3 p-6 group cursor-default">
+      <Card className="flex items-center justify-center h-[100px] bg-white border-none rounded-[24px] shadow-sm hover:shadow-md transition-shadow duration-300 p-6 cursor-default">
         {isTextLogo ? (
-          <motion.span
-            className="text-xl font-bold text-black transition-colors duration-500"
-            whileHover={{
-              scale: 1.1,
-              color: "#2563eb",
-              transition: { duration: 0.3 },
-            }}
+          <span
+            className={`text-xl font-bold text-black ${!isTouch ? "transition-colors duration-300 hover:text-blue-600" : ""}`}
           >
             {name}
-          </motion.span>
+          </span>
         ) : (
-          <motion.img
-            src={logo}
-            alt={name}
-            className="h-20 w-20 transition-transform duration-500"
-            whileHover={{
-              scale: 1.15,
-              rotate: [0, -5, 5, 0],
-              transition: { duration: 0.4 },
-            }}
-          />
+          <img src={logo} alt={name} className="h-20 w-20 object-contain" />
         )}
       </Card>
-    </motion.div>
+    </div>
   );
 };
 
 export default function ClientsSection() {
   const t = useTranslations("main");
+  const [isTouch, setIsTouch] = useState(true);
+
+  useEffect(() => {
+    setIsTouch(!window.matchMedia("(hover: hover)").matches);
+  }, []);
 
   return (
     <section className="relative z-10 bg-[#f3f5f4] py-10 md:pt-16 pb-32 overflow-hidden">
-      <style jsx global>{`
+      <style>{`
         @keyframes scrollLeft {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
         @keyframes scrollRight {
-          0% {
-            transform: translateX(-50%);
-          }
-          100% {
-            transform: translateX(0);
-          }
+          0%   { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
         }
-        .animate-marquee-left {
-          animation: scrollLeft 35s linear infinite;
-        }
-        .animate-marquee-right {
-          animation: scrollRight 35s linear infinite;
-        }
+        .animate-marquee-left  { animation: scrollLeft  35s linear infinite; }
+        .animate-marquee-right { animation: scrollRight 35s linear infinite; }
       `}</style>
 
       <motion.div
@@ -115,11 +99,11 @@ export default function ClientsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" as const }}
         >
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f3f5f4] to-transparent z-10" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#f3f5f4] to-transparent z-10" />
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f3f5f4] to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#f3f5f4] to-transparent z-10 pointer-events-none" />
           <div className="flex animate-marquee-left whitespace-nowrap">
             {[...partnersRow1, ...partnersRow1, ...partnersRow1].map((p, i) => (
-              <LogoCard key={`r1-${i}`} {...p} />
+              <LogoCard key={`r1-${i}`} {...p} isTouch={isTouch} />
             ))}
           </div>
         </motion.div>
@@ -131,11 +115,11 @@ export default function ClientsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" as const }}
         >
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f3f5f4] to-transparent z-10" />
-          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#f3f5f4] to-transparent z-10" />
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#f3f5f4] to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#f3f5f4] to-transparent z-10 pointer-events-none" />
           <div className="flex animate-marquee-right whitespace-nowrap">
             {[...partnersRow2, ...partnersRow2, ...partnersRow2].map((p, i) => (
-              <LogoCard key={`r2-${i}`} {...p} />
+              <LogoCard key={`r2-${i}`} {...p} isTouch={isTouch} />
             ))}
           </div>
         </motion.div>

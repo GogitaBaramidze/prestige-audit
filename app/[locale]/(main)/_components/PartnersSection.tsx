@@ -52,7 +52,7 @@ const IasbLogo = () => (
   </div>
 );
 
-const logos = [
+const logos: { alt: string; Logo: () => React.ReactElement }[] = [
   { alt: "BAF", Logo: BafLogo },
   { alt: "ACCA", Logo: AccaLogo },
   { alt: "IFAC", Logo: IfacLogo },
@@ -82,15 +82,11 @@ const ORBIT_DURATION = 20;
 const ANGLE_STEP = 360 / logos.length;
 
 const fadeInLeft: Variants = {
-  hidden: { opacity: 0, x: -60 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.8,
-      delay: i * 0.12,
-      ease: [0.21, 0.47, 0.32, 0.98] as const,
-    },
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: "easeOut" as const },
   }),
 };
 
@@ -100,10 +96,7 @@ const fadeInRight: Variants = {
     opacity: 1,
     x: 0,
     scale: 1,
-    transition: {
-      duration: 1.1,
-      ease: [0.21, 0.47, 0.32, 0.98] as const,
-    },
+    transition: { duration: 1.1, ease: [0.21, 0.47, 0.32, 0.98] as const },
   },
 };
 
@@ -112,6 +105,31 @@ const PartnersSection = () => {
 
   return (
     <section className="py-10 md:py-16 overflow-hidden bg-[#F3F5F4]">
+      <style>{`
+        @keyframes orbit {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes counter-orbit {
+          from { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+          to   { transform: translateX(-50%) translateY(-50%) rotate(-360deg); }
+        }
+        .orbit-ring {
+          position: absolute;
+          inset: 6%;
+          transform-origin: center;
+          animation: orbit ${ORBIT_DURATION}s linear infinite;
+          will-change: transform;
+        }
+        .orbit-logo {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          animation: counter-orbit ${ORBIT_DURATION}s linear infinite;
+          will-change: transform;
+        }
+      `}</style>
+
       <div className="max-w-[2000px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20 2xl:px-32">
         <div className="flex flex-col lg:flex-row lg:gap-16 xl:gap-20 items-center">
           <div className="lg:w-[47%] w-full mb-12 lg:mb-0">
@@ -181,25 +199,24 @@ const PartnersSection = () => {
             </div>
           </div>
 
-          <div className="lg:w-[53%] w-full flex items-center justify-center relative min-h-[520px]">
+          <div className="lg:w-[53%] w-full flex items-center justify-center relative min-h-[420px] md:min-h-[520px]">
             <div className="absolute w-[440px] h-[440px] bg-blue-400/10 rounded-full blur-[100px]" />
 
             <motion.div
-              className="relative w-full max-w-[460px] aspect-square flex items-center justify-center"
+              className="relative w-full max-w-[380px] md:max-w-[460px] aspect-square flex items-center justify-center"
               variants={fadeInRight}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
             >
               <div className="absolute inset-[6%] border border-blue-200/50 rounded-full" />
-
               <div
                 className="absolute rounded-full border border-blue-100/30"
                 style={{ inset: "20%" }}
               />
 
               <motion.div
-                className="z-20 w-36 h-36 md:w-44 md:h-44 rounded-full flex items-center justify-center border border-white/20 overflow-hidden"
+                className="z-20 w-32 h-32 md:w-44 md:h-44 rounded-full flex items-center justify-center border border-white/20 overflow-hidden"
                 style={{
                   background:
                     "linear-gradient(135deg, #0f1f5c 0%, #1a3a8f 35%, #1d4ed8 65%, #2563eb 100%)",
@@ -227,39 +244,20 @@ const PartnersSection = () => {
               </motion.div>
 
               {logos.map(({ alt, Logo }, index) => {
-                const initialAngle = index * ANGLE_STEP;
+                const delay = `-${(index / logos.length) * ORBIT_DURATION}s`;
                 return (
-                  <motion.div
-                    key={index}
-                    className="absolute"
-                    style={{ inset: "6%" }}
-                    animate={{ rotate: [initialAngle, initialAngle + 360] }}
-                    transition={{
-                      duration: ORBIT_DURATION,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
+                  <div
+                    key={alt}
+                    className="orbit-ring"
+                    style={{ animationDelay: delay }}
                   >
-                    <motion.div
-                      className="absolute w-20 h-20 rounded-full overflow-hidden border-2 border-white/80 shadow-md hover:scale-110 transition-transform duration-300 cursor-pointer"
-                      style={{
-                        top: 0,
-                        left: "50%",
-                        translateX: "-50%",
-                        translateY: "-50%",
-                      }}
-                      animate={{
-                        rotate: [-initialAngle, -(initialAngle + 360)],
-                      }}
-                      transition={{
-                        duration: ORBIT_DURATION,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
+                    <div
+                      className="orbit-logo w-14 h-14 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-white/80 shadow-md"
+                      style={{ animationDelay: delay }}
                     >
                       <Logo />
-                    </motion.div>
-                  </motion.div>
+                    </div>
+                  </div>
                 );
               })}
             </motion.div>

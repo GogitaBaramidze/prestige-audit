@@ -50,7 +50,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "maia-pheikrishvili",
-    image: "/team/maia-seperteladze.png",
+    image: "/team/maia-pheikrishvili.png",
     phone: "+995 577 43 83 08",
     email: "maiaph19@gmail.com",
     address: "78/88 Chavchavadze, Batumi, Georgia",

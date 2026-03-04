@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ShieldCheck } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -16,13 +17,24 @@ const fadeUp = (delay: number) => ({
 export default function AboutParallax() {
   const t = useTranslations("main");
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+  const bgYMotion = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  // On mobile we pass a static value — no scroll tracking cost
+  const bgY = isDesktop ? bgYMotion : "0%";
 
   const stats = [
     { value: t("aboutStat1Value"), label: t("aboutStat1Label") },
@@ -52,8 +64,9 @@ export default function AboutParallax() {
             backgroundImage: `url('/bg1.jpg')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
+            contain: "strict",
           }}
-          className="absolute inset-[-25%] w-[150%] h-[150%] will-change-transform"
+          className="absolute inset-[-12%] will-change-transform"
           aria-hidden="true"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-slate-900/35 to-slate-950/50" />
@@ -94,7 +107,6 @@ export default function AboutParallax() {
 
                 <motion.div {...fadeUp(0.32)}>
                   <a
-                    suppressHydrationWarning
                     href="/about"
                     className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full px-8 py-4 md:px-12 md:py-5 text-white text-base font-semibold bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 shadow-lg shadow-blue-600/30 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-1 active:scale-95"
                   >

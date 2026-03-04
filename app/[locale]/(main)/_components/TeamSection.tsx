@@ -3,15 +3,7 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Users } from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
+import { ArrowRight, Users, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const lineColors = [
@@ -118,7 +110,7 @@ function DeptCard({
 }: {
   dept: { label: string; href: string; cta: string };
   theme: (typeof cardThemes)[0];
-  cardRef: any;
+  cardRef: React.Ref<HTMLDivElement>;
   index: number;
   isInView: boolean;
   enterFrom?: "left" | "right" | "bottom";
@@ -140,25 +132,15 @@ function DeptCard({
     <motion.div
       ref={cardRef}
       className="w-full"
-      initial={{
-        opacity: 0,
-        x: initialX,
-        y: initialY,
-        scale: 0.85,
-        filter: "blur(10px)",
-      }}
-      animate={
-        isInView
-          ? { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }
-          : {}
-      }
+      initial={{ opacity: 0, x: initialX, y: initialY, scale: 0.85 }}
+      animate={isInView ? { opacity: 1, x: 0, y: 0, scale: 1 } : {}}
       transition={{ duration: 1.2, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
     >
       <Link href={dept.href} className="group block">
         <div
-          className={`relative overflow-hidden bg-gradient-to-br ${theme.cardBg} rounded-[2rem] mx-6  md:mx-0 p-6 border border-transparent transition-all duration-700 hover:shadow-2xl ${theme.border} group-hover:-translate-y-2`}
+          className={`relative overflow-hidden my-4 bg-gradient-to-br ${theme.cardBg} rounded-[2rem] mx-6 md:mx-0 p-6 border border-transparent transition-all duration-700 hover:shadow-2xl ${theme.border} group-hover:-translate-y-2`}
           style={{
             boxShadow: hovered
               ? `0 25px 70px ${theme.glowColor}, 0 0 0 1px ${theme.accent}25`
@@ -166,7 +148,7 @@ function DeptCard({
           }}
         >
           <motion.div
-            className={`absolute -top-8 -right-8 w-28 h-28 rounded-full ${theme.iconBg} blur-2xl`}
+            className={`absolute -top-8 -right-8 w-28 h-28 my-1 rounded-full ${theme.iconBg} blur-2xl`}
             animate={
               hovered
                 ? { scale: 1.8, opacity: 0.4 }
@@ -239,8 +221,8 @@ function DeptCard({
 
 function MobileCarousel({ isInView }: { isInView: boolean }) {
   const t = useTranslations("main");
-  const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
 
   const departments = [
     { label: t("teamDept1Label"), href: deptHrefs[0], cta: t("teamDept1Cta") },
@@ -251,27 +233,76 @@ function MobileCarousel({ isInView }: { isInView: boolean }) {
     { label: t("teamDept6Label"), href: deptHrefs[5], cta: t("teamDept6Cta") },
   ];
 
-  useEffect(() => {
-    if (!api) return;
-    setCurrent(api.selectedScrollSnap());
-    api.on("select", () => setCurrent(api.selectedScrollSnap()));
-  }, [api]);
+  const goTo = useCallback(
+    (index: number) => {
+      const next = Math.max(0, Math.min(index, departments.length - 1));
+      setCurrent(next);
+      trackRef.current?.children[next]?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    },
+    [departments.length],
+  );
+
+  // Touch swipe support
+  const touchStartX = useRef(0);
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  };
 
   return (
-    <motion.div
-      className="w-full"
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 1, delay: 0.6 }}
-    >
-      <Carousel
-        setApi={setApi}
-        opts={{ align: "center", loop: true }}
-        className="w-full"
-      >
-        <CarouselContent className="-ml-4">
+    <div className="w-full opacity-100">
+      <div className="relative">
+        <button
+          onClick={() => goTo(current - 1)}
+          disabled={current === 0}
+          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-30"
+          style={{
+            background: "rgba(255,255,255,0.55)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            border: "1px solid rgba(255,255,255,0.7)",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+          }}
+        >
+          <ChevronLeft size={16} className="text-slate-600" />
+        </button>
+
+        <button
+          onClick={() => goTo(current + 1)}
+          disabled={current === departments.length - 1}
+          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-30"
+          style={{
+            background: "rgba(255,255,255,0.55)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            border: "1px solid rgba(255,255,255,0.7)",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+          }}
+        >
+          <ChevronRight size={16} className="text-slate-600" />
+        </button>
+
+        <div
+          ref={trackRef}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-0"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          onScroll={(e) => {
+            const el = e.currentTarget;
+            const index = Math.round(el.scrollLeft / el.offsetWidth);
+            setCurrent(index);
+          }}
+        >
           {departments.map((dept, i) => (
-            <CarouselItem key={i} className="pl-4 basis-full">
+            <div key={i} className="w-full flex-shrink-0 snap-center">
               <DeptCard
                 dept={dept}
                 theme={cardThemes[i]}
@@ -279,20 +310,18 @@ function MobileCarousel({ isInView }: { isInView: boolean }) {
                 index={i}
                 isInView={isInView}
                 enterFrom="bottom"
-                mobileDelay={0.7 + i * 0.12}
+                mobileDelay={0}
               />
-            </CarouselItem>
+            </div>
           ))}
-        </CarouselContent>
-        <CarouselPrevious className="left-1 bg-white/90 backdrop-blur" />
-        <CarouselNext className="right-1 bg-white/90 backdrop-blur" />
-      </Carousel>
+        </div>
+      </div>
 
       <div className="flex justify-center gap-2 mt-6">
         {departments.map((_, i) => (
           <button
             key={i}
-            onClick={() => api?.scrollTo(i)}
+            onClick={() => goTo(i)}
             className="transition-all duration-500 rounded-full"
             style={{
               width: current === i ? "28px" : "8px",
@@ -302,7 +331,7 @@ function MobileCarousel({ isInView }: { isInView: boolean }) {
           />
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -377,57 +406,42 @@ export default function TeamSection() {
           50%       { box-shadow: 0 0 40px rgba(37,99,235,0.6), 0 0 25px 12px rgba(37,99,235,0.15); }
         }
         .trunk-dot { width: 22px; height: 22px; border-radius: 50%; background: #2563eb; border: 4px solid #fff; animation: pulseGlow 2.5s ease-in-out infinite; z-index: 30; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
       `}</style>
 
       <div className="lg:hidden flex flex-col items-center px-0 gap-8">
-        <motion.div
-          className="flex flex-col items-center text-center"
-          initial={{ opacity: 0, y: -30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9 }}
-        >
+        <div className="flex flex-col items-center text-center">
           <div className="flex items-center gap-3 mb-3">
-            <motion.div
-              className="h-0.5 bg-[#2563eb]"
-              initial={{ width: 0 }}
-              animate={isInView ? { width: "2.5rem" } : {}}
-              transition={{ duration: 0.7, delay: 0.4 }}
-            />
-            <span className="text-gray-500 text-base md:text-lg font-medium tracking-widest uppercase">
+            <div className="h-0.5 w-10 bg-[#2563eb]" />
+            <span className="text-gray-500 text-base font-medium  md:text-lg tracking-widest uppercase">
               {t("teamSectionLabel")}
             </span>
-            <motion.div
-              className="h-0.5 bg-[#2563eb]"
-              initial={{ width: 0 }}
-              animate={isInView ? { width: "2.5rem" } : {}}
-              transition={{ duration: 0.7, delay: 0.4 }}
+            <div className="h-0.5 w-10 bg-[#2563eb]" />
+          </div>
+        </div>
+
+        <div
+          className="relative rounded-[40px] overflow-hidden shadow-2xl w-[320px]"
+          style={{
+            boxShadow:
+              "0 25px 60px rgba(0,0,0,0.25), 0 8px 25px rgba(37,99,235,0.15)",
+          }}
+        >
+          <div className="aspect-[4/5] overflow-hidden">
+            <img
+              src="/team/maia-pheikrishvili.png"
+              alt={t("teamCeoName")}
+              className="h-full w-full object-cover"
             />
           </div>
-        </motion.div>
-
-        <motion.div
-          className="relative"
-          initial={{ opacity: 0, scale: 0.85, y: 40 }}
-          animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-          transition={{ duration: 1.3, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="relative rounded-[40px] overflow-hidden shadow-2xl w-[320px] border-[10px] border-white bg-white">
-            <div className="aspect-[4/5] overflow-hidden">
-              <img
-                src="/4.jpeg"
-                alt={t("teamCeoName")}
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
-              <h3 className="text-white mb-1 font-bold text-lg">
-                {t("teamCeoName")}
-              </h3>
-              <p className="text-blue-400 text-sm">{t("teamCeoTitle")}</p>
-            </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-5 text-center">
+            <h3 className="text-white mb-1 font-bold text-lg">
+              {t("teamCeoName")}
+            </h3>
+            <p className="text-blue-400 text-sm">{t("teamCeoTitle")}</p>
           </div>
-        </motion.div>
+        </div>
 
         <MobileCarousel isInView={isInView} />
       </div>
@@ -447,7 +461,7 @@ export default function TeamSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
             />
             <motion.span
-              className="text-gray-500 text-sm font-medium tracking-widest uppercase"
+              className="text-gray-500 text-sm md:text-xl font-medium tracking-widest uppercase"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 1, delay: 0.5 }}
@@ -472,7 +486,9 @@ export default function TeamSection() {
               <DeptCard
                 dept={departments[0]}
                 theme={cardThemes[0]}
-                cardRef={(el: any) => (cardRefs.current[0] = el)}
+                cardRef={(el: HTMLDivElement | null) => {
+                  cardRefs.current[0] = el;
+                }}
                 index={0}
                 isInView={isInView}
                 enterFrom="left"
@@ -491,11 +507,15 @@ export default function TeamSection() {
             >
               <div
                 ref={imageRef}
-                className="relative group rounded-[50px] overflow-hidden shadow-2xl w-[360px] border-[12px] border-white bg-white transition-transform duration-700 hover:scale-[1.03]"
+                className="relative group rounded-[50px] overflow-hidden w-[340px]"
+                style={{
+                  boxShadow:
+                    "0 30px 80px rgba(0,0,0,0.3), 0 10px 30px rgba(37,99,235,0.2), 0 0 0 1px rgba(255,255,255,0.08)",
+                }}
               >
                 <div className="aspect-[4/5] overflow-hidden">
                   <img
-                    src="4.jpeg"
+                    src="/team/maia-pheikrishvili.png"
                     alt={t("teamCeoName")}
                     className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
@@ -541,7 +561,9 @@ export default function TeamSection() {
               <DeptCard
                 dept={departments[1]}
                 theme={cardThemes[1]}
-                cardRef={(el: any) => (cardRefs.current[1] = el)}
+                cardRef={(el: HTMLDivElement | null) => {
+                  cardRefs.current[1] = el;
+                }}
                 index={1}
                 isInView={isInView}
                 enterFrom="right"
@@ -565,25 +587,24 @@ export default function TeamSection() {
                 transition={{ duration: 1.5, delay: 1.5, ease: "easeInOut" }}
               />
             )}
-            {paths.map(
-              (d, i) =>
-                d && (
-                  <motion.path
-                    key={i}
-                    d={d}
-                    fill="none"
-                    stroke={lineColors[i]}
-                    strokeWidth="2.5"
-                    strokeOpacity="0.6"
-                    initial={{ pathLength: 0 }}
-                    animate={isInView ? { pathLength: 1 } : {}}
-                    transition={{
-                      duration: 1.8,
-                      delay: 1.8 + i * 0.1,
-                      ease: "easeInOut",
-                    }}
-                  />
-                ),
+            {paths.map((d, i) =>
+              d ? (
+                <motion.path
+                  key={i}
+                  d={d}
+                  fill="none"
+                  stroke={lineColors[i]}
+                  strokeWidth="2.5"
+                  strokeOpacity="0.6"
+                  initial={{ pathLength: 0 }}
+                  animate={isInView ? { pathLength: 1 } : {}}
+                  transition={{
+                    duration: 1.8,
+                    delay: 1.8 + i * 0.1,
+                    ease: "easeInOut",
+                  }}
+                />
+              ) : null,
             )}
           </svg>
 
@@ -593,7 +614,9 @@ export default function TeamSection() {
                 key={i}
                 dept={dept}
                 theme={cardThemes[i + 2]}
-                cardRef={(el: any) => (cardRefs.current[i + 2] = el)}
+                cardRef={(el: HTMLDivElement | null) => {
+                  cardRefs.current[i + 2] = el;
+                }}
                 index={i + 2}
                 isInView={isInView}
                 enterFrom="bottom"

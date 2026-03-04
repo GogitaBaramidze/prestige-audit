@@ -180,7 +180,7 @@ export default function Header() {
               width={140}
               height={140}
               style={{ objectFit: "contain" }}
-              className="cursor-pointer mt-2 w-56 -ml-8 md:ml-0 h-56 md:w-64 md:h-64 2xl:w-72 2xl:h-72"
+              className="cursor-pointer mt-2 w-56 -ml-6 md:ml-0 h-56 md:w-64 md:h-64 2xl:w-72 2xl:h-72"
             />
           </Link>
 

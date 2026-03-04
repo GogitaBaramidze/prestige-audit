@@ -1,14 +1,17 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 export default function VideoSection() {
   const t = useTranslations("main");
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isTouch, setIsTouch] = useState(true);
 
   useEffect(() => {
+    setIsTouch(!window.matchMedia("(hover: hover)").matches);
+
     if (videoRef.current) {
       videoRef.current.play().catch(() => {});
     }
@@ -18,11 +21,11 @@ export default function VideoSection() {
     <section className="relative bg-[#f3f5f4] py-16 md:py-24 overflow-hidden">
       <div className="max-w-[2000px] mx-auto px-0 md:px-16 lg:px-20 2xl:px-32 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-20">
-          {/* Left: Video Content */}
+          {/* Left: Video */}
           <motion.div
             className="w-full lg:w-[55%]"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: isTouch ? 20 : 0, x: isTouch ? 0 : -40 }}
+            whileInView={{ opacity: 1, y: 0, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, ease: "easeOut" }}
           >
@@ -42,19 +45,21 @@ export default function VideoSection() {
             </div>
           </motion.div>
 
-          {/* Right: Text Content */}
+          {/* Right: Text */}
           <motion.div
             className="w-full lg:w-[45%] flex flex-col justify-center px-6 sm:px-10 md:px-0"
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: isTouch ? 20 : 0, x: isTouch ? 0 : 40 }}
+            whileInView={{ opacity: 1, y: 0, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, delay: 0.12 }}
           >
             <div className="flex items-end gap-4 mb-6">
+              {/* Large number — no animation on bg-clip-text, just fade in */}
               <motion.span
                 className="text-7xl md:text-8xl lg:text-[9rem] font-bold leading-none text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-500 select-none tracking-tighter"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.22 }}
               >
                 25
@@ -71,11 +76,11 @@ export default function VideoSection() {
 
             <div className="w-16 h-1.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 mb-8" />
 
-            {/* Header: Restored Original Sizes + Bolder weights */}
             <motion.h2
               className="text-slate-900 mb-6 text-2xl md:text-3xl lg:text-4xl font-bold leading-tight tracking-tight"
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.28 }}
             >
               {t("videoSectionHeading1")}{" "}
@@ -89,6 +94,7 @@ export default function VideoSection() {
               className="text-slate-600 mb-10 max-w-md text-base leading-relaxed font-medium"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.36 }}
             >
               {t("videoSectionBody")}
@@ -104,6 +110,7 @@ export default function VideoSection() {
                   className="flex flex-col"
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: 0.42 + i * 0.09 }}
                 >
                   <span className="text-slate-900 text-2xl md:text-3xl font-bold">

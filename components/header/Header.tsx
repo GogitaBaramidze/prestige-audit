@@ -158,7 +158,7 @@ export default function Header() {
       className="absolute top-0 left-0 right-0 z-50"
       style={{ padding: "clamp(24px, 2vw, 48px) clamp(24px, 3vw, 64px) 0" }}
     >
-      <div className="relative max-w-[2000px] mx-auto">
+      <div className="relative max-w-[2000px] mx-auto ">
         <div
           className="absolute inset-0"
           style={{
@@ -171,7 +171,7 @@ export default function Header() {
         />
 
         <div
-          className="relative flex items-center justify-between px-6 md:px-10 2xl:px-16"
+          className="relative flex items-center justify-between px-6 md:px-5 2xl:px-10 border-white border rounded-3xl"
           style={{ height: "clamp(80px, 6vh, 110px)" }}
         >
           <Link
@@ -184,7 +184,7 @@ export default function Header() {
               width={140}
               height={140}
               style={{ objectFit: "contain" }}
-              className="cursor-pointer mt-2 w-56 -ml-6 md:ml-0 h-56 md:w-64 md:h-64 2xl:w-72 2xl:h-72"
+              className="cursor-pointer mt-2 w-56 -ml-6 md:ml-0 h-56 md:w-64 md:h-64 lg:w-52 2xl:w-72 2xl:h-72"
             />
           </Link>
 

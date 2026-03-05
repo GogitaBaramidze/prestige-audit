@@ -151,7 +151,7 @@ export default function Header() {
   const isServicesActive =
     pathname === "/services" || pathname.startsWith("/services/");
   const navLinkClass =
-    "group relative px-6 py-2 text-sm font-semibold transition-colors duration-300";
+    "group relative px-3 py-2 text-sm xl:text-base font-semibold transition-colors duration-300";
 
   return (
     <header

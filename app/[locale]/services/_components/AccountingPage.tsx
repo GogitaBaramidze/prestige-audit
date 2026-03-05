@@ -198,20 +198,6 @@ export default function AccountingServicesPage() {
           className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-32 w-full"
           style={{ opacity: heroOpacity }}
         >
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 text-violet-300/80 hover:text-violet-200 text-sm font-medium transition-colors mb-10 group"
-            >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
-              {t("heroBackLink")}
-            </Link>
-          </motion.div>
-
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <motion.div

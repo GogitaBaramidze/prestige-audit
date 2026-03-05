@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = t(`members.${id}.title`);
 
   const imageUrl = member.image.startsWith("/")
-    ? `${process.env.NEXT_PUBLIC_SITE_URL}${member.image}`
+    ? `${member.image}`
     : member.image;
 
   return {

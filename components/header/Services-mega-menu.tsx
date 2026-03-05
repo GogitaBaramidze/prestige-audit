@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export const services = [
   {
     id: "financial-audit",
-    title: "Financial Audit",
+    titleKey: "footerServiceFinancialAudit",
     gradient: "from-blue-500 to-cyan-400",
     icon: (
       <svg
@@ -27,7 +27,7 @@ export const services = [
   },
   {
     id: "tax-services",
-    title: "Tax Services",
+    titleKey: "footerServiceTax",
     gradient: "from-emerald-500 to-teal-400",
     icon: (
       <svg
@@ -47,7 +47,7 @@ export const services = [
   },
   {
     id: "accounting",
-    title: "Accounting",
+    titleKey: "footerServiceAccounting",
     gradient: "from-orange-500 to-amber-400",
     icon: (
       <svg
@@ -67,7 +67,7 @@ export const services = [
   },
   {
     id: "valuation",
-    title: "Valuation",
+    titleKey: "footerServiceValuation",
     gradient: "from-rose-500 to-pink-400",
     icon: (
       <svg
@@ -87,7 +87,7 @@ export const services = [
   },
   {
     id: "legal",
-    title: "Legal",
+    titleKey: "footerServiceLegal",
     gradient: "from-sky-500 to-blue-400",
     icon: (
       <svg
@@ -107,7 +107,7 @@ export const services = [
   },
   {
     id: "consulting",
-    title: "Consulting",
+    titleKey: "footerServiceConsulting",
     gradient: "from-teal-500 to-emerald-400",
     icon: (
       <svg
@@ -127,6 +127,12 @@ export const services = [
   },
 ];
 
+// Keep a plain title fallback for places that don't have translations context (e.g. mobile header SVG renderer)
+export const servicesWithTitles = services.map((s) => ({
+  ...s,
+  title: s.titleKey,
+}));
+
 export function ServicesMegaMenu({
   isOpen,
   pathname,
@@ -134,6 +140,31 @@ export function ServicesMegaMenu({
   isOpen: boolean;
   pathname: string;
 }) {
+  const t = useTranslations("main");
+
+  // "All Services" row — same shape as a service
+  const allServicesRow = {
+    id: "all",
+    href: "/services",
+    label: t("navAllServices"),
+    gradient: "from-white/20 to-white/10",
+    icon: (
+      <svg
+        className="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M4 6h16M4 10h16M4 14h16M4 18h16"
+        />
+      </svg>
+    ),
+  };
+
   return (
     <div
       className={cn(
@@ -144,7 +175,7 @@ export function ServicesMegaMenu({
       )}
       style={{ width: "min(92vw, 280px)" }}
     >
-      {/* Arrow pointer matching header glass style */}
+      {/* Arrow pointer */}
       <div
         className="absolute -top-[7px] left-1/2 -translate-x-1/2 w-3.5 h-3.5 rotate-45"
         style={{
@@ -155,7 +186,7 @@ export function ServicesMegaMenu({
         }}
       />
 
-      {/* Panel — same glass as header */}
+      {/* Panel */}
       <div
         className="relative overflow-hidden rounded-2xl"
         style={{
@@ -164,10 +195,10 @@ export function ServicesMegaMenu({
           WebkitBackdropFilter: "blur(20px)",
           border: "1px solid rgba(255, 255, 255, 0.1)",
           boxShadow:
-            "0 30px 70px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(74, 159, 245, 0.05)",
+            "0 30px 70px -10px rgba(0,0,0,0.5), 0 0 0 1px rgba(74,159,245,0.05)",
         }}
       >
-        {/* Subtle glow accent at top */}
+        {/* Top glow */}
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-px"
           style={{
@@ -176,25 +207,14 @@ export function ServicesMegaMenu({
           }}
         />
 
-        {/* Header row */}
-        <div className="flex items-center justify-between px-6 pt-5 pb-4">
+        {/* Header label */}
+        <div className="px-6 pt-5 pb-4">
           <span
             className="text-[10px] font-bold uppercase tracking-[0.2em]"
             style={{ color: "rgba(74,159,245,0.7)" }}
           >
-            Our Services
+            {t("navServices")}
           </span>
-          <Link
-            href="/services"
-            className="group flex items-center gap-1.5 text-[11px] font-semibold transition-all duration-200"
-            style={{ color: "rgba(255,255,255,0.5)" }}
-          >
-            View all
-            <ArrowRight
-              size={11}
-              className="transition-transform group-hover:translate-x-0.5"
-            />
-          </Link>
         </div>
 
         {/* Divider */}
@@ -203,8 +223,46 @@ export function ServicesMegaMenu({
           style={{ background: "rgba(255,255,255,0.06)" }}
         />
 
-        {/* Services list — single column */}
-        <div className="p-4 flex flex-col gap-1">
+        {/* All Services row */}
+        <div className="px-4 pt-3 pb-1">
+          <Link
+            href={allServicesRow.href}
+            className={cn(
+              "group relative flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200",
+              pathname === "/services"
+                ? "bg-white/10"
+                : "hover:bg-white/[0.06]",
+            )}
+          >
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 text-white border border-white/20 transition-all duration-200 group-hover:scale-105"
+              style={{ background: "rgba(255,255,255,0.08)" }}
+            >
+              <div className="w-4 h-4">{allServicesRow.icon}</div>
+            </div>
+            <span
+              className="text-sm font-semibold transition-colors duration-200 whitespace-nowrap"
+              style={{
+                color:
+                  pathname === "/services" ? "#fff" : "rgba(255,255,255,0.5)",
+              }}
+            >
+              {allServicesRow.label}
+            </span>
+            {pathname === "/services" && (
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-[#4A9FF5]" />
+            )}
+          </Link>
+        </div>
+
+        {/* Divider */}
+        <div
+          className="mx-6 h-px mb-1"
+          style={{ background: "rgba(255,255,255,0.04)" }}
+        />
+
+        {/* Service rows */}
+        <div className="p-4 pt-1 flex flex-col gap-1">
           {services.map((svc) => {
             const isActive = pathname === `/services/${svc.id}`;
             return (
@@ -216,7 +274,6 @@ export function ServicesMegaMenu({
                   isActive ? "bg-white/10" : "hover:bg-white/[0.06]",
                 )}
               >
-                {/* Icon */}
                 <div
                   className={cn(
                     "w-8 h-8 rounded-lg flex items-center justify-center shrink-0 text-white bg-gradient-to-br transition-all duration-200 group-hover:scale-105",
@@ -230,18 +287,12 @@ export function ServicesMegaMenu({
                 >
                   <div className="w-4 h-4">{svc.icon}</div>
                 </div>
-
-                {/* Label */}
                 <span
                   className="text-sm font-semibold transition-colors duration-200 whitespace-nowrap"
-                  style={{
-                    color: isActive ? "#fff" : "rgba(255,255,255,0.7)",
-                  }}
+                  style={{ color: isActive ? "#fff" : "rgba(255,255,255,0.7)" }}
                 >
-                  {svc.title}
+                  {t(svc.titleKey)}
                 </span>
-
-                {/* Active indicator dot */}
                 {isActive && (
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 w-1 h-1 rounded-full bg-[#4A9FF5]" />
                 )}

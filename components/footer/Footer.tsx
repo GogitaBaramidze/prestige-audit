@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Globe, ArrowUp, Facebook } from "lucide-react";
+import { ArrowUp, Facebook } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function Footer() {
@@ -17,6 +17,7 @@ export default function Footer() {
   const navLinks = [
     { name: t("navHome"), href: "/" },
     { name: t("navTeam"), href: "/team" },
+    { name: t("navTeachingCenter"), href: "/teaching-center" },
     { name: t("navAbout"), href: "/about" },
     { name: t("navContact"), href: "/contact" },
   ];

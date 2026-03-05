@@ -9,7 +9,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
 // Localization Imports
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   Popover,
   PopoverContent,
@@ -42,11 +42,7 @@ const mobileLinkStyle = (isActive: boolean) => ({
   backgroundColor: isActive ? "rgba(74, 159, 245, 0.1)" : "transparent",
 });
 
-const navItems = [
-  { name: "Team", href: "/team" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-];
+// navItems are built inside the component using translations
 
 function LocaleSwitcher() {
   const router = useRouter();
@@ -116,7 +112,15 @@ function LocaleSwitcher() {
 
 export default function Header() {
   const pathname = useNextPathname();
+  const t = useTranslations("main");
   const [open, setOpen] = useState(false);
+
+  const navItems = [
+    { name: t("navTeam"), href: "/team" },
+    { name: t("navTeachingCenter"), href: "/teaching-center" },
+    { name: t("navAbout"), href: "/about" },
+    { name: t("navContact"), href: "/contact" },
+  ];
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
@@ -191,7 +195,7 @@ export default function Header() {
               style={navLinkStyle(pathname === "/")}
             >
               <span className="relative z-10 group-hover:text-[#fff] transition-colors">
-                Home
+                {t("navHome")}
               </span>
               {pathname === "/" && (
                 <span className="absolute bottom-0 left-6 right-6 h-0.5 bg-[#4A9FF5] rounded-full" />
@@ -214,7 +218,7 @@ export default function Header() {
                 onClick={() => setServicesMenuOpen((v) => !v)}
               >
                 <span className="relative z-10 group-hover:text-[#fff] transition-colors">
-                  Services
+                  {t("navServices")}
                 </span>
                 <ChevronDown
                   size={14}
@@ -301,7 +305,7 @@ export default function Header() {
                       {pathname === "/" && (
                         <span className="w-1 h-4 bg-[#4A9FF5] rounded-full mr-3 shrink-0" />
                       )}
-                      Home
+                      {t("navHome")}
                     </Link>
 
                     {/* Mobile Services Accordion */}
@@ -315,7 +319,7 @@ export default function Header() {
                           {isServicesActive && (
                             <span className="w-1 h-4 bg-[#4A9FF5] rounded-full mr-3 shrink-0" />
                           )}
-                          Services
+                          {t("navServices")}
                         </span>
                         <ChevronDown
                           size={16}
@@ -340,7 +344,7 @@ export default function Header() {
                           className="flex items-center gap-3 mx-2 px-4 py-2.5 mt-1 rounded-xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.04)] hover:bg-[rgba(255,255,255,0.08)]"
                         >
                           <span className="font-bold uppercase text-[rgba(255,255,255,0.4)] text-xs tracking-widest">
-                            All Services
+                            {t("navAllServices")}
                           </span>
                           <ChevronRight
                             size={12}
@@ -385,7 +389,7 @@ export default function Header() {
                                       : "rgba(255,255,255,0.7)",
                                   }}
                                 >
-                                  {svc.title}
+                                  {t(svc.titleKey)}
                                 </span>
                               </Link>
                             );

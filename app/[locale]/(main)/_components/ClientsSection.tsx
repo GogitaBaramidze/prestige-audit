@@ -16,12 +16,14 @@ const partnersRow1: Clients[] = [
   { name: "Le Meridien", logo: "./partners/Le-meridien.png" },
   { name: "Sheraton", logo: "./partners/Sheraton.png" },
   { name: "Eclipse", logo: "./partners/Eclipse.png" },
+  { name: "Legi", logo: "./partners/Legi.webp" },
 ];
 
 const partnersRow2: Clients[] = [
   { name: "Rogo", logo: "./partners/Rogo.jpg" },
   { name: "BAU Hospital", type: "text" },
   { name: "Adjara Textile", type: "text" },
+  { name: "Stellar Navigation", logo: "./partners/Stellar.png" },
   { name: "BTM Textile", type: "text" },
 ];
 

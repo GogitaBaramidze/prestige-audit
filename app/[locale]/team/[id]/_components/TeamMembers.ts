@@ -10,7 +10,7 @@ export interface MemberMeta {
 export const TEAM_MEMBERS: MemberMeta[] = [
   {
     id: "maia-pheikrishvili",
-    image: "/team/maia-pheikrishvili.png",
+    image: "/team/maia-pheikrishvili.avif",
     phone: "+995 577 43 83 08",
     email: "maiaph19@gmail.com",
     address: "78/88 Chavchavadze, Batumi, Georgia",
@@ -31,7 +31,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "mzia-gegechkori",
-    image: "/team/mzia-gegechkori.png",
+    image: "/team/mzia-gegechkori.avif",
     phone: "+995 593 20 93 83",
     email: "mziagege62@mail.ru",
     address: "26 May Street No. 78, Apt. 18, Batumi, Georgia",
@@ -39,7 +39,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "romili-beridze",
-    image: "/team/romil-beridze.png",
+    image: "/team/romil-beridze.avif",
     phone: "+995 599 41 22 31",
     email: "beridze.romili@gmail.com",
     address: "Batumi, Georgia",
@@ -47,7 +47,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "lali-chigogidze",
-    image: "/team/lali-chigogidze.png",
+    image: "/team/lali-chigogidze.avif",
     phone: "+995 577 11 21 02",
     email: "lalichigogidze@gmail.com",
     address: "Batumi, Georgia",
@@ -55,7 +55,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "gogita-baramidze",
-    image: "/team/gogita-baramidze.png",
+    image: "/team/gogita-baramidze.avif",
     phone: "+995 595 91 22 96",
     email: "Gobaramidze@gmail.com",
     address: "Apt 12, 7a Aghmashenebeli St., Batumi",
@@ -63,7 +63,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "mzia-melikishvili",
-    image: "/team/mzia-melikishvili.png",
+    image: "/team/mzia-melikishvili.avif",
     phone: "+995 597 97 14 83",
     email: "mzia1988@gmail.com",
     address: "48 J. Katamadze St., Batumi, 6000",
@@ -71,7 +71,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "rusudan-gugeshashvili",
-    image: "/team/rusudan-gugeshashvili.png",
+    image: "/team/rusudan-gugeshashvili.avif",
     phone: "+995 593 40 80 01",
     email: "r.gugeshashvili@gmail.com",
     address: "58 May 26 Street, Batumi",
@@ -79,7 +79,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "marine-lominadze",
-    image: "/team/marine-lominadze.png",
+    image: "/team/marine-lominadze.avif",
     phone: "+995 577 588 584",
     email: "marikalominadze78@gmail.com",
     address: "5 Abuseridze St., 6000, Batumi, Georgia",
@@ -87,7 +87,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "giorgi-seperteladze",
-    image: "/team/giorgi-seperteladze.png",
+    image: "/team/giorgi-seperteladze.avif",
     phone: "+995 598 68 68 46",
     email: "sepherteladze.g@gmail.com",
     address: "Gorgiladze St. N96, Batumi, 6000",
@@ -96,7 +96,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   // Accounting Services order: 1-Nato Jabnidze, 2-Tamar, 3-Rusudan Baramidze, 4-Tamta, 5-Nutsa
   {
     id: "nato-jabnidze",
-    image: "/team/nato-jabnidze.png",
+    image: "/team/nato-jabnidze.avif",
     phone: "+995 595 30 49 04",
     email: "n.jabnidze@gmail.com",
     address: "Batumi, Georgia",
@@ -104,7 +104,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "tamar-mzhavanadze",
-    image: "/team/tamar-mjavanadze.png",
+    image: "/team/tamar-mjavanadze.avif",
     phone: "+995 514 81 00 11",
     email: "Tmjavanadze1984@gmail.com",
     address: "Sh. Khimshiashvili Street N 41, Batumi",
@@ -112,7 +112,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "rusudan-baramidze",
-    image: "/team/rusuda-baramidze.png",
+    image: "/team/rusuda-baramidze.avif",
     phone: "+995 551 80 08 68",
     email: "rubaramidze@gmail.com",
     address: "Davit Agmashenebeli Street, No. 5, Batumi, Georgia",
@@ -120,7 +120,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "tamta-ustalishvili",
-    image: "/team/tamta-ustalashvili.png",
+    image: "/team/tamta-ustalashvili.avif",
     phone: "+995 595 46 84 36",
     email: "ttamta274@gmail.com",
     address: "Legva Village, Kobuleti, Georgia",
@@ -128,7 +128,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "nutsa-jincharadze",
-    image: "/team/nuca-jincharadze.png",
+    image: "/team/nuca-jincharadze.avif",
     phone: "+995 557 38 26 47",
     email: "Nutsa.jincharadze05@gmail.com",
     address: "Village Tskavroka, Kobuleti, Georgia",
@@ -137,7 +137,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   // Remaining members (other departments)
   {
     id: "natia-khajishvili",
-    image: "/team/natia-khajishvili.png",
+    image: "/team/natia-khajishvili.avif",
     phone: "+995 593 95 18 95",
     email: "natiakhajisvili@mail.ru",
     address: "78/88 Chavchavadze Street, Batumi",
@@ -145,7 +145,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "tornike-sergeevi",
-    image: "/team/tornike-sergeevi.png",
+    image: "/team/tornike-sergeevi.avif",
     phone: "+995 598 26 70 91",
     email: "tornikesergeevi@gmail.com",
     address: "Batumi, Georgia",

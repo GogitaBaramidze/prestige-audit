@@ -38,7 +38,7 @@ export async function getPageMetadata(page: MetaPage) {
       siteName: "Prestige Audit",
       images: [
         {
-          url: "/og-image.png",
+          url: "/og-image.avif",
           width: 1200,
           height: 630,
           alt: entry.ogTitle,
@@ -49,7 +49,7 @@ export async function getPageMetadata(page: MetaPage) {
       card: "summary_large_image" as const,
       title: entry.ogTitle,
       description: entry.ogDescription,
-      images: ["/og-image.png"],
+      images: ["/og-image.avif"],
     },
   };
 }

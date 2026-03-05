@@ -1,8 +1,7 @@
 import { MetadataRoute } from "next";
 import { TEAM_MEMBERS } from "./[locale]/team/[id]/_components/TeamMembers";
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.prestigeaudit.ge";
+const BASE_URL = process.env.SITE_URL || "https://www.prestigeaudit.ge";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [

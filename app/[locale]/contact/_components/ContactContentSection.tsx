@@ -90,12 +90,33 @@ export default function ContactContentSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+    setSubmitStatus("idle");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
+      setSubmitStatus("error");
+    } finally {
       setIsSubmitting(false);
-      setSubmitStatus("success");
-      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-      setTimeout(() => setSubmitStatus("idle"), 5000);
-    }, 1500);
+    }
   };
 
   const contactItems = [
@@ -185,6 +206,15 @@ export default function ContactContentSection() {
                     <CheckCircle2 className="w-5 h-5 text-green-600" />
                     <AlertDescription className="text-green-800 font-medium ml-2">
                       {t("successMessage")}
+                    </AlertDescription>
+                  </Alert>
+                )}
+
+                {submitStatus === "error" && (
+                  <Alert className="mb-8 bg-red-50 border-red-100 rounded-2xl">
+                    <AlertDescription className="text-red-800 font-medium ml-2">
+                      {t("errorMessage") ??
+                        "Something went wrong. Please try again."}
                     </AlertDescription>
                   </Alert>
                 )}

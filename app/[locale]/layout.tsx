@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
@@ -7,6 +6,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import Footer from "@/components/footer/Footer";
+import { getPageMetadata } from "@/lib/getMetadata";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,14 +15,16 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Prestige audit",
-  description: "Prestige audit",
-  icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
-  },
-};
+export async function generateMetadata() {
+  const meta = await getPageMetadata("home");
+  return {
+    ...meta,
+    icons: {
+      icon: "/favicon.png",
+      apple: "/favicon.png",
+    },
+  };
+}
 
 export default async function LocaleLayout({
   children,

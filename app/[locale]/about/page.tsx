@@ -1,6 +1,11 @@
+import { getPageMetadata } from "@/lib/getMetadata";
 import VideoSection from "../(main)/_components/VideoSection";
 import AboutContentSection from "./_components/AboutContentSection";
 import AboutHeroSection from "./_components/AboutHeroSection";
+
+export async function generateMetadata() {
+  return getPageMetadata("about");
+}
 
 export default function AboutPage() {
   return (

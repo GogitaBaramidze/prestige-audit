@@ -1,11 +1,10 @@
-import { Metadata } from "next";
+import { getPageMetadata } from "@/lib/getMetadata";
 import ContactHeroSection from "./_components/ContactHeroSection";
 import ContactClientWrapper from "./_components/ContactClientWrapper";
 
-export const metadata: Metadata = {
-  title: "Contact Us | Prestige Audit",
-  description: "Get in touch with the Prestige Audit team.",
-};
+export async function generateMetadata() {
+  return getPageMetadata("contact");
+}
 
 export default function Page() {
   return (

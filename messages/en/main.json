@@ -153,5 +153,19 @@
   "footerServiceAccounting": "Accounting",
   "footerServiceValuation": "Valuation",
   "footerServiceLegal": "Legal Support",
-  "footerServiceConsulting": "Consulting"
+  "footerServiceConsulting": "Consulting",
+
+  "tcHowItWorksTitle": "How It Works",
+  "tcHowItWorksSubtitle": "Four simple steps to start your journey with our teaching center.",
+  "tcStep1Title": "Apply Online",
+  "tcStep1Desc": "Fill out the enrollment form with your details and area of interest.",
+  "tcStep2Title": "Consultation Call",
+  "tcStep2Desc": "Our team will contact you to discuss the right program for your goals.",
+  "tcStep3Title": "Start Learning",
+  "tcStep3Desc": "Join your cohort and begin structured lessons with certified instructors.",
+  "tcStep4Title": "Get Certified",
+  "tcStep4Desc": "Complete the program and receive your official certification.",
+  "tcFormBadge": "Enrollment Open",
+  "tcFormMessageLabel": "Your Message",
+  "tcFormMessagePlaceholder": "Tell us about your goals or questions..."
 }

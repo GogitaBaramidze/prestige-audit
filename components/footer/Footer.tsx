@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Globe, ArrowUp } from "lucide-react";
+import { Globe, ArrowUp, Facebook } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function Footer() {
@@ -66,10 +66,10 @@ export default function Footer() {
               </h4>
               <div className="flex gap-3">
                 <Link
-                  href="#"
+                  href="https://www.facebook.com/prestigeaudit"
                   className="w-10 h-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-white/70 hover:bg-blue-500 hover:text-white hover:border-blue-500 transition-all duration-300"
                 >
-                  <Globe size={18} />
+                  <Facebook size={18} />
                 </Link>
               </div>
             </div>

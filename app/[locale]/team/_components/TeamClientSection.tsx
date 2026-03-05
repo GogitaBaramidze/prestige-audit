@@ -57,6 +57,7 @@ const TeamCard = React.memo(
     viewProfileLabel,
   }: TeamCardProps) => (
     <>
+      {/* Mobile */}
       <Link
         href={`/team/${slug}`}
         className="block md:hidden"
@@ -70,14 +71,18 @@ const TeamCard = React.memo(
             loading="lazy"
             decoding="async"
           />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent px-4 pb-4 pt-12 pointer-events-none">
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-4 pb-4 pt-16 pointer-events-none">
             <h3 className="text-sm font-bold text-white leading-snug drop-shadow-md">
               {name}
             </h3>
+            <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-white/75 drop-shadow">
+              {title}
+            </p>
           </div>
         </div>
       </Link>
 
+      {/* Desktop */}
       <div className="hidden md:block group relative aspect-[4/5] w-[95%] mx-auto cursor-pointer overflow-hidden rounded-2xl bg-gray-900">
         <img
           src={image}
@@ -86,20 +91,27 @@ const TeamCard = React.memo(
           loading="lazy"
           decoding="async"
         />
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent px-4 pb-4 pt-12 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
+
+        {/* Default state: name + title visible */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-4 pb-4 pt-16 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
           <h3 className="text-sm font-bold text-white leading-snug drop-shadow-md">
             {name}
           </h3>
+          <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-white/75 drop-shadow">
+            {title}
+          </p>
         </div>
+
+        {/* Hover overlay */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out pointer-events-none group-hover:pointer-events-auto">
           <div className="absolute inset-y-0 left-0 w-0 group-hover:w-full transition-all duration-500 ease-in-out bg-black/30 backdrop-blur-md flex flex-col items-center justify-center p-5 overflow-hidden">
-            <span className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-cyan-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200 whitespace-nowrap drop-shadow">
+            <span className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-cyan-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200 text-center break-words drop-shadow">
               {departmentLabel}
             </span>
-            <h3 className="text-center text-base font-bold text-white leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[250ms] whitespace-nowrap drop-shadow-md">
+            <h3 className="text-center text-base font-bold text-white leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[250ms] break-words drop-shadow-md">
               {name}
             </h3>
-            <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[290ms] whitespace-nowrap drop-shadow">
+            <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[290ms] text-center break-words drop-shadow">
               {title}
             </p>
             <Link

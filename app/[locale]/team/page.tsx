@@ -1,13 +1,11 @@
-import { Metadata } from "next";
 import { Suspense } from "react";
 import TeamHeroSection from "./_components/TeamHeroSection";
 import TeamClientSection from "./_components/TeamClientSection";
+import { getPageMetadata } from "@/lib/getMetadata";
 
-export const metadata: Metadata = {
-  title: "Our Team | Prestige Audit",
-  description:
-    "Meet the expert team of auditors, accountants, and financial consultants at Prestige Audit LLC.",
-};
+export async function generateMetadata() {
+  return getPageMetadata("team");
+}
 
 export default function TeamPage() {
   return (

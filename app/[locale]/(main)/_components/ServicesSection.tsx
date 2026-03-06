@@ -278,45 +278,93 @@ function ServiceCard({
 
   const cardContent = (
     <Card
-      className={`group relative h-[420px] md:h-[440px] my-2 border border-transparent ${theme.border} rounded-[32px] bg-gradient-to-br ${theme.bg} p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden`}
+      className={`group relative my-2 border border-transparent ${theme.border} rounded-[32px] bg-gradient-to-br ${theme.bg} shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden
+        h-[420px] md:h-[440px] p-6
+        md:p-8
+        3xl:h-[480px] 3xl:p-9 3xl:rounded-[36px]
+        4xl:h-[520px] 4xl:p-10 4xl:rounded-[40px]
+        5xl:h-[600px] 5xl:p-12 5xl:rounded-[48px]`}
     >
       <div
-        className={`hidden md:block absolute -top-10 -right-10 w-36 h-36 rounded-full opacity-20 blur-2xl ${theme.iconBg}`}
+        className={`hidden md:block absolute -top-10 -right-10 w-36 h-36 rounded-full opacity-20 blur-2xl ${theme.iconBg} 3xl:w-44 3xl:h-44 4xl:w-52 4xl:h-52 5xl:w-64 5xl:h-64`}
       />
 
       <div className="flex flex-col h-full relative z-10">
-        <div className="flex items-center gap-4 mb-4 md:mb-6">
+        <div
+          className={`flex items-center mb-4 gap-4 md:mb-6 3xl:mb-7 3xl:gap-5 4xl:mb-8 4xl:gap-6 5xl:mb-10 5xl:gap-7`}
+        >
           <div
-            className={`w-11 h-11 md:w-12 md:h-12 p-2.5 md:p-3 ${theme.iconBg} text-white rounded-xl md:rounded-2xl shadow-lg ${theme.iconShadow} flex-shrink-0 md:group-hover:scale-105 transition-transform duration-500`}
+            className={`${theme.iconBg} text-white flex-shrink-0 md:group-hover:scale-105 transition-transform duration-500 ${theme.iconShadow} shadow-lg
+              w-11 h-11 p-2.5 rounded-xl
+              md:w-12 md:h-12 md:p-3 md:rounded-2xl
+              3xl:w-14 3xl:h-14 3xl:p-3.5 3xl:rounded-2xl
+              4xl:w-16 4xl:h-16 4xl:p-4 4xl:rounded-3xl
+              5xl:w-20 5xl:h-20 5xl:p-5 5xl:rounded-3xl`}
           >
             {service.icon}
           </div>
-          <h3 className="card-title text-gray-900 text-lg md:text-xl font-bold leading-tight">
+          <h3
+            className={`card-title text-gray-900 font-bold leading-tight
+            text-lg
+            md:text-xl
+            3xl:text-2xl
+            4xl:text-[26px]
+            5xl:text-3xl`}
+          >
             {t(service.titleKey)}
           </h3>
         </div>
 
-        <p className="card-desc text-gray-600 text-sm md:text-base mb-6 line-clamp-3 md:line-clamp-4">
+        <p
+          className={`card-desc text-gray-600 line-clamp-3 md:line-clamp-4
+          text-sm mb-6
+          md:text-base
+          3xl:text-[17px] 3xl:mb-7
+          4xl:text-lg 4xl:mb-8
+          5xl:text-xl 5xl:mb-10`}
+        >
           {t(service.descriptionKey)}
         </p>
 
-        <ul className="space-y-3 mb-auto">
+        <ul
+          className={`mb-auto space-y-3 3xl:space-y-4 4xl:space-y-5 5xl:space-y-6`}
+        >
           {service.featureKeys.map((key, idx) => (
-            <li key={idx} className="flex items-start gap-3 text-gray-700">
+            <li
+              key={idx}
+              className="flex items-start gap-3 text-gray-700 3xl:gap-4 4xl:gap-4 5xl:gap-5"
+            >
               <CheckCircle2
-                className={`w-[16px] h-[16px] md:w-[18px] md:h-[18px] ${theme.check} shrink-0 mt-0.5`}
+                className={`shrink-0 mt-0.5 ${theme.check}
+                  w-4 h-4
+                  md:w-[18px] md:h-[18px]
+                  3xl:w-5 3xl:h-5
+                  4xl:w-6 4xl:h-6
+                  5xl:w-7 5xl:h-7`}
               />
-              <span className="card-feature text-xs md:text-sm leading-snug">
+              <span
+                className={`card-feature leading-snug
+                text-xs
+                md:text-sm
+                3xl:text-base
+                4xl:text-[17px]
+                5xl:text-lg`}
+              >
                 {t(key)}
               </span>
             </li>
           ))}
         </ul>
 
-        <div className="mt-auto pt-4">
+        <div className="mt-auto pt-4 3xl:pt-5 4xl:pt-6 5xl:pt-7">
           <Link
             href={`${basePath}/${service.id}`}
-            className={`group/link inline-flex items-center gap-2.5 relative overflow-hidden px-5 py-2.5 rounded-full border ${theme.lightBorder} bg-gradient-to-r ${theme.lightBg} ${theme.text} service-btn shadow-sm transition-all duration-300 hover:shadow-lg ${theme.hoverShadow} hover:border-transparent hover:scale-[1.02] text-sm md:text-base`}
+            className={`group/link inline-flex items-center relative overflow-hidden rounded-full border ${theme.lightBorder} bg-gradient-to-r ${theme.lightBg} ${theme.text} service-btn shadow-sm transition-all duration-300 hover:shadow-lg ${theme.hoverShadow} hover:border-transparent hover:scale-[1.02]
+              gap-2.5 px-5 py-2.5 text-sm
+              md:text-base
+              3xl:gap-3 3xl:px-6 3xl:py-3 3xl:text-base
+              4xl:gap-3.5 4xl:px-7 4xl:py-3.5 4xl:text-[17px]
+              5xl:gap-4 5xl:px-8 5xl:py-4 5xl:text-lg`}
           >
             <span
               className={`absolute inset-0 rounded-full bg-gradient-to-r ${theme.gradient} opacity-0 group-hover/link:opacity-100 transition-opacity duration-300`}
@@ -325,7 +373,11 @@ function ServiceCard({
               {t("servicesLearnMore")}
             </span>
             <ArrowRight
-              className={`relative z-10 w-4 h-4 ${theme.text} group-hover/link:text-white transition-all duration-300 group-hover/link:translate-x-1`}
+              className={`relative z-10 ${theme.text} group-hover/link:text-white transition-all duration-300 group-hover/link:translate-x-1
+                w-4 h-4
+                3xl:w-5 3xl:h-5
+                4xl:w-5 4xl:h-5
+                5xl:w-6 5xl:h-6`}
             />
           </Link>
         </div>
@@ -356,24 +408,24 @@ export default function ServicesSection() {
   const basePath = "/services";
 
   return (
-    <section className="relative bg-[#f3f5f4] py-10 md:py-24 overflow-hidden">
-      <div className="max-w-[2000px] mx-auto px-0 md:px-16 lg:px-20 2xl:px-32">
-        <div className="flex justify-center mb-10 md:mb-16">
+    <section className="relative bg-[#f3f5f4] overflow-hidden py-10 md:py-24 3xl:py-28 4xl:py-32 5xl:py-40">
+      <div className="max-w-[2000px] mx-auto px-0 md:px-16 lg:px-20 2xl:px-32 3xl:px-44 4xl:px-56 5xl:px-72">
+        <div className="flex justify-center mb-10 md:mb-16 3xl:mb-20 4xl:mb-24 5xl:mb-28">
           <motion.div
             variants={headerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 3xl:gap-4 4xl:gap-5 5xl:gap-6"
           >
-            <div className="w-8 md:w-10 h-0.5 bg-[#2563eb]" />
-            <span className="section-label text-lg text-gray-500">
+            <div className="bg-[#2563eb] h-0.5 w-8 md:w-10 3xl:w-12 4xl:w-14 5xl:w-16" />
+            <span className="section-label text-gray-500 text-lg 3xl:text-xl 4xl:text-2xl 5xl:text-3xl">
               {t("servicesSectionLabel")}
             </span>
-            <div className="w-8 md:w-10 h-0.5 bg-[#2563eb]" />
+            <div className="bg-[#2563eb] h-0.5 w-8 md:w-10 3xl:w-12 4xl:w-14 5xl:w-16" />
           </motion.div>
         </div>
- 
+
         <div className="block md:hidden">
           <Carousel opts={{ align: "start", loop: false }} className="w-full">
             <CarouselContent className="-ml-0 mr-6">
@@ -394,7 +446,7 @@ export default function ServicesSection() {
           </Carousel>
         </div>
 
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 2xl:gap-12">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 2xl:gap-12 3xl:gap-14 4xl:gap-16 5xl:gap-20">
           {services.map((service, index) => (
             <ServiceCard
               key={service.id}

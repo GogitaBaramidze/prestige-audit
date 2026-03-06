@@ -79,7 +79,6 @@ const items = [
 ];
 
 const ORBIT_DURATION = 20;
-const ANGLE_STEP = 360 / logos.length;
 
 const fadeInLeft: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -104,7 +103,7 @@ const PartnersSection = () => {
   const t = useTranslations("main");
 
   return (
-    <section className="py-10 md:py-16 overflow-hidden bg-[#F3F5F4]">
+    <section className="overflow-hidden bg-[#F3F5F4] py-10 md:py-16 3xl:py-20 4xl:py-24 5xl:py-32">
       <style>{`
         @keyframes orbit {
           from { transform: rotate(0deg); }
@@ -130,26 +129,26 @@ const PartnersSection = () => {
         }
       `}</style>
 
-      <div className="max-w-[2000px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20 2xl:px-32">
-        <div className="flex flex-col lg:flex-row lg:gap-16 xl:gap-20 items-center">
+      <div className="max-w-[2000px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20 2xl:px-32 3xl:px-44 4xl:px-56 5xl:px-72">
+        <div className="flex flex-col lg:flex-row items-center lg:gap-16 xl:gap-20 3xl:gap-24 4xl:gap-28 5xl:gap-36">
           <div className="lg:w-[47%] w-full mb-12 lg:mb-0">
             <motion.div
-              className="flex items-center gap-3 mb-4"
+              className="flex items-center gap-3 3xl:gap-4 4xl:gap-5 5xl:gap-6 mb-4 3xl:mb-5 4xl:mb-6 5xl:mb-8"
               custom={0}
               variants={fadeInLeft}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
             >
-              <div className="w-8 md:w-10 h-0.5 bg-blue-600" />
-              <span className="text-gray-500 text-base md:text-lg font-medium tracking-widest uppercase">
+              <div className="bg-blue-600 h-0.5 w-8 md:w-10 3xl:w-12 4xl:w-14 5xl:w-16" />
+              <span className="text-gray-500 font-medium tracking-widest uppercase text-base md:text-lg 3xl:text-xl 4xl:text-2xl 5xl:text-3xl">
                 {t("partnersSectionLabel")}
               </span>
-              <div className="w-8 md:w-10 h-0.5 bg-blue-600" />
+              <div className="bg-blue-600 h-0.5 w-8 md:w-10 3xl:w-12 4xl:w-14 5xl:w-16" />
             </motion.div>
 
             <motion.h2
-              className="mb-6 text-blue-600 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
+              className="text-blue-600 font-bold leading-tight mb-6 3xl:mb-7 4xl:mb-8 5xl:mb-10 text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl 4xl:text-7xl 5xl:text-8xl"
               custom={1}
               variants={fadeInLeft}
               initial="hidden"
@@ -160,7 +159,7 @@ const PartnersSection = () => {
             </motion.h2>
 
             <motion.p
-              className="mb-4 text-gray-500 text-base md:text-lg leading-relaxed"
+              className="text-gray-500 leading-relaxed mb-4 3xl:mb-5 4xl:mb-6 5xl:mb-8 text-base md:text-lg 3xl:text-xl 4xl:text-2xl 5xl:text-2xl"
               custom={2}
               variants={fadeInLeft}
               initial="hidden"
@@ -170,27 +169,30 @@ const PartnersSection = () => {
               {t("partnersBody")}
             </motion.p>
 
-            <div className="space-y-6">
+            <div className="space-y-6 3xl:space-y-7 4xl:space-y-8 5xl:space-y-10">
               {items.map((item, i) => (
                 <motion.div
                   key={i}
-                  className="flex items-start gap-4"
+                  className="flex items-start gap-4 3xl:gap-5 4xl:gap-6 5xl:gap-7"
                   custom={3 + i}
                   variants={fadeInLeft}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                 >
-                  <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-200">
-                    <svg className="w-6 h-6 fill-white" viewBox="0 0 50 50">
+                  <div className="bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-200 w-12 h-12 3xl:w-14 3xl:h-14 3xl:rounded-2xl 4xl:w-16 4xl:h-16 5xl:w-20 5xl:h-20 5xl:rounded-2xl">
+                    <svg
+                      className="fill-white w-6 h-6 3xl:w-7 3xl:h-7 4xl:w-8 4xl:h-8 5xl:w-10 5xl:h-10"
+                      viewBox="0 0 50 50"
+                    >
                       <path d={item.icon} />
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-gray-900 font-semibold text-base mb-1">
+                    <h4 className="text-gray-900 font-semibold mb-1 3xl:mb-1.5 4xl:mb-2 text-base 3xl:text-lg 4xl:text-xl 5xl:text-2xl">
                       {t(item.titleKey)}
                     </h4>
-                    <p className="text-gray-500 text-sm leading-relaxed">
+                    <p className="text-gray-500 leading-relaxed text-sm 3xl:text-base 4xl:text-lg 5xl:text-xl">
                       {t(item.descKey)}
                     </p>
                   </div>
@@ -199,11 +201,11 @@ const PartnersSection = () => {
             </div>
           </div>
 
-          <div className="lg:w-[53%] w-full flex items-center justify-center relative min-h-[420px] md:min-h-[520px]">
-            <div className="absolute w-[440px] h-[440px] bg-blue-400/10 rounded-full blur-[100px]" />
+          <div className="lg:w-[53%] w-full flex items-center justify-center relative min-h-[420px] md:min-h-[520px] 3xl:min-h-[600px] 4xl:min-h-[680px] 5xl:min-h-[800px]">
+            <div className="absolute w-[440px] h-[440px] 3xl:w-[520px] 3xl:h-[520px] 4xl:w-[600px] 4xl:h-[600px] 5xl:w-[720px] 5xl:h-[720px] bg-blue-400/10 rounded-full blur-[100px]" />
 
             <motion.div
-              className="relative w-full max-w-[380px] md:max-w-[460px] aspect-square flex items-center justify-center"
+              className="relative w-full aspect-square flex items-center justify-center max-w-[380px] md:max-w-[460px] 3xl:max-w-[540px] 4xl:max-w-[620px] 5xl:max-w-[740px]"
               variants={fadeInRight}
               initial="hidden"
               whileInView="visible"
@@ -216,7 +218,7 @@ const PartnersSection = () => {
               />
 
               <motion.div
-                className="z-20 w-32 h-32 md:w-44 md:h-44 rounded-full flex items-center justify-center border border-white/20 overflow-hidden"
+                className="z-20 rounded-full flex items-center justify-center border border-white/20 overflow-hidden w-32 h-32 md:w-44 md:h-44 3xl:w-52 3xl:h-52 4xl:w-60 4xl:h-60 5xl:w-72 5xl:h-72"
                 style={{
                   background:
                     "linear-gradient(135deg, #0f1f5c 0%, #1a3a8f 35%, #1d4ed8 65%, #2563eb 100%)",
@@ -252,7 +254,7 @@ const PartnersSection = () => {
                     style={{ animationDelay: delay }}
                   >
                     <div
-                      className="orbit-logo w-14 h-14 md:w-20 md:h-20 rounded-full overflow-hidden border-2 border-white/80 shadow-md"
+                      className="orbit-logo rounded-full overflow-hidden border-2 border-white/80 shadow-md w-14 h-14 md:w-20 md:h-20 3xl:w-24 3xl:h-24 4xl:w-28 4xl:h-28 5xl:w-32 5xl:h-32"
                       style={{ animationDelay: delay }}
                     >
                       <Logo />

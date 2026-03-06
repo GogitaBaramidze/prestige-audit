@@ -8,7 +8,6 @@ import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
-// Localization Imports
 import { useLocale, useTranslations } from "next-intl";
 import {
   Popover,
@@ -17,9 +16,22 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 
-// Sub-components/Data (Assuming these exist in your project)
 import { services, ServicesMegaMenu } from "./Services-mega-menu";
 import { locales, usePathname, useRouter } from "@/i18n/routing";
+
+/**
+ * Breakpoint scale used throughout this file:
+ *
+ *  default / lg  →  up to 1439px   (base sizes — looks great at 1440)
+ *  3xl           →  1440px+        (slightly larger — first step up)
+ *  4xl           →  1600px+        (medium-large — second step up)
+ *  5xl           →  1920px+        (full wide — largest)
+ *
+ * Defined in globals.css @theme:
+ *   --breakpoint-3xl: 1440px
+ *   --breakpoint-4xl: 1600px
+ *   --breakpoint-5xl: 1920px
+ */
 
 type Locale = "en" | "ka";
 
@@ -57,23 +69,40 @@ function LocaleSwitcher() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button className="flex items-center gap-2 rounded-xl h-10 px-3 transition-all duration-300 border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] text-white group">
+        <button
+          className={cn(
+            "flex items-center gap-2 rounded-xl border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] text-white group transition-all duration-300",
+            "h-10 px-3",
+
+            "3xl:h-11 3xl:px-3.5 3xl:gap-2",
+
+            "4xl:h-12 4xl:px-4 4xl:gap-2.5",
+
+            "5xl:h-14 5xl:px-5 5xl:gap-3",
+          )}
+        >
           <Image
             src={currentFlag.src}
             alt={currentFlag.alt}
             width={20}
             height={20}
-            className="h-5 w-5 rounded-sm object-cover"
+            className="rounded-sm object-cover h-5 w-5 3xl:h-5 3xl:w-5 4xl:h-6 4xl:w-6 5xl:h-7 5xl:w-7"
           />
-          <span className="text-sm font-semibold uppercase tracking-wider hidden sm:inline-block">
+          <span className="font-semibold uppercase tracking-wider hidden sm:inline-block text-sm 3xl:text-sm 4xl:text-base 5xl:text-lg">
             {currentLocale}
           </span>
-          <ChevronDown className="h-3 w-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+          <ChevronDown className="opacity-50 group-hover:opacity-100 transition-opacity h-3 w-3 3xl:h-3.5 3xl:w-3.5 4xl:h-4 4xl:w-4 5xl:h-[18px] 5xl:w-[18px]" />
         </button>
       </PopoverTrigger>
       <PopoverContent
         align="end"
-        className="w-40 p-1.5 border-[rgba(255,255,255,0.1)] bg-[#0a1a3f]/95 backdrop-blur-xl text-white shadow-2xl rounded-2xl z-[60]"
+        className={cn(
+          "p-1.5 border-[rgba(255,255,255,0.1)] bg-[#0a1a3f]/95 backdrop-blur-xl text-white shadow-2xl rounded-2xl z-[60]",
+          "w-40",
+          "3xl:w-44 3xl:p-1.5",
+          "4xl:w-48 4xl:p-2",
+          "5xl:w-56 5xl:p-2.5",
+        )}
       >
         <div className="grid gap-1">
           {(locales as unknown as Locale[]).map((locale) => {
@@ -85,6 +114,10 @@ function LocaleSwitcher() {
                 variant="ghost"
                 className={cn(
                   "justify-start gap-3 w-full rounded-xl hover:bg-white/10 hover:text-white transition-all",
+                  "text-sm py-1.5",
+                  "3xl:text-sm 3xl:py-2",
+                  "4xl:text-base 4xl:py-2.5",
+                  "5xl:text-lg 5xl:py-3",
                   isActive && "bg-white/5 text-[#4A9FF5]",
                 )}
                 onClick={() => handleLocaleChange(locale)}
@@ -94,9 +127,9 @@ function LocaleSwitcher() {
                   alt={flag.alt}
                   width={20}
                   height={20}
-                  className="h-5 w-5 rounded-sm"
+                  className="rounded-sm h-5 w-5 4xl:h-6 4xl:w-6 5xl:h-7 5xl:w-7"
                 />
-                <span className="text-sm font-medium">
+                <span className="font-medium text-sm 4xl:text-base 5xl:text-lg">
                   {languageNames[locale]}
                 </span>
               </Button>
@@ -119,6 +152,7 @@ export default function Header() {
     { name: t("navAbout"), href: "/about" },
     { name: t("navContact"), href: "/contact" },
   ];
+
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
@@ -149,16 +183,23 @@ export default function Header() {
   const isServicesActive =
     pathname === "/services" || pathname.startsWith("/services/");
 
-  // lg: base size, xl: slightly larger, 2xl: larger still
-  const navLinkClass =
-    "group relative px-3 py-2 text-sm xl:text-[15px] 2xl:text-base font-semibold transition-colors duration-300";
+  const navLinkClass = cn(
+    "group relative font-semibold transition-colors duration-300",
+    "text-[15px] px-3 py-2",
+    "3xl:text-base 3xl:px-4 3xl:py-2.5",
+    "4xl:text-[17px] 4xl:px-5 4xl:py-3",
+    "5xl:text-xl 5xl:px-6 5xl:py-3.5",
+  );
+
+  const activeBar =
+    "absolute bottom-0 left-1/2 -translate-x-1/2 w-[60%] h-0.5 3xl:h-[2px] 4xl:h-[3px] bg-[#4A9FF5] rounded-full";
 
   return (
     <header
       className="absolute top-0 left-0 right-0 z-50"
-      style={{ padding: "clamp(24px, 2vw, 48px) clamp(24px, 3vw, 64px) 0" }}
+      style={{ padding: "clamp(24px, 2vw, 64px) clamp(24px, 3vw, 80px) 0" }}
     >
-      <div className="relative max-w-[2000px] mx-auto ">
+      <div className="relative max-w-[2400px] mx-auto">
         <div
           className="absolute inset-0"
           style={{
@@ -171,8 +212,16 @@ export default function Header() {
         />
 
         <div
-          className="relative flex items-center justify-between px-6 md:px-5 2xl:px-10 border-white border rounded-3xl"
-          style={{ height: "clamp(80px, 6vh, 110px)" }}
+          className={cn(
+            "relative flex items-center justify-between border-white border rounded-3xl",
+            "px-6 md:px-5 2xl:px-10",
+            "3xl:px-12",
+            "4xl:px-16",
+            "5xl:px-20",
+          )}
+          style={{
+            height: "clamp(70px, 6vw, 132px)",
+          }}
         >
           <Link
             href="/"
@@ -184,25 +233,39 @@ export default function Header() {
               width={140}
               height={140}
               style={{ objectFit: "contain" }}
-              className="cursor-pointer mt-2 w-56 -ml-6 md:ml-0 h-56 md:w-64 md:h-64 lg:w-52 2xl:w-72 2xl:h-72"
+              className={cn(
+                "cursor-pointer mt-2",
+                "w-56 -ml-6 h-56",
+                "md:ml-0 md:w-64 md:h-64",
+                "lg:w-52 lg:h-52",
+                "2xl:w-68 2xl:h-68",
+                "3xl:w-72 3xl:h-72",
+                "4xl:w-80 4xl:h-80",
+                "5xl:w-[25rem] 5xl:h-[25rem]",
+              )}
             />
           </Link>
 
-          <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-3 2xl:gap-5">
+          <nav
+            className={cn(
+              "hidden lg:flex items-center justify-center",
+              "gap-1 xl:gap-2 2xl:gap-3",
+              "3xl:gap-5",
+              "4xl:gap-7",
+              "5xl:gap-10",
+            )}
+          >
             <Link
               href="/"
               className={navLinkClass}
               style={navLinkStyle(pathname === "/")}
             >
-              <span className="relative z-10 group-hover:text-[#fff] transition-colors">
+              <span className="relative z-10 group-hover:text-white transition-colors">
                 {t("navHome")}
               </span>
-              {pathname === "/" && (
-                <span className="absolute bottom-0 left-6 right-6 h-0.5 bg-[#4A9FF5] rounded-full" />
-              )}
+              {pathname === "/" && <span className={activeBar} />}
             </Link>
 
-            {/* Services Dropdown */}
             <div
               ref={servicesRef}
               className="relative"
@@ -212,24 +275,25 @@ export default function Header() {
               <button
                 className={cn(
                   navLinkClass,
-                  "flex items-center gap-1.5 bg-transparent border-none cursor-pointer",
+                  "flex items-center gap-1.5 3xl:gap-2 4xl:gap-2.5 5xl:gap-3 bg-transparent border-none cursor-pointer",
                 )}
                 style={navLinkStyle(isServicesActive || servicesMenuOpen)}
                 onClick={() => setServicesMenuOpen((v) => !v)}
               >
-                <span className="relative z-10 group-hover:text-[#fff] transition-colors">
+                <span className="relative z-10 group-hover:text-white transition-colors">
                   {t("navServices")}
                 </span>
                 <ChevronDown
-                  size={14}
                   className={cn(
                     "transition-transform duration-200 opacity-70",
+                    "w-3.5 h-3.5",
+                    "3xl:w-4 3xl:h-4",
+                    "4xl:w-[17px] 4xl:h-[17px]",
+                    "5xl:w-5 5xl:h-5",
                     servicesMenuOpen && "rotate-180",
                   )}
                 />
-                {isServicesActive && (
-                  <span className="absolute bottom-0 left-6 right-6 h-0.5 bg-[#4A9FF5] rounded-full" />
-                )}
+                {isServicesActive && <span className={activeBar} />}
               </button>
               <ServicesMegaMenu isOpen={servicesMenuOpen} pathname={pathname} />
             </div>
@@ -243,29 +307,33 @@ export default function Header() {
                   className={navLinkClass}
                   style={navLinkStyle(isActive)}
                 >
-                  <span className="relative z-10 group-hover:text-[#fff] transition-colors">
+                  <span className="relative z-10 group-hover:text-white transition-colors">
                     {item.name}
                   </span>
-                  {isActive && (
-                    <span className="absolute bottom-0 left-6 right-6 h-0.5 bg-[#4A9FF5] rounded-full" />
-                  )}
+                  {isActive && <span className={activeBar} />}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Right Side - Desktop LocaleSwitcher */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div
+            className={cn(
+              "hidden lg:flex items-center",
+              "gap-5",
+              "3xl:gap-6",
+              "4xl:gap-7",
+              "5xl:gap-8",
+            )}
+          >
             <LocaleSwitcher />
           </div>
 
-          {/* Mobile Menu */}
           <div className="lg:hidden flex items-center gap-3">
             <LocaleSwitcher />
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <button
-                  className="flex items-center justify-center w-10 h-10 rounded-xl border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.1)] text-[#fff] transition-colors hover:bg-[rgba(255,255,255,0.2)]"
+                  className="flex items-center justify-center w-10 h-10 rounded-xl border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.1)] text-white transition-colors hover:bg-[rgba(255,255,255,0.2)]"
                   aria-label="Open menu"
                 >
                   <Menu size={20} />
@@ -289,7 +357,7 @@ export default function Header() {
                     </Link>
                     <button
                       onClick={() => setOpen(false)}
-                      className="w-8 h-8 flex items-center justify-center rounded-lg border border-[rgba(255,255,255,0.2)] text-[rgba(255,255,255,0.7)] hover:text-[#fff] hover:bg-[rgba(255,255,255,0.1)] transition-colors"
+                      className="w-8 h-8 flex items-center justify-center rounded-lg border border-[rgba(255,255,255,0.2)] text-[rgba(255,255,255,0.7)] hover:text-white hover:bg-[rgba(255,255,255,0.1)] transition-colors"
                     >
                       <X size={16} />
                     </button>
@@ -308,7 +376,6 @@ export default function Header() {
                       {t("navHome")}
                     </Link>
 
-                    {/* Mobile Services Accordion */}
                     <div>
                       <button
                         onClick={() => setMobileServicesOpen((prev) => !prev)}
@@ -368,7 +435,7 @@ export default function Header() {
                               >
                                 <div
                                   className={cn(
-                                    "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-[#fff] bg-gradient-to-br",
+                                    "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 text-white bg-gradient-to-br",
                                     svc.gradient,
                                   )}
                                 >

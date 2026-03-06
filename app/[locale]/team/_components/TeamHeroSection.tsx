@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { Users } from "lucide-react";
 import TeamHeroMotion from "./TeamHeroMotion";
 
 export default function TeamHeroSection() {

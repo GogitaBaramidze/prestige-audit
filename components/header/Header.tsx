@@ -245,7 +245,7 @@ export default function Header() {
             "5xl:px-20",
           )}
           style={{
-            height: "clamp(80px, 7vw, 132px)",
+            height: "clamp(70px, 6vw, 132px)",
           }}
         >
           {/**

@@ -48,18 +48,22 @@ function DesktopFilterBar({
   getLabel: (key: DepartmentKey) => string;
 }) {
   return (
-    <div className="hidden md:flex flex-wrap justify-center gap-3">
+    <div className="hidden md:flex flex-wrap justify-center gap-3 3xl:gap-4 4xl:gap-5 5xl:gap-6">
       {DEPARTMENT_KEYS.map((key) => {
         const isActive = active === key;
         return (
           <button
             key={key}
             onClick={() => onChange(key)}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest transition-colors duration-200 ${
-              isActive
+            className={`rounded-full font-bold uppercase tracking-widest transition-colors duration-200
+              px-5 py-2.5 text-xs
+              3xl:px-6 3xl:py-3 3xl:text-sm
+              4xl:px-7 4xl:py-3.5 4xl:text-base
+              5xl:px-8 5xl:py-4 5xl:text-lg
+              ${isActive
                 ? "text-white bg-gradient-to-r from-blue-600 to-cyan-500 shadow-lg shadow-blue-500/20"
                 : "text-gray-500 bg-white border border-gray-200 hover:border-blue-300 hover:text-blue-600"
-            }`}
+              }`}
           >
             {getLabel(key)}
           </button>
@@ -80,20 +84,13 @@ function MobileFilterSelect({
 }) {
   return (
     <div className="flex md:hidden w-full">
-      <Select
-        value={active}
-        onValueChange={(v) => onChange(v as DepartmentKey)}
-      >
+      <Select value={active} onValueChange={(v) => onChange(v as DepartmentKey)}>
         <SelectTrigger className="w-full rounded-full border border-gray-200 bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-gray-700 shadow-sm focus:ring-2 focus:ring-blue-500">
           <SelectValue placeholder={getLabel(active)} />
         </SelectTrigger>
         <SelectContent className="rounded-xl border border-gray-200 shadow-xl">
           {DEPARTMENT_KEYS.map((key) => (
-            <SelectItem
-              key={key}
-              value={key}
-              className="text-xs font-bold uppercase tracking-widest cursor-pointer"
-            >
+            <SelectItem key={key} value={key} className="text-xs font-bold uppercase tracking-widest cursor-pointer">
               {getLabel(key)}
             </SelectItem>
           ))}
@@ -103,21 +100,10 @@ function MobileFilterSelect({
   );
 }
 
-function CardWrapper({
-  index,
-  isMobile,
-  children,
-}: {
-  index: number;
-  isMobile: boolean;
-  children: React.ReactNode;
-}) {
+function CardWrapper({ index, isMobile, children }: { index: number; isMobile: boolean; children: React.ReactNode }) {
   if (isMobile) {
     return (
-      <div
-        className="animate-fadeInUp"
-        style={{ animationDelay: `${index * 60}ms`, animationFillMode: "both" }}
-      >
+      <div className="animate-fadeInUp" style={{ animationDelay: `${index * 60}ms`, animationFillMode: "both" }}>
         {children}
       </div>
     );
@@ -125,13 +111,7 @@ function CardWrapper({
   return <DesktopAnimatedCard index={index}>{children}</DesktopAnimatedCard>;
 }
 
-function DesktopAnimatedCard({
-  index,
-  children,
-}: {
-  index: number;
-  children: React.ReactNode;
-}) {
+function DesktopAnimatedCard({ index, children }: { index: number; children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -139,12 +119,7 @@ function DesktopAnimatedCard({
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
       { rootMargin: "0px 0px -60px 0px" },
     );
     obs.observe(el);
@@ -157,11 +132,7 @@ function DesktopAnimatedCard({
       ref={ref}
       initial={{ opacity: 0, x: fromLeft ? -80 : 80, filter: "blur(5px)" }}
       animate={visible ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
-      transition={{
-        duration: 0.9,
-        delay: (index % 4) * 0.1,
-        ease: [0.16, 1, 0.3, 1],
-      }}
+      transition={{ duration: 0.9, delay: (index % 4) * 0.1, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
@@ -176,8 +147,7 @@ export default function TeamClientSection() {
 
   const rawTeam = searchParams.get("team");
   const activeFilter: DepartmentKey =
-    (DEPARTMENT_KEYS.find((k) => k === rawTeam) as DepartmentKey) ??
-    DEPARTMENT_KEYS[0];
+    (DEPARTMENT_KEYS.find((k) => k === rawTeam) as DepartmentKey) ?? DEPARTMENT_KEYS[0];
 
   const handleFilter = useCallback(
     (key: DepartmentKey) => {
@@ -188,58 +158,43 @@ export default function TeamClientSection() {
     [router, searchParams],
   );
 
-  const filtered = TEAM_MEMBERS.filter((m) =>
-    m.departments.includes(activeFilter),
-  );
+  const filtered = TEAM_MEMBERS.filter((m) => m.departments.includes(activeFilter));
   const getDeptLabel = (key: DepartmentKey) => t(`departments.${key}`);
 
-  // Safe translation helpers (member name/title may be missing in some locales)
-  const memberName = (id: string) => {
-    try {
-      return t(`members.${id}.name`);
-    } catch {
-      return id;
-    }
-  };
-  const memberTitle = (id: string) => {
-    try {
-      return t(`members.${id}.title`);
-    } catch {
-      return "";
-    }
-  };
+  const memberName = (id: string) => { try { return t(`members.${id}.name`); } catch { return id; } };
+  const memberTitle = (id: string) => { try { return t(`members.${id}.title`); } catch { return ""; } };
 
   return (
-    <section className="relative z-20 -mt-24 bg-[#f3f5f4] rounded-t-[60px] md:rounded-t-[80px] pt-16 pb-32 px-6 shadow-[0_-20px_50px_-20px_rgba(0,0,0,0.1)]">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-12">
-          <DesktopFilterBar
-            active={activeFilter}
-            onChange={handleFilter}
-            getLabel={getDeptLabel}
-          />
-          <MobileFilterSelect
-            active={activeFilter}
-            onChange={handleFilter}
-            getLabel={getDeptLabel}
-          />
+    <section className="relative z-20 -mt-24 bg-[#f3f5f4] shadow-[0_-20px_50px_-20px_rgba(0,0,0,0.1)]
+      rounded-t-[60px] md:rounded-t-[80px] 3xl:rounded-t-[96px] 4xl:rounded-t-[112px] 5xl:rounded-t-[128px]
+      pt-16 3xl:pt-20 4xl:pt-24 5xl:pt-28
+      pb-32 3xl:pb-36 4xl:pb-40 5xl:pb-48
+      px-6 3xl:px-10 4xl:px-14 5xl:px-20">
+      <div className="mx-auto max-w-7xl 3xl:max-w-[1600px] 4xl:max-w-[1800px] 5xl:max-w-[2100px]">
+
+        <div className="mb-12 3xl:mb-14 4xl:mb-16 5xl:mb-20">
+          <DesktopFilterBar active={activeFilter} onChange={handleFilter} getLabel={getDeptLabel} />
+          <MobileFilterSelect active={activeFilter} onChange={handleFilter} getLabel={getDeptLabel} />
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
-          <div className="flex items-center gap-5">
-            <div className="w-8 h-0.5 bg-[#2563eb]" />
-            <h2 className="text-2xl font-bold text-gray-900 uppercase tracking-tight">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 3xl:gap-7 4xl:gap-8 5xl:gap-10 mb-12 3xl:mb-14 4xl:mb-16 5xl:mb-20">
+          <div className="flex items-center gap-5 3xl:gap-6 4xl:gap-7 5xl:gap-8">
+            <div className="bg-[#2563eb] h-0.5 w-8 3xl:w-10 4xl:w-12 5xl:w-14" />
+            <h2 className="font-bold text-gray-900 uppercase tracking-tight
+              text-2xl
+              3xl:text-3xl
+              4xl:text-4xl
+              5xl:text-5xl">
               {getDeptLabel(activeFilter)}
             </h2>
-            <div className="w-8 h-0.5 bg-[#2563eb]" />
+            <div className="bg-[#2563eb] h-0.5 w-8 3xl:w-10 4xl:w-12 5xl:w-14" />
           </div>
-          <p className="text-gray-500 text-sm font-medium">
-            {t(
-              filtered.length === 1
-                ? "ui.showingMembers"
-                : "ui.showingMembersPlural",
-              { count: filtered.length },
-            )}
+          <p className="text-gray-500 font-medium
+            text-sm
+            3xl:text-base
+            4xl:text-lg
+            5xl:text-xl">
+            {t(filtered.length === 1 ? "ui.showingMembers" : "ui.showingMembersPlural", { count: filtered.length })}
             {" · "}
             {t("ui.clickToView")}
           </p>
@@ -247,16 +202,18 @@ export default function TeamClientSection() {
 
         <div
           key={activeFilter}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4
+            gap-6
+            3xl:gap-8
+            4xl:gap-10
+            5xl:gap-12"
         >
           {filtered.map((member, index) => (
             <CardWrapper key={member.id} index={index} isMobile={isMobile}>
               <SharedTeamCard
                 name={memberName(member.id)}
                 title={memberTitle(member.id)}
-                departmentLabel={getDeptLabel(
-                  member.departments[0] as DepartmentKey,
-                )}
+                departmentLabel={getDeptLabel(member.departments[0] as DepartmentKey)}
                 image={member.image}
                 slug={member.id}
                 viewProfileLabel={t("ui.viewProfile")}
@@ -264,6 +221,7 @@ export default function TeamClientSection() {
             </CardWrapper>
           ))}
         </div>
+
       </div>
     </section>
   );

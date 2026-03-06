@@ -12,19 +12,19 @@ type Clients = {
 };
 
 const partnersRow1: Clients[] = [
-  { name: "Hilton", logo: "./partners/Hilton-logo.png" },
-  { name: "Le Meridien", logo: "./partners/Le-meridien.png" },
-  { name: "Sheraton", logo: "./partners/Sheraton.png" },
-  { name: "Eclipse", logo: "./partners/Eclipse.png" },
-  { name: "Legi", logo: "./partners/Legi.webp" },
+  { name: "Hilton", logo: "/partners/Hilton-logo.png" },
+  { name: "Le Meridien", logo: "/partners/Le-meridien.png" },
+  { name: "Sheraton", logo: "/partners/Sheraton.png" },
+  { name: "Eclipse", logo: "/partners/Eclipse.png" },
+  { name: "Legi", logo: "/partners/Legi.webp" },
 ];
 
 const partnersRow2: Clients[] = [
-  { name: "Rogo", logo: "./partners/Rogo.jpg" },
-  { name: "BAU Hospital", type: "text" },
-  { name: "Adjara Textile", type: "text" },
-  { name: "Stellar Navigation", logo: "./partners/Stellar.png" },
-  { name: "BTM Textile", type: "text" },
+  { name: "Rogo", logo: "/partners/Rogo.jpg" },
+  { name: "BAU Hospital", logo: "/partners/Bau.jpg" },
+  { name: "Adjara Textile", logo: "/partners/Adjara-textile.png" },
+  { name: "Stellar Navigation", logo: "/partners/Stellar.png" },
+  { name: "BTM Textile", logo: "/partners/Btm.jpg" },
 ];
 
 const LogoCard = ({

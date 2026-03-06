@@ -71,14 +71,13 @@ function LocaleSwitcher() {
       <PopoverTrigger asChild>
         <button
           className={cn(
-            // base
             "flex items-center gap-2 rounded-xl border border-[rgba(255,255,255,0.2)] bg-[rgba(255,255,255,0.1)] hover:bg-[rgba(255,255,255,0.2)] text-white group transition-all duration-300",
             "h-10 px-3",
-            // 1440+
+
             "3xl:h-11 3xl:px-3.5 3xl:gap-2",
-            // 1600+
+
             "4xl:h-12 4xl:px-4 4xl:gap-2.5",
-            // 1920+
+
             "5xl:h-14 5xl:px-5 5xl:gap-3",
           )}
         >
@@ -184,13 +183,6 @@ export default function Header() {
   const isServicesActive =
     pathname === "/services" || pathname.startsWith("/services/");
 
-  /**
-   * navLinkClass scale:
-   *  base:  text-[15px]  px-3   py-2
-   *  3xl:   text-base    px-4   py-2.5
-   *  4xl:   text-[17px]  px-5   py-3
-   *  5xl:   text-xl      px-6   py-3.5
-   */
   const navLinkClass = cn(
     "group relative font-semibold transition-colors duration-300",
     "text-[15px] px-3 py-2",
@@ -199,7 +191,6 @@ export default function Header() {
     "5xl:text-xl 5xl:px-6 5xl:py-3.5",
   );
 
-  /** Active indicator underline */
   const activeBar =
     "absolute bottom-0 left-1/2 -translate-x-1/2 w-[60%] h-0.5 3xl:h-[2px] 4xl:h-[3px] bg-[#4A9FF5] rounded-full";
 
@@ -209,7 +200,6 @@ export default function Header() {
       style={{ padding: "clamp(24px, 2vw, 64px) clamp(24px, 3vw, 80px) 0" }}
     >
       <div className="relative max-w-[2400px] mx-auto">
-        {/* Frosted glass background */}
         <div
           className="absolute inset-0"
           style={{
@@ -221,21 +211,6 @@ export default function Header() {
           }}
         />
 
-        {/**
-         * Header bar height:
-         *  base:  80px
-         *  3xl:   96px
-         *  4xl:   112px
-         *  5xl:   132px
-         *
-         * Horizontal padding:
-         *  base:  px-6
-         *  md:    px-5
-         *  2xl:   px-10
-         *  3xl:   px-12
-         *  4xl:   px-16
-         *  5xl:   px-20
-         */}
         <div
           className={cn(
             "relative flex items-center justify-between border-white border rounded-3xl",
@@ -248,14 +223,6 @@ export default function Header() {
             height: "clamp(70px, 6vw, 132px)",
           }}
         >
-          {/**
-           * Logo scale:
-           *  base:  w-52  (lg)
-           *  2xl:   w-60
-           *  3xl:   w-64
-           *  4xl:   w-72
-           *  5xl:   w-88
-           */}
           <Link
             href="/"
             className="relative z-10 transition-transform hover:scale-[1.02] active:scale-[0.98]"
@@ -271,23 +238,14 @@ export default function Header() {
                 "w-56 -ml-6 h-56",
                 "md:ml-0 md:w-64 md:h-64",
                 "lg:w-52 lg:h-52",
-                "2xl:w-60 2xl:h-60",
-                "3xl:w-64 3xl:h-64",
-                "4xl:w-72 4xl:h-72",
-                "5xl:w-[22rem] 5xl:h-[22rem]",
+                "2xl:w-68 2xl:h-68",
+                "3xl:w-72 3xl:h-72",
+                "4xl:w-80 4xl:h-80",
+                "5xl:w-[25rem] 5xl:h-[25rem]",
               )}
             />
           </Link>
 
-          {/**
-           * Nav gap scale:
-           *  base:  gap-1
-           *  xl:    gap-2
-           *  2xl:   gap-3
-           *  3xl:   gap-5
-           *  4xl:   gap-7
-           *  5xl:   gap-10
-           */}
           <nav
             className={cn(
               "hidden lg:flex items-center justify-center",
@@ -358,7 +316,6 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Right controls */}
           <div
             className={cn(
               "hidden lg:flex items-center",
@@ -371,7 +328,6 @@ export default function Header() {
             <LocaleSwitcher />
           </div>
 
-          {/* Mobile controls */}
           <div className="lg:hidden flex items-center gap-3">
             <LocaleSwitcher />
             <Sheet open={open} onOpenChange={setOpen}>

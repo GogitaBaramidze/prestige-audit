@@ -9,7 +9,7 @@ export async function generateMetadata() {
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-y-hidden">
       <TeamHeroSection />
       <Suspense>
         <TeamClientSection />

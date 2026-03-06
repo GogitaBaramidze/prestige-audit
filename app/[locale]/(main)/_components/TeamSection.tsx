@@ -140,7 +140,11 @@ function DeptCard({
     >
       <Link href={dept.href} className="group block">
         <div
-          className={`relative overflow-hidden my-4 bg-gradient-to-br ${theme.cardBg} rounded-[2rem] mx-6 md:mx-0 p-6 border border-transparent transition-all duration-700 hover:shadow-2xl ${theme.border} group-hover:-translate-y-2`}
+          className={`relative overflow-hidden my-4 bg-gradient-to-br ${theme.cardBg} rounded-[2rem] mx-6 md:mx-0 border border-transparent transition-all duration-700 hover:shadow-2xl ${theme.border} group-hover:-translate-y-2
+            p-6
+            3xl:p-7 3xl:rounded-[2.5rem]
+            4xl:p-8 4xl:rounded-[3rem]
+            5xl:p-10 5xl:rounded-[3.5rem]`}
           style={{
             boxShadow: hovered
               ? `0 25px 70px ${theme.glowColor}, 0 0 0 1px ${theme.accent}25`
@@ -148,7 +152,7 @@ function DeptCard({
           }}
         >
           <motion.div
-            className={`absolute -top-8 -right-8 w-28 h-28 my-1 rounded-full ${theme.iconBg} blur-2xl`}
+            className={`absolute -top-8 -right-8 w-28 h-28 my-1 rounded-full ${theme.iconBg} blur-2xl 3xl:w-32 3xl:h-32 4xl:w-40 4xl:h-40 5xl:w-48 5xl:h-48`}
             animate={
               hovered
                 ? { scale: 1.8, opacity: 0.4 }
@@ -168,9 +172,13 @@ function DeptCard({
                 "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.6) 50%, transparent 60%)",
             }}
           />
-          <div className="flex flex-col items-center text-center gap-4 relative z-10">
+          <div className="flex flex-col items-center text-center gap-4 3xl:gap-5 4xl:gap-6 5xl:gap-7 relative z-10">
             <motion.div
-              className={`p-4 rounded-2xl ${theme.iconBg} text-white shadow-lg`}
+              className={`${theme.iconBg} text-white shadow-lg rounded-2xl
+                p-4
+                3xl:p-5 3xl:rounded-2xl
+                4xl:p-5 4xl:rounded-3xl
+                5xl:p-6 5xl:rounded-3xl`}
               initial={{ scale: 0, rotate: -30 }}
               animate={isInView ? { scale: 1, rotate: 0 } : {}}
               transition={{
@@ -180,11 +188,11 @@ function DeptCard({
                 delay: delay + 0.3,
               }}
             >
-              <Users size={24} />
+              <Users className="w-6 h-6 3xl:w-7 3xl:h-7 4xl:w-8 4xl:h-8 5xl:w-10 5xl:h-10" />
             </motion.div>
             <div>
               <motion.h4
-                className="text-slate-800 mb-3 font-semibold text-base"
+                className="text-slate-800 font-semibold mb-3 3xl:mb-4 text-base 3xl:text-lg 4xl:text-xl 5xl:text-2xl"
                 initial={{ opacity: 0, y: 10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: delay + 0.45 }}
@@ -195,7 +203,11 @@ function DeptCard({
                 initial={{ opacity: 0, y: 12 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: delay + 0.55 }}
-                className={`inline-flex items-center gap-2 relative overflow-hidden px-4 py-2 rounded-full border ${theme.learnMoreBorder} bg-gradient-to-r ${theme.learnMoreBg} ${theme.learnMoreText} text-xs font-semibold shadow-sm transition-all duration-500`}
+                className={`inline-flex items-center relative overflow-hidden rounded-full border ${theme.learnMoreBorder} bg-gradient-to-r ${theme.learnMoreBg} ${theme.learnMoreText} font-semibold shadow-sm transition-all duration-500
+                  gap-2 px-4 py-2 text-xs
+                  3xl:gap-2.5 3xl:px-5 3xl:py-2.5 3xl:text-sm
+                  4xl:gap-3 4xl:px-6 4xl:py-3 4xl:text-base
+                  5xl:gap-3 5xl:px-7 5xl:py-3.5 5xl:text-lg`}
               >
                 <span
                   className={`absolute inset-0 rounded-full bg-gradient-to-r ${theme.learnMoreGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
@@ -208,7 +220,7 @@ function DeptCard({
                   animate={hovered ? { x: 4 } : { x: 0 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <ArrowRight size={12} />
+                  <ArrowRight className="w-3 h-3 3xl:w-3.5 3xl:h-3.5 4xl:w-4 4xl:h-4 5xl:w-5 5xl:h-5" />
                 </motion.div>
               </motion.span>
             </div>
@@ -246,7 +258,6 @@ function MobileCarousel({ isInView }: { isInView: boolean }) {
     [departments.length],
   );
 
-  // Touch swipe support
   const touchStartX = useRef(0);
   const onTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -273,7 +284,6 @@ function MobileCarousel({ isInView }: { isInView: boolean }) {
         >
           <ChevronLeft size={16} className="text-slate-600" />
         </button>
-
         <button
           onClick={() => goTo(current + 1)}
           disabled={current === departments.length - 1}
@@ -288,7 +298,6 @@ function MobileCarousel({ isInView }: { isInView: boolean }) {
         >
           <ChevronRight size={16} className="text-slate-600" />
         </button>
-
         <div
           ref={trackRef}
           onTouchStart={onTouchStart}
@@ -316,7 +325,6 @@ function MobileCarousel({ isInView }: { isInView: boolean }) {
           ))}
         </div>
       </div>
-
       <div className="flex justify-center gap-2 mt-6">
         {departments.map((_, i) => (
           <button
@@ -398,7 +406,7 @@ export default function TeamSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#f3f5f4] py-20 overflow-hidden min-h-screen"
+      className="bg-[#f3f5f4] overflow-hidden min-h-screen py-20 3xl:py-24 4xl:py-28 5xl:py-36"
     >
       <style>{`
         @keyframes pulseGlow {
@@ -413,13 +421,12 @@ export default function TeamSection() {
         <div className="flex flex-col items-center text-center">
           <div className="flex items-center gap-3 mb-3">
             <div className="h-0.5 w-10 bg-[#2563eb]" />
-            <span className="text-gray-500 text-base font-medium  md:text-lg tracking-widest uppercase">
+            <span className="text-gray-500 text-base font-medium md:text-lg tracking-widest uppercase">
               {t("teamSectionLabel")}
             </span>
             <div className="h-0.5 w-10 bg-[#2563eb]" />
           </div>
         </div>
-
         <div
           className="relative rounded-[40px] overflow-hidden shadow-2xl w-[320px]"
           style={{
@@ -442,18 +449,17 @@ export default function TeamSection() {
             <p className="text-blue-400 text-sm">{t("teamCeoTitle")}</p>
           </div>
         </div>
-
         <MobileCarousel isInView={isInView} />
       </div>
 
       <div className="hidden lg:block">
         <motion.div
-          className="max-w-7xl mx-auto mb-16 flex flex-col items-center text-center px-6"
+          className="mx-auto mb-16 3xl:mb-20 4xl:mb-24 5xl:mb-28 flex flex-col items-center text-center px-6 max-w-7xl 3xl:max-w-[1600px] 4xl:max-w-[1800px] 5xl:max-w-[2100px]"
           initial={{ opacity: 0, y: -40, filter: "blur(15px)" }}
           animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center gap-3 3xl:gap-4 4xl:gap-5 5xl:gap-6 mb-3">
             <motion.div
               className="h-0.5 bg-[#2563eb]"
               initial={{ width: 0 }}
@@ -461,7 +467,7 @@ export default function TeamSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
             />
             <motion.span
-              className="text-gray-500 text-sm md:text-xl font-medium tracking-widest uppercase"
+              className="text-gray-500 font-medium tracking-widest uppercase text-sm md:text-xl 3xl:text-2xl 4xl:text-3xl 5xl:text-4xl"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 1, delay: 0.5 }}
@@ -479,10 +485,10 @@ export default function TeamSection() {
 
         <div
           ref={containerRef}
-          className="relative w-full max-w-7xl mx-auto px-6"
+          className="relative w-full mx-auto px-6 3xl:px-10 4xl:px-14 5xl:px-20 max-w-7xl 3xl:max-w-[1600px] 4xl:max-w-[1800px] 5xl:max-w-[2100px]"
         >
-          <div className="flex flex-row items-center justify-between gap-4 mb-20">
-            <div className="w-[250px] z-20">
+          <div className="flex flex-row items-center justify-between gap-4 3xl:gap-6 4xl:gap-8 5xl:gap-10 mb-20 3xl:mb-24 4xl:mb-28 5xl:mb-36">
+            <div className="w-[250px] 3xl:w-[300px] 4xl:w-[340px] 5xl:w-[400px] z-20">
               <DeptCard
                 dept={departments[0]}
                 theme={cardThemes[0]}
@@ -507,7 +513,7 @@ export default function TeamSection() {
             >
               <div
                 ref={imageRef}
-                className="relative group rounded-[50px] overflow-hidden w-[340px]"
+                className="relative group overflow-hidden rounded-[50px] 3xl:rounded-[56px] 4xl:rounded-[64px] 5xl:rounded-[72px] w-[340px] 3xl:w-[400px] 4xl:w-[460px] 5xl:w-[540px]"
                 style={{
                   boxShadow:
                     "0 30px 80px rgba(0,0,0,0.3), 0 10px 30px rgba(37,99,235,0.2), 0 0 0 1px rgba(255,255,255,0.08)",
@@ -521,9 +527,9 @@ export default function TeamSection() {
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8 text-center">
+                <div className="absolute bottom-0 left-0 right-0 text-center p-8 3xl:p-10 4xl:p-12 5xl:p-14">
                   <motion.h3
-                    className="text-white mb-2 font-bold text-xl"
+                    className="text-white font-bold mb-2 3xl:mb-3 text-xl 3xl:text-2xl 4xl:text-3xl 5xl:text-4xl"
                     initial={{ opacity: 0, y: 15 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8, delay: 1.1 }}
@@ -531,7 +537,7 @@ export default function TeamSection() {
                     {t("teamCeoName")}
                   </motion.h3>
                   <motion.p
-                    className="text-blue-400 text-sm"
+                    className="text-blue-400 text-sm 3xl:text-base 4xl:text-lg 5xl:text-xl"
                     initial={{ opacity: 0 }}
                     animate={isInView ? { opacity: 1 } : {}}
                     transition={{ duration: 0.8, delay: 1.3 }}
@@ -540,7 +546,7 @@ export default function TeamSection() {
                   </motion.p>
                 </div>
               </div>
-              <div className="h-8" />
+              <div className="h-8 3xl:h-10 4xl:h-12 5xl:h-14" />
               <motion.div
                 ref={mainDotRef}
                 className="relative"
@@ -557,7 +563,7 @@ export default function TeamSection() {
               </motion.div>
             </motion.div>
 
-            <div className="w-[250px] z-20">
+            <div className="w-[250px] 3xl:w-[300px] 4xl:w-[340px] 5xl:w-[400px] z-20">
               <DeptCard
                 dept={departments[1]}
                 theme={cardThemes[1]}
@@ -608,7 +614,7 @@ export default function TeamSection() {
             )}
           </svg>
 
-          <div className="grid grid-cols-4 gap-6 mx-6 z-20 relative">
+          <div className="grid grid-cols-4 relative z-20 gap-6 mx-6 3xl:gap-8 3xl:mx-8 4xl:gap-10 4xl:mx-10 5xl:gap-12 5xl:mx-14">
             {departments.slice(2).map((dept, i) => (
               <DeptCard
                 key={i}

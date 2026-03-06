@@ -42,8 +42,6 @@ const mobileLinkStyle = (isActive: boolean) => ({
   backgroundColor: isActive ? "rgba(74, 159, 245, 0.1)" : "transparent",
 });
 
-// navItems are built inside the component using translations
-
 function LocaleSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
@@ -150,8 +148,10 @@ export default function Header() {
 
   const isServicesActive =
     pathname === "/services" || pathname.startsWith("/services/");
+
+  // lg: base size, xl: slightly larger, 2xl: larger still
   const navLinkClass =
-    "group relative px-3 py-2 text-sm xl:text-base font-semibold transition-colors duration-300";
+    "group relative px-3 py-2 text-sm xl:text-[15px] 2xl:text-base font-semibold transition-colors duration-300";
 
   return (
     <header
@@ -188,7 +188,7 @@ export default function Header() {
             />
           </Link>
 
-          <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-4">
+          <nav className="hidden lg:flex items-center justify-center gap-1 xl:gap-3 2xl:gap-5">
             <Link
               href="/"
               className={navLinkClass}

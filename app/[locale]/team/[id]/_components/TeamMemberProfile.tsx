@@ -31,6 +31,7 @@ function FadeUp({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -46,6 +47,7 @@ function FadeUp({
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+
   return (
     <div
       ref={ref}
@@ -63,6 +65,7 @@ function FadeUp({
   );
 }
 
+// ─── Hero: desktop uses CSS entry animations (no Framer), mobile is instant ───
 function HeroSection({
   name,
   title,
@@ -87,16 +90,20 @@ function HeroSection({
         paddingTop: "80px",
       }}
     >
+      {/* Grid overlay — lightweight SVG background, no JS */}
       <div
         aria-hidden
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `linear-gradient(rgba(37,99,235,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.07) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(37,99,235,0.07) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(37,99,235,0.07) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
           pointerEvents: "none",
         }}
       />
+
+      {/* Glows — reduced count + size on mobile */}
       <div
         aria-hidden
         style={{
@@ -127,6 +134,8 @@ function HeroSection({
           }}
         />
       )}
+
+      {/* Vertical rule — CSS animation, no Framer */}
       {!isMobile && (
         <div
           aria-hidden
@@ -149,16 +158,18 @@ function HeroSection({
         style={{
           position: "relative",
           zIndex: 10,
-          maxWidth: "var(--content-max-w)",
+          maxWidth: "1200px",
           margin: "0 auto",
           width: "100%",
           boxSizing: "border-box",
         }}
       >
         <div className="hero-grid">
+          {/* Text column */}
           <div className={isMobile ? "" : "hero-text-animate"}>
+            {/* Badge */}
             <div
-              style={{ marginBottom: "32px" }}
+              style={{ marginBottom: "32px", animationDelay: "0ms" }}
               className={isMobile ? "" : "fade-up-1"}
             >
               <div
@@ -169,7 +180,7 @@ function HeroSection({
                   background: "rgba(37,99,235,0.2)",
                   border: "1px solid rgba(59,130,246,0.3)",
                   borderRadius: "100px",
-                  padding: "var(--badge-padding)",
+                  padding: "6px 18px",
                 }}
               >
                 <div
@@ -182,7 +193,7 @@ function HeroSection({
                 />
                 <span
                   style={{
-                    fontSize: "var(--badge-font-size)",
+                    fontSize: "11px",
                     fontFamily: "sans-serif",
                     color: "#93c5fd",
                     letterSpacing: "0.15em",
@@ -194,10 +205,11 @@ function HeroSection({
               </div>
             </div>
 
+            {/* Name */}
             <h1
               className={isMobile ? "" : "fade-up-2"}
               style={{
-                fontSize: "var(--hero-name-size)",
+                fontSize: "clamp(28px, 4.5vw, 60px)",
                 fontWeight: "300",
                 color: "#ffffff",
                 lineHeight: "1.05",
@@ -209,6 +221,7 @@ function HeroSection({
               {name}
             </h1>
 
+            {/* Rule */}
             <div
               className={isMobile ? "" : "fade-up-3"}
               style={{
@@ -219,27 +232,29 @@ function HeroSection({
               }}
             />
 
+            {/* Summary */}
             <p
               className={isMobile ? "" : "fade-up-4"}
               style={{
-                fontSize: "var(--hero-body-size)",
+                fontSize: "15px",
                 color: "rgba(255,255,255,0.5)",
                 lineHeight: "1.9",
                 fontFamily: "'Georgia', serif",
-                maxWidth: "var(--hero-body-max-w)",
+                maxWidth: "440px",
                 fontWeight: "300",
               }}
             >
               {summary}
             </p>
 
+            {/* Contact */}
             <div
               className={isMobile ? "" : "fade-up-5"}
               style={{
                 marginTop: "40px",
                 display: "flex",
                 flexDirection: "column",
-                gap: "var(--contact-gap)",
+                gap: "12px",
               }}
             >
               {contactItems.map(({ Icon, value }) => (
@@ -250,14 +265,14 @@ function HeroSection({
                     alignItems: "center",
                     gap: "12px",
                     color: "rgba(255,255,255,0.45)",
-                    fontSize: "var(--contact-font-size)",
+                    fontSize: "13px",
                     fontFamily: "sans-serif",
                   }}
                 >
                   <div
                     style={{
-                      width: "var(--contact-icon-size)",
-                      height: "var(--contact-icon-size)",
+                      width: "32px",
+                      height: "32px",
                       borderRadius: "50%",
                       border: "1px solid rgba(59,130,246,0.3)",
                       display: "flex",
@@ -268,8 +283,8 @@ function HeroSection({
                   >
                     <Icon
                       style={{
-                        width: "var(--contact-icon-inner)",
-                        height: "var(--contact-icon-inner)",
+                        width: "13px",
+                        height: "13px",
                         color: "#60a5fa",
                       }}
                     />
@@ -280,10 +295,12 @@ function HeroSection({
             </div>
           </div>
 
+          {/* Image column */}
           <div
             className={`hero-image-order hero-image-container ${isMobile ? "" : "fade-up-img"}`}
             style={{ position: "relative" }}
           >
+            {/* Glow blobs behind image */}
             {!isMobile && (
               <>
                 <div
@@ -355,7 +372,7 @@ function HeroSection({
               >
                 <div
                   style={{
-                    fontSize: "var(--img-label-size)",
+                    fontSize: "11px",
                     fontFamily: "sans-serif",
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
@@ -367,7 +384,7 @@ function HeroSection({
                 </div>
                 <div
                   style={{
-                    fontSize: "var(--img-name-size)",
+                    fontSize: "18px",
                     fontFamily: "'Georgia', serif",
                     color: "#ffffff",
                     fontWeight: "300",
@@ -384,6 +401,7 @@ function HeroSection({
   );
 }
 
+// ─── Skill cell ───────────────────────────────────────────────────────────────
 function SkillCell({
   skill,
   index,
@@ -396,20 +414,23 @@ function SkillCell({
   isMobile: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
+
   const isFirst = index === 0;
   const isSecond = index === 1;
   const isSecondLast = index === total - 2;
   const isLast = index === total - 1;
+
   const radius = isMobile
     ? "8px"
     : `${isFirst ? "8px" : "0"} ${isSecond ? "8px" : "0"} ${isLast ? "8px" : "0"} ${isSecondLast ? "8px" : "0"}`;
+
   return (
     <div
       onMouseEnter={() => !isMobile && setHovered(true)}
       onMouseLeave={() => !isMobile && setHovered(false)}
       style={{
         background: hovered ? "#0a1a3f" : "#ffffff",
-        padding: "var(--skill-padding)",
+        padding: isMobile ? "20px" : "28px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -421,7 +442,7 @@ function SkillCell({
     >
       <span
         style={{
-          fontSize: "var(--skill-font-size)",
+          fontSize: isMobile ? "14px" : "15px",
           fontFamily: "'Georgia', serif",
           color: hovered ? "#ffffff" : "#0a1a3f",
           transition: "color 0.2s ease",
@@ -431,8 +452,8 @@ function SkillCell({
       </span>
       <ChevronRight
         style={{
-          width: "var(--skill-icon-size)",
-          height: "var(--skill-icon-size)",
+          width: "14px",
+          height: "14px",
           color: hovered ? "#93c5fd" : "#2563eb",
           flexShrink: 0,
           transition: "color 0.2s ease",
@@ -442,15 +463,18 @@ function SkillCell({
   );
 }
 
+// ─── Main export ──────────────────────────────────────────────────────────────
 export function TeamMemberProfile({ member }: { member: MemberMeta }) {
   const t = useTranslations("team");
   const isMobile = useIsMobile();
+
   const { id } = member;
   const name = t(`members.${id}.name`);
   const title = t(`members.${id}.title`);
   const summary = t(`members.${id}.summary`);
   const expertise = t.raw(`members.${id}.expertise`) as string[];
   const certifications = t.raw(`members.${id}.certifications`) as string[];
+
   const contactItems = [
     { Icon: Mail, value: member.email },
     { Icon: Phone, value: member.phone },
@@ -466,6 +490,7 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
       }}
     >
       <style>{`
+        /* ── CSS entry animations (replaces Framer on desktop) ── */
         @keyframes fadeUpIn {
           from { opacity: 0; transform: translateY(28px); filter: blur(5px); }
           to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
@@ -485,100 +510,6 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
         .fade-up-4 { animation: fadeUpIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.29s both; }
         .fade-up-5 { animation: fadeUpIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.37s both; }
         .fade-up-img { animation: imgReveal 1s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
-
-        /* ─────────────────────────────────────────────
-           CSS custom properties
-           base = <1440px | 3xl = 1440+ | 4xl = 1600+ | 5xl = 1920+
-        ───────────────────────────────────────────── */
-        :root {
-          --content-max-w:      1200px;
-          --hero-name-size:     clamp(28px, 4.5vw, 60px);
-          --hero-body-size:     15px;
-          --hero-body-max-w:    440px;
-          --badge-font-size:    11px;
-          --badge-padding:      6px 18px;
-          --contact-gap:        12px;
-          --contact-font-size:  13px;
-          --contact-icon-size:  32px;
-          --contact-icon-inner: 13px;
-          --img-label-size:     11px;
-          --img-name-size:      18px;
-          --skill-padding:      28px;
-          --skill-font-size:    15px;
-          --skill-icon-size:    14px;
-          --section-heading:    clamp(28px, 3.5vw, 44px);
-          --cert-label-size:    10px;
-          --cert-item-size:     14px;
-        }
-
-        @media (min-width: 1440px) {
-          :root {
-            --content-max-w:      1500px;
-            --hero-name-size:     clamp(48px, 4vw, 72px);
-            --hero-body-size:     17px;
-            --hero-body-max-w:    520px;
-            --badge-font-size:    12px;
-            --badge-padding:      8px 22px;
-            --contact-gap:        14px;
-            --contact-font-size:  15px;
-            --contact-icon-size:  38px;
-            --contact-icon-inner: 15px;
-            --img-label-size:     12px;
-            --img-name-size:      22px;
-            --skill-padding:      32px;
-            --skill-font-size:    17px;
-            --skill-icon-size:    16px;
-            --section-heading:    clamp(36px, 3.5vw, 52px);
-            --cert-label-size:    11px;
-            --cert-item-size:     16px;
-          }
-        }
-
-        @media (min-width: 1600px) {
-          :root {
-            --content-max-w:      1700px;
-            --hero-name-size:     clamp(56px, 4vw, 84px);
-            --hero-body-size:     19px;
-            --hero-body-max-w:    600px;
-            --badge-font-size:    13px;
-            --badge-padding:      10px 26px;
-            --contact-gap:        16px;
-            --contact-font-size:  17px;
-            --contact-icon-size:  44px;
-            --contact-icon-inner: 17px;
-            --img-label-size:     13px;
-            --img-name-size:      26px;
-            --skill-padding:      36px;
-            --skill-font-size:    19px;
-            --skill-icon-size:    18px;
-            --section-heading:    clamp(42px, 3.5vw, 60px);
-            --cert-label-size:    12px;
-            --cert-item-size:     18px;
-          }
-        }
-
-        @media (min-width: 1920px) {
-          :root {
-            --content-max-w:      2100px;
-            --hero-name-size:     clamp(68px, 4vw, 100px);
-            --hero-body-size:     22px;
-            --hero-body-max-w:    720px;
-            --badge-font-size:    15px;
-            --badge-padding:      12px 32px;
-            --contact-gap:        20px;
-            --contact-font-size:  20px;
-            --contact-icon-size:  52px;
-            --contact-icon-inner: 20px;
-            --img-label-size:     15px;
-            --img-name-size:      32px;
-            --skill-padding:      44px;
-            --skill-font-size:    22px;
-            --skill-icon-size:    22px;
-            --section-heading:    clamp(52px, 3.5vw, 72px);
-            --cert-label-size:    14px;
-            --cert-item-size:     21px;
-          }
-        }
 
         /* ── Layout ── */
         .hero-grid {
@@ -605,30 +536,6 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
         .hero-image-container { display: flex; justify-content: center; }
         .cert-block { margin-top: 48px; }
 
-        @media (min-width: 1440px) {
-          .hero-grid          { gap: 100px; }
-          .expertise-grid     { grid-template-columns: 380px 1fr; gap: 100px; }
-          .hero-padding       { padding: 100px 48px 120px; }
-          .section-padding    { padding: 120px 48px; }
-          .cert-block         { margin-top: 56px; }
-        }
-
-        @media (min-width: 1600px) {
-          .hero-grid          { gap: 120px; }
-          .expertise-grid     { grid-template-columns: 440px 1fr; gap: 120px; }
-          .hero-padding       { padding: 120px 64px 140px; }
-          .section-padding    { padding: 140px 64px; }
-          .cert-block         { margin-top: 64px; }
-        }
-
-        @media (min-width: 1920px) {
-          .hero-grid          { gap: 160px; }
-          .expertise-grid     { grid-template-columns: 540px 1fr; gap: 160px; }
-          .hero-padding       { padding: 160px 80px 180px; }
-          .section-padding    { padding: 180px 80px; }
-          .cert-block         { margin-top: 80px; }
-        }
-
         @media (max-width: 1023px) {
           .hero-grid { grid-template-columns: 1fr; gap: 48px; }
           .hero-image-order { order: -1; }
@@ -648,8 +555,12 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
           .hero-padding { padding: 32px 20px 56px; }
           .section-padding { padding: 48px 20px; }
           .cert-block { margin-top: 24px; }
+          /* No entry animations on mobile — instant render */
           .fade-up-1,.fade-up-2,.fade-up-3,.fade-up-4,.fade-up-5,.fade-up-img {
-            animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important;
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+            filter: none !important;
           }
         }
 
@@ -673,14 +584,16 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
         contactItems={contactItems}
       />
 
+      {/* Expertise section */}
       {Array.isArray(expertise) && expertise.length > 0 && (
         <section className="section-padding" style={{ background: "#f3f5f4" }}>
-          <div style={{ maxWidth: "var(--content-max-w)", margin: "0 auto" }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div className="expertise-grid">
+              {/* Left: heading + certs */}
               <FadeUp>
                 <div
                   style={{
-                    fontSize: "var(--cert-label-size)",
+                    fontSize: "11px",
                     fontFamily: "sans-serif",
                     letterSpacing: "0.25em",
                     textTransform: "uppercase",
@@ -692,7 +605,7 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
                 </div>
                 <h2
                   style={{
-                    fontSize: "var(--section-heading)",
+                    fontSize: "clamp(28px, 3.5vw, 44px)",
                     fontWeight: "300",
                     color: "#0a1a3f",
                     fontFamily: "'Georgia', serif",
@@ -714,7 +627,7 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
                     style={{
                       background: "#0a1a3f",
                       borderRadius: "6px",
-                      padding: "var(--skill-padding)",
+                      padding: "28px",
                       position: "relative",
                       overflow: "hidden",
                     }}
@@ -732,7 +645,7 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
                     />
                     <div
                       style={{
-                        fontSize: "var(--cert-label-size)",
+                        fontSize: "10px",
                         letterSpacing: "0.2em",
                         textTransform: "uppercase",
                         color: "rgba(255,255,255,0.35)",
@@ -764,7 +677,7 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
                         <span
                           style={{
                             color: "#93c5fd",
-                            fontSize: "var(--cert-item-size)",
+                            fontSize: "14px",
                             fontFamily: "'Georgia', serif",
                           }}
                         >

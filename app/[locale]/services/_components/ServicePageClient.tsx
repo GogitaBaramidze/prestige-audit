@@ -10,7 +10,7 @@ export default function ServicesPageClient() {
   return (
     <div className="min-h-screen bg-background">
       <motion.section
-        className="relative w-full bg-[#0a1a3f] pt-40 pb-48 px-5 overflow-hidden text-center"
+        className="relative w-full bg-[#0a1a3f] pt-40 pb-24 px-5 overflow-hidden text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}

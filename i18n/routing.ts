@@ -7,8 +7,8 @@ export type Locale = (typeof locales)[number];
 export const routing = defineRouting({
   locales: ["ka", "en"],
   defaultLocale: "ka",
-  localePrefix: "always",
-  localeDetection: true,
+  localePrefix: "never",
+  localeDetection: false,
 });
 
 export const { Link, redirect, usePathname, useRouter } =

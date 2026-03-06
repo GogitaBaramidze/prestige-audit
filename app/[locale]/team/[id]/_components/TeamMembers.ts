@@ -23,7 +23,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "nato-romanadze",
-    image: "/team/nato-romanadze.jpg",
+    image: "/team/nato-romanadze.avif",
     phone: "+995 558 16 28 23",
     email: "nato.romanadze@mail.ru",
     address: "N54/62 Gorgiladze Street, Batumi, Georgia",
@@ -153,7 +153,7 @@ export const TEAM_MEMBERS: MemberMeta[] = [
   },
   {
     id: "lasha-seperteladze",
-    image: "/team/lasha-seperteladze.jpg",
+    image: "/team/lasha-seperteladze.avif",
     phone: "+995 514 600 070",
     email: "info@cohen.ge",
     address: "Batumi, Georgia",

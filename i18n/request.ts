@@ -23,6 +23,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     consulting: (await import(`../messages/${locale}/consulting.json`)).default,
     team: (await import(`../messages/${locale}/team.json`)).default,
     meta: (await import(`../messages/${locale}/meta.json`)).default,
+    teaching: (await import(`../messages/${locale}/teaching.json`)).default,
   };
 
   return {

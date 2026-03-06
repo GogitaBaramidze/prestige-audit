@@ -287,9 +287,6 @@ export default function ValuationServicesPage() {
                   {t("teamLabel")}
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
-                {t("teamHeading")}
-              </h2>
             </motion.div>
 
             <div className="block md:hidden">

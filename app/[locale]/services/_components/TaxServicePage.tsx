@@ -240,12 +240,7 @@ export default function TaxServicesPage() {
                 </span>
                 <div className="w-8 h-0.5 bg-emerald-600" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-                {t("servicesHeading")}
-              </h2>
-              <p className="text-gray-500 mt-2 max-w-lg mx-auto text-sm">
-                {t("servicesBody")}
-              </p>
+              
             </motion.div>
 
             <div className="block md:hidden">

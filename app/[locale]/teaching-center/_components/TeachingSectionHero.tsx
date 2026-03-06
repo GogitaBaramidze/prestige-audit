@@ -5,7 +5,7 @@ import { GraduationCap } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function TeachingCenterHeroSection() {
-  const t = useTranslations("main");
+  const t = useTranslations("teaching");
 
   return (
     <motion.section

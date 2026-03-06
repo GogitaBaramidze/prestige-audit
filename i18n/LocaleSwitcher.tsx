@@ -9,8 +9,10 @@ import { Button } from "@/components/ui/button";
 import { ChevronDownIcon } from "lucide-react";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-import { locales, usePathname, useRouter } from "./routing";
+import { locales } from "./routing";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 
 type Locale = "en" | "ka";
 
@@ -25,13 +27,17 @@ const languageNames: Record<Locale, string> = {
 };
 
 export default function LocaleSwitcher() {
-  const router = useRouter();
-  const pathname = usePathname();
   const currentLocale = useLocale() as Locale;
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   const handleLocaleChange = (newLocale: Locale) => {
     if (newLocale === currentLocale) return;
-    router.push(pathname, { locale: newLocale });
+    // Set cookie so middleware knows which locale to use
+    document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000`;
+    startTransition(() => {
+      router.refresh();
+    });
   };
 
   const currentFlag = LanguageFlags[currentLocale];
@@ -47,7 +53,12 @@ export default function LocaleSwitcher() {
             height={20}
             className="h-5 w-5 rounded-sm object-cover"
           />
-          <span className="text-sm font-semibold uppercase tracking-wider hidden sm:inline-block">
+          <span
+            className={cn(
+              "text-sm font-semibold uppercase tracking-wider hidden sm:inline-block",
+              isPending && "opacity-50",
+            )}
+          >
             {currentLocale}
           </span>
           <ChevronDownIcon className="h-3 w-3 opacity-50 group-hover:opacity-100 transition-opacity" />

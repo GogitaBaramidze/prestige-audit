@@ -39,8 +39,7 @@ export default function Footer() {
       className="relative w-full z-50 -mt-10 bg-[#0a1a3f] overflow-hidden
       rounded-t-[60px] md:rounded-t-[80px] 3xl:rounded-t-[96px] 4xl:rounded-t-[112px] 5xl:rounded-t-[128px]
       pt-24 3xl:pt-28 4xl:pt-32 5xl:pt-40
-      pb-10 3xl:pb-12 4xl:pb-14 5xl:pb-16
-      px-5 3xl:px-8 4xl:px-10 5xl:px-12"
+      pb-10 3xl:pb-12 4xl:pb-14 5xl:pb-16"
     >
       <div
         className="absolute inset-0 z-0 opacity-60 mix-blend-screen pointer-events-none"
@@ -54,7 +53,14 @@ export default function Footer() {
       <div className="absolute bottom-0 right-0 rounded-full bg-blue-500/10 pointer-events-none blur-[100px] w-[500px] h-[500px] 3xl:w-[600px] 3xl:h-[600px] 4xl:w-[700px] 4xl:h-[700px] 5xl:w-[860px] 5xl:h-[860px]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#061232_90%)] z-0" />
 
-      <div className="relative z-10 mx-auto max-w-7xl 3xl:max-w-[1600px] 4xl:max-w-[1800px] 5xl:max-w-[2100px]">
+      <div
+        className="relative z-10 mx-auto
+        px-5 sm:px-8 md:px-16 lg:px-20 2xl:px-32
+        3xl:px-44
+        4xl:px-56
+        5xl:px-72
+        max-w-7xl 3xl:max-w-[1600px] 4xl:max-w-[1800px] 5xl:max-w-[2100px]"
+      >
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 3xl:gap-14 4xl:gap-16 5xl:gap-20 mb-10 3xl:mb-12 4xl:mb-14 5xl:mb-16">
           <div className="md:col-span-4 space-y-6 3xl:space-y-7 4xl:space-y-8 5xl:space-y-10 hidden md:block">
             <Link href="/">

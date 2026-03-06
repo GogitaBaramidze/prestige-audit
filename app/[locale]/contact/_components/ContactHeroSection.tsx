@@ -31,7 +31,7 @@ export default function ContactHeroSection() {
 
       <div className="mx-auto max-w-7xl relative z-10 px-6">
         <motion.div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-blue-200 text-xs font-bold uppercase tracking-widest mb-4"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md text-blue-200 text-md md:text:lg font-bold uppercase tracking-widest mb-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}

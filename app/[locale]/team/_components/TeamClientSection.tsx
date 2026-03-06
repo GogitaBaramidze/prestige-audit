@@ -2,11 +2,10 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
 import { TEAM_MEMBERS } from "../[id]/_components/TeamMembers";
+
 import {
   Select,
   SelectContent,
@@ -14,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import SharedTeamCard from "./SharedTeamCard";
 
 const DEPARTMENT_KEYS = [
   "financial-audit",
@@ -37,102 +37,6 @@ function useIsMobile(breakpoint = 768) {
   }, [breakpoint]);
   return isMobile;
 }
-
-interface TeamCardProps {
-  name: string;
-  title: string;
-  departmentLabel: string;
-  image: string;
-  slug: string;
-  viewProfileLabel: string;
-}
-
-const TeamCard = React.memo(
-  ({
-    name,
-    title,
-    departmentLabel,
-    image,
-    slug,
-    viewProfileLabel,
-  }: TeamCardProps) => (
-    <>
-      {/* Mobile */}
-      <Link
-        href={`/team/${slug}`}
-        className="block md:hidden"
-        aria-label={name}
-      >
-        <div className="relative aspect-[4/5] w-[95%] mx-auto overflow-hidden rounded-2xl bg-gray-900">
-          <img
-            src={image}
-            alt={name}
-            className="h-full w-full object-cover object-top"
-            loading="lazy"
-            decoding="async"
-          />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-4 pb-4 pt-16 pointer-events-none">
-            <h3 className="text-sm font-bold text-white leading-snug drop-shadow-md">
-              {name}
-            </h3>
-            <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-white/75 drop-shadow">
-              {title}
-            </p>
-          </div>
-        </div>
-      </Link>
-
-      {/* Desktop — entire card is clickable */}
-      <Link
-        href={`/team/${slug}`}
-        className="hidden md:block"
-        aria-label={name}
-      >
-        <div className="group relative aspect-[4/5] w-[95%] mx-auto cursor-pointer overflow-hidden rounded-2xl bg-gray-900">
-          <img
-            src={image}
-            alt={name}
-            className="h-full w-full object-cover object-top transition-transform duration-700 ease-in-out group-hover:scale-105 will-change-transform"
-            loading="lazy"
-            decoding="async"
-          />
-
-          {/* Default state: name + title visible */}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-4 pb-4 pt-16 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
-            <h3 className="text-sm font-bold text-white leading-snug drop-shadow-md">
-              {name}
-            </h3>
-            <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-widest text-white/75 drop-shadow">
-              {title}
-            </p>
-          </div>
-
-          {/* Hover overlay */}
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out pointer-events-none group-hover:pointer-events-auto">
-            <div className="absolute inset-y-0 left-0 w-0 group-hover:w-full transition-all duration-500 ease-in-out bg-black/30 backdrop-blur-md flex flex-col items-center justify-center p-5 overflow-hidden">
-              <span className="mb-2 text-[10px] font-black uppercase tracking-[0.22em] text-cyan-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200 text-center break-words drop-shadow">
-                {departmentLabel}
-              </span>
-              <h3 className="text-center text-base font-bold text-white leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[250ms] break-words drop-shadow-md">
-                {name}
-              </h3>
-              <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[290ms] text-center break-words drop-shadow">
-                {title}
-              </p>
-              <div className="mt-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-[330ms]">
-                <div className="flex items-center gap-2 rounded-full bg-white px-5 py-2 text-xs font-bold text-[#0a1a3f] transition-colors duration-200 hover:bg-cyan-300">
-                  {viewProfileLabel}
-                  <ArrowRight className="h-3 w-3" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Link>
-    </>
-  ),
-);
-TeamCard.displayName = "TeamCard";
 
 function DesktopFilterBar({
   active,
@@ -289,6 +193,22 @@ export default function TeamClientSection() {
   );
   const getDeptLabel = (key: DepartmentKey) => t(`departments.${key}`);
 
+  // Safe translation helpers (member name/title may be missing in some locales)
+  const memberName = (id: string) => {
+    try {
+      return t(`members.${id}.name`);
+    } catch {
+      return id;
+    }
+  };
+  const memberTitle = (id: string) => {
+    try {
+      return t(`members.${id}.title`);
+    } catch {
+      return "";
+    }
+  };
+
   return (
     <section className="relative z-20 -mt-24 bg-[#f3f5f4] rounded-t-[60px] md:rounded-t-[80px] pt-16 pb-32 px-6 shadow-[0_-20px_50px_-20px_rgba(0,0,0,0.1)]">
       <div className="max-w-7xl mx-auto">
@@ -331,9 +251,9 @@ export default function TeamClientSection() {
         >
           {filtered.map((member, index) => (
             <CardWrapper key={member.id} index={index} isMobile={isMobile}>
-              <TeamCard
-                name={t(`members.${member.id}.name`)}
-                title={t(`members.${member.id}.title`)}
+              <SharedTeamCard
+                name={memberName(member.id)}
+                title={memberTitle(member.id)}
                 departmentLabel={getDeptLabel(
                   member.departments[0] as DepartmentKey,
                 )}

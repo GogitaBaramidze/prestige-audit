@@ -167,5 +167,7 @@
   "tcStep4Desc": "Complete the program and receive your official certification.",
   "tcFormBadge": "Enrollment Open",
   "tcFormMessageLabel": "Your Message",
-  "tcFormMessagePlaceholder": "Tell us about your goals or questions..."
+  "tcFormMessagePlaceholder": "Tell us about your goals or questions...",
+
+  "ourServices": "Our Services"
 }

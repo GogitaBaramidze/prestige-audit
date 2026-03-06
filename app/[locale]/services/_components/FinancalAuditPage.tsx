@@ -3,7 +3,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import {
-  CheckCircle2,
   ArrowLeft,
   TrendingUp,
   ShieldCheck,
@@ -21,6 +20,8 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { TEAM_MEMBERS } from "@/app/[locale]/team/[id]/_components/TeamMembers";
+import SharedTeamCard from "../../team/_components/SharedTeamCard";
 
 const blue = {
   bg: "from-blue-50 via-indigo-50 to-white",
@@ -42,27 +43,6 @@ const auditServiceIcons = [
   AlertTriangle,
   ClipboardCheck,
   TrendingUp,
-];
-
-const auditTeam = [
-  {
-    name: "Sarah Mitchell",
-    title: "Senior Auditor",
-    image: "/3.png",
-    slug: "sarah-mitchell",
-  },
-  {
-    name: "Robert Clarke",
-    title: "Audit Manager",
-    image: "/4.jpeg",
-    slug: "robert-clarke",
-  },
-  {
-    name: "Nino Kvaratskhelia",
-    title: "Financial Analyst",
-    image: "/3.png",
-    slug: "nino-kvaratskhelia",
-  },
 ];
 
 function AuditServiceCard({
@@ -101,54 +81,10 @@ function AuditServiceCard({
   );
 }
 
-function TeamCard({
-  member,
-  index,
-}: {
-  member: (typeof auditTeam)[0];
-  index: number;
-}) {
-  const t = useTranslations("financalAudit");
-
-  return (
-    <motion.div
-      className="group relative aspect-[3/4] w-full cursor-pointer overflow-hidden rounded-[24px] bg-gray-200"
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-20px" }}
-      transition={{ duration: 0.55, delay: index * 0.1 }}
-      whileHover={{ y: -6 }}
-    >
-      <img
-        src={member.image}
-        alt={member.name}
-        className="h-full w-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110"
-        loading="eager"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1a3f]/90 via-[#0a1a3f]/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-2 group-hover:translate-y-0 transition-transform duration-400">
-        <h3 className="text-base font-bold text-white leading-tight mb-0.5">
-          {member.name}
-        </h3>
-        <p className="text-[10px] font-medium uppercase tracking-widest text-white/70">
-          {member.title}
-        </p>
-        <div className="mt-3 overflow-hidden max-h-0 group-hover:max-h-16 transition-all duration-400 ease-in-out">
-          <Link
-            href={`/team/${member.slug}`}
-            className="inline-flex items-center gap-2 rounded-full border border-white/40 px-4 py-1.5 text-xs font-semibold text-white transition-colors duration-300 hover:bg-white hover:text-[#0a1a3f]"
-          >
-            {t("teamViewProfile")}
-            <ArrowRight className="h-3 w-3" />
-          </Link>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
 export default function FinancialAuditPage() {
   const t = useTranslations("financalAudit");
+  const tTeam = useTranslations("team");
+
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -156,6 +92,10 @@ export default function FinancialAuditPage() {
   });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
+  const auditTeam = TEAM_MEMBERS.filter((m) =>
+    m.departments.includes("financial-audit"),
+  );
 
   const benefits = [
     t("benefit1"),
@@ -168,8 +108,23 @@ export default function FinancialAuditPage() {
     t("benefit8"),
   ];
 
+  const memberName = (id: string) => {
+    try {
+      return tTeam(`members.${id}.name`);
+    } catch {
+      return id;
+    }
+  };
+  const memberTitle = (id: string) => {
+    try {
+      return tTeam(`members.${id}.title`);
+    } catch {
+      return "";
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#f3f5f4] font-sans">
+    <div className="min-h-screen font-sans">
       <section
         ref={heroRef}
         className="relative w-full bg-[#0a1a3f] overflow-hidden min-h-[88vh] flex items-center"
@@ -254,6 +209,7 @@ export default function FinancialAuditPage() {
           </div>
         </motion.div>
 
+        {/* Wave into f3f5f4 */}
         <div className="absolute bottom-0 left-0 right-0 z-10">
           <svg
             viewBox="0 0 1440 80"
@@ -268,206 +224,181 @@ export default function FinancialAuditPage() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 lg:px-12 py-12 md:py-16">
-        <div className="grid lg:grid-cols-2 gap-10 items-start">
+      <div className="bg-[#f3f5f4]">
+        <section id="services" className="py-12 md:py-20">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <motion.div
+              className="text-center mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <div className="w-8 h-0.5 bg-blue-600" />
+                <span className="text-xs font-bold uppercase tracking-[2px] text-gray-500">
+                  {t("auditTypesLabel")}
+                </span>
+                <div className="w-8 h-0.5 bg-blue-600" />
+              </div>
+            </motion.div>
+
+            <div className="block md:hidden">
+              <Carousel
+                opts={{ align: "start", loop: false }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-0 mr-6">
+                  {auditServiceIcons.map((_, i) => (
+                    <CarouselItem
+                      key={i}
+                      className="pl-6 basis-[85%] sm:basis-[70%]"
+                    >
+                      <AuditServiceCard iconIndex={i} index={i} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
+
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {auditServiceIcons.map((_, i) => (
+                <AuditServiceCard key={i} iconIndex={i} index={i} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="h-px bg-gray-200/80" />
+        </div>
+
+        <section className="py-12 md:py-20">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <motion.div
+              className="mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-0.5 bg-blue-600" />
+                <span className="text-xs font-bold uppercase tracking-[2px] text-gray-500">
+                  {t("teamLabel")}
+                </span>
+              </div>
+            </motion.div>
+
+            <div className="block md:hidden">
+              <Carousel
+                opts={{ align: "start", loop: false }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-0 mr-6">
+                  {auditTeam.map((member) => (
+                    <CarouselItem
+                      key={member.id}
+                      className="pl-6 basis-[65%] sm:basis-[50%]"
+                    >
+                      <SharedTeamCard
+                        name={memberName(member.id)}
+                        title={memberTitle(member.id)}
+                        departmentLabel={t("heroBadge")}
+                        image={member.image}
+                        slug={member.id}
+                        viewProfileLabel={t("teamViewProfile")}
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
+
+            <div className="hidden md:grid sm:grid-cols-3 lg:grid-cols-4 gap-5">
+              {auditTeam.map((member, i) => (
+                <motion.div
+                  key={member.id}
+                  initial={{ opacity: 0, y: 32 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-20px" }}
+                  transition={{ duration: 0.55, delay: i * 0.07 }}
+                >
+                  <SharedTeamCard
+                    name={memberName(member.id)}
+                    title={memberTitle(member.id)}
+                    departmentLabel={t("heroBadge")}
+                    image={member.image}
+                    slug={member.id}
+                    viewProfileLabel={t("teamViewProfile")}
+                  />
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              className="mt-8 flex justify-center"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Link
+                href="/team?team=financial-audit"
+                className={`inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border ${blue.lightBorder} ${blue.text} font-semibold text-sm transition-all duration-300 shadow-sm hover:shadow-lg ${blue.hoverShadow} hover:border-transparent hover:scale-[1.02] group/link relative overflow-hidden`}
+              >
+                <span
+                  className={`absolute inset-0 rounded-full bg-gradient-to-r ${blue.gradient} opacity-0 group-hover/link:opacity-100 transition-opacity duration-300`}
+                />
+                <span className="relative z-10 group-hover/link:text-white transition-colors duration-300">
+                  {t("teamViewAll")}
+                </span>
+                <ArrowRight
+                  className={`relative z-10 w-4 h-4 ${blue.text} group-hover/link:text-white transition-all duration-300 group-hover/link:translate-x-1`}
+                />
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="px-6 lg:px-12 pb-16">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="max-w-7xl mx-auto relative overflow-hidden rounded-[36px] bg-[#0a1a3f] p-10 md:p-12 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-0.5 bg-blue-600" />
-              <span className="text-xs font-bold uppercase tracking-[2px] text-gray-500">
-                {t("whatWeDoLabel")}
-              </span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-4">
-              {t("whatWeDoHeading")}
-            </h2>
-            <p className="text-gray-600 text-[15px] leading-relaxed">
-              {t("whatWeDoBody1")}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div
-              className={`relative rounded-[28px] bg-gradient-to-br ${blue.bg} border ${blue.lightBorder} p-6 shadow-sm overflow-hidden`}
-            >
-              <div className="absolute -top-10 -right-10 w-36 h-36 rounded-full opacity-20 blur-2xl bg-blue-600" />
-              <h3 className="relative z-10 text-[16px] font-bold text-gray-900 mb-4">
-                {t("benefitsCardTitle")}
-              </h3>
-              <ul className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {benefits.map((b, i) => (
-                  <motion.li
-                    key={i}
-                    className="flex items-start gap-2.5 text-gray-700"
-                    initial={{ opacity: 0, x: 10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.35, delay: i * 0.05 }}
-                  >
-                    <CheckCircle2
-                      className={`w-4 h-4 ${blue.check} shrink-0 mt-0.5`}
-                    />
-                    <span className="text-[13px] font-medium leading-snug">
-                      {b}
-                    </span>
-                  </motion.li>
-                ))}
-              </ul>
+            <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-cyan-400/15 rounded-full blur-[80px] pointer-events-none" />
+            <div className="relative z-10">
+              <p className="text-blue-300/80 text-xs font-bold uppercase tracking-widest mb-3">
+                {t("ctaLabel")}
+              </p>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">
+                {t("ctaHeading")}
+              </h2>
+              <p className="text-blue-100/60 max-w-md mx-auto mb-6 text-sm leading-relaxed">
+                {t("ctaBody")}
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-blue-500 hover:bg-blue-400 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/40 hover:scale-[1.03] text-sm"
+                >
+                  {t("ctaBook")} <ChevronRight size={16} />
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold transition-all duration-300 backdrop-blur-sm text-sm"
+                >
+                  <ArrowLeft size={16} /> {t("ctaAllServices")}
+                </Link>
+              </div>
             </div>
           </motion.div>
-        </div>
-      </section>
-
-      <section id="services" className="bg-white py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <motion.div
-            className="text-center mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <div className="w-8 h-0.5 bg-blue-600" />
-              <span className="text-xs font-bold uppercase tracking-[2px] text-gray-500">
-                {t("auditTypesLabel")}
-              </span>
-              <div className="w-8 h-0.5 bg-blue-600" />
-            </div>
-          </motion.div>
-
-          <div className="block md:hidden">
-            <Carousel opts={{ align: "start", loop: false }} className="w-full">
-              <CarouselContent className="-ml-0 mr-6">
-                {auditServiceIcons.map((_, i) => (
-                  <CarouselItem
-                    key={i}
-                    className="pl-6 basis-[85%] sm:basis-[70%]"
-                  >
-                    <AuditServiceCard iconIndex={i} index={i} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </div>
-
-          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {auditServiceIcons.map((_, i) => (
-              <AuditServiceCard key={i} iconIndex={i} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f3f5f4] py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <motion.div
-            className="mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-0.5 bg-blue-600" />
-              <span className="text-xs font-bold uppercase tracking-[2px] text-gray-500">
-                {t("teamLabel")}
-              </span>
-            </div>
-          </motion.div>
-
-          <div className="block md:hidden">
-            <Carousel opts={{ align: "start", loop: false }} className="w-full">
-              <CarouselContent className="-ml-0 mr-6">
-                {auditTeam.map((member, i) => (
-                  <CarouselItem
-                    key={member.slug}
-                    className="pl-6 basis-[65%] sm:basis-[50%]"
-                  >
-                    <TeamCard member={member} index={i} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-          </div>
-
-          <div className="hidden md:grid sm:grid-cols-3 lg:grid-cols-4 gap-5">
-            {auditTeam.map((member, i) => (
-              <TeamCard key={member.slug} member={member} index={i} />
-            ))}
-          </div>
-
-          <motion.div
-            className="mt-8 flex justify-center"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <Link
-              href="/team?team=financial-audit"
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r ${blue.lightBg} border ${blue.lightBorder} ${blue.text} font-semibold text-sm transition-all duration-300 shadow-sm hover:shadow-lg ${blue.hoverShadow} hover:border-transparent hover:scale-[1.02] group/link relative overflow-hidden`}
-            >
-              <span
-                className={`absolute inset-0 rounded-full bg-gradient-to-r ${blue.gradient} opacity-0 group-hover/link:opacity-100 transition-opacity duration-300`}
-              />
-              <span className="relative z-10 group-hover/link:text-white transition-colors duration-300">
-                {t("teamViewAll")}
-              </span>
-              <ArrowRight
-                className={`relative z-10 w-4 h-4 ${blue.text} group-hover/link:text-white transition-all duration-300 group-hover/link:translate-x-1`}
-              />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="px-6 lg:px-12 pb-16">
-        <motion.div
-          className="max-w-7xl mx-auto relative overflow-hidden rounded-[36px] bg-[#0a1a3f] p-10 md:p-12 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none" />
-          <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-cyan-400/15 rounded-full blur-[80px] pointer-events-none" />
-          <div className="relative z-10">
-            <p className="text-blue-300/80 text-xs font-bold uppercase tracking-widest mb-3">
-              {t("ctaLabel")}
-            </p>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-3">
-              {t("ctaHeading")}
-            </h2>
-            <p className="text-blue-100/60 max-w-md mx-auto mb-6 text-sm leading-relaxed">
-              {t("ctaBody")}
-            </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-blue-500 hover:bg-blue-400 text-white font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/40 hover:scale-[1.03] text-sm"
-              >
-                {t("ctaBook")} <ChevronRight size={16} />
-              </Link>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold transition-all duration-300 backdrop-blur-sm text-sm"
-              >
-                <ArrowLeft size={16} /> {t("ctaAllServices")}
-              </Link>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

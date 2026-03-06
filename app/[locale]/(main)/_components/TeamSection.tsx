@@ -429,7 +429,7 @@ export default function TeamSection() {
         >
           <div className="aspect-[4/5] overflow-hidden">
             <img
-              src="/team/maia-pheikrishvili.png"
+              src="/team/maia-pheikrishvili.avif"
               alt={t("teamCeoName")}
               className="h-full w-full object-cover"
             />

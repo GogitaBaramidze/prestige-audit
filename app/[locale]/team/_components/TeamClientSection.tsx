@@ -55,7 +55,7 @@ function DesktopFilterBar({
           <button
             key={key}
             onClick={() => onChange(key)}
-            className={`rounded-full font-bold uppercase tracking-widest transition-colors duration-200
+            className={`rounded-full font-bold cursor-pointer uppercase tracking-widest transition-colors duration-200
               px-4 py-2 text-[11px]
               3xl:px-5 3xl:py-2.5 3xl:text-xs
               4xl:px-7 4xl:py-3.5 4xl:text-base

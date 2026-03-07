@@ -9,7 +9,7 @@ export default function AboutHeroSection() {
 
   return (
     <motion.section
-      className="relative w-full bg-[#0a1a3f] pt-40 pb-40 px-5 overflow-hidden text-center"
+      className="relative w-full bg-[#0a1a3f] pt-44 pb-40 px-5 overflow-hidden text-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}

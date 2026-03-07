@@ -132,7 +132,7 @@ export default function BusinessConsultingPage() {
         <motion.div
           className="absolute inset-0 z-0 opacity-20 mix-blend-overlay"
           style={{
-            backgroundImage: `url('/Office.jpg')`,
+            backgroundImage: `url('/bg1.jpg')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             y: heroY,

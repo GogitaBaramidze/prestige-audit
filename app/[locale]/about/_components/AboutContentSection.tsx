@@ -1,4 +1,3 @@
-// ✅ Server component — no "use client", no Framer
 import { CheckCircle2, Trophy } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
@@ -8,13 +7,16 @@ export default async function AboutContentSection() {
   const features = [t("feature1"), t("feature2"), t("feature3"), t("feature4")];
 
   return (
-    <section className="relative bg-[#f3f5f4] py-24 overflow-hidden">
+    <section className="relative bg-[#f3f5f4] pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Image column */}
           <div className="w-full lg:w-[55%] relative content-slide-left">
-            <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.12)] border-[3px] border-white aspect-[16/10] lg:aspect-[4/3]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
+            <div
+              className="relative rounded-[2.5rem] overflow-hidden aspect-[16/10] lg:aspect-[4/3]"
+              style={{
+                border: "3px solid rgba(255,255,255,0.9)",
+              }}
+            >
               <img
                 src="/AllMembers.jpeg"
                 alt={t("imageAlt")}
@@ -22,26 +24,42 @@ export default async function AboutContentSection() {
                 loading="lazy"
                 decoding="async"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#0a1a3f]/30 to-transparent" />
             </div>
 
-            {/* Trophy badge — desktop only */}
-            <div className="absolute -bottom-10 -right-6 hidden xl:flex bg-white p-6 rounded-[28px] shadow-xl items-center gap-4 border border-gray-50 badge-pop">
-              <div className="bg-[#2563eb] p-2 rounded-2xl text-white shadow-lg shadow-blue-200">
-                <Trophy size={24} />
+            <div
+              className="absolute -bottom-10 -right-6 hidden xl:flex p-6 rounded-[28px] items-center gap-4 badge-pop"
+              style={{
+                background: "linear-gradient(145deg, #0d2050 0%, #0a1a3f 100%)",
+                border: "1px solid rgba(59,130,246,0.25)",
+              }}
+            >
+              <div
+                className="p-2.5 rounded-2xl"
+                style={{
+                  background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                  boxShadow: "0 4px 14px rgba(37,99,235,0.4)",
+                }}
+              >
+                <Trophy size={22} className="text-white" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-slate-900 leading-none">
+                <p
+                  className="text-2xl font-bold leading-none"
+                  style={{ color: "#ffffff" }}
+                >
                   {t("badgeValue")}
                 </p>
-                <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mt-1">
+                <p
+                  className="text-xs font-bold uppercase tracking-widest mt-1"
+                  style={{ color: "rgba(147,197,253,0.65)" }}
+                >
                   {t("badgeLabel")}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Text column */}
           <div className="w-full lg:w-[45%] flex flex-col justify-center content-slide-right">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-0.5 bg-[#2563eb]" />
@@ -62,7 +80,10 @@ export default async function AboutContentSection() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
               {features.map((item) => (
                 <div key={item} className="flex items-center gap-3">
-                  <div className="bg-blue-100 rounded-full p-1">
+                  <div
+                    className="rounded-full p-1 shrink-0"
+                    style={{ background: "rgba(37,99,235,0.1)" }}
+                  >
                     <CheckCircle2 className="w-4 h-4 text-[#2563eb]" />
                   </div>
                   <span className="text-slate-700 font-semibold">{item}</span>
@@ -91,13 +112,8 @@ export default async function AboutContentSection() {
         .content-slide-right { animation: slideInRight 0.55s ease-out 0.12s both; }
         .badge-pop           { animation: badgePop     0.6s  ease-out 0.6s  both; }
 
-        /* Mobile: simpler instant fade, no translate */
         @media (max-width: 767px) {
-          .content-slide-left, .content-slide-right {
-            animation: none;
-            opacity: 1;
-            transform: none;
-          }
+          .content-slide-left, .content-slide-right { animation: none; opacity: 1; transform: none; }
           .badge-pop { animation: none; opacity: 1; }
         }
         @media (prefers-reduced-motion: reduce) {

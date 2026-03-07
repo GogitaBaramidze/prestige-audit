@@ -123,7 +123,7 @@ export default function VideoSection() {
             />
 
             <motion.h2
-              className="text-slate-900 font-bold leading-tight tracking-tight
+              className="text-slate-900 font-bold mx-2 my-2 leading-12 tracking-tight
                 mb-6 3xl:mb-7 4xl:mb-8 5xl:mb-10
                 text-2xl md:text-3xl lg:text-4xl
                 3xl:text-5xl
@@ -135,7 +135,7 @@ export default function VideoSection() {
               transition={{ duration: 0.5, delay: 0.28 }}
             >
               {t("videoSectionHeading1")}{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-bold italic">
+              <span className="   text-blue mx-2  ">
                 {t("videoSectionHeadingHighlight")}
               </span>{" "}
               {t("videoSectionHeading2")}
@@ -155,42 +155,6 @@ export default function VideoSection() {
             >
               {t("videoSectionBody")}
             </motion.p>
-
-            <div className="flex gap-10 md:gap-12 3xl:gap-14 4xl:gap-16 5xl:gap-20">
-              {[
-                { value: "videoStat1Value", label: "videoStat1Label" },
-                { value: "videoStat2Value", label: "videoStat2Label" },
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  className="flex flex-col"
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: 0.42 + i * 0.09 }}
-                >
-                  <span
-                    className="text-slate-900 font-bold
-                    text-2xl md:text-3xl
-                    3xl:text-4xl
-                    4xl:text-5xl
-                    5xl:text-6xl"
-                  >
-                    {t(stat.value)}
-                  </span>
-                  <span
-                    className="text-slate-500 font-extrabold uppercase tracking-widest
-                    mt-1
-                    text-[11px]
-                    3xl:text-sm
-                    4xl:text-base
-                    5xl:text-lg"
-                  >
-                    {t(stat.label)}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         </div>
       </div>

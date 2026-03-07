@@ -65,7 +65,6 @@ function FadeUp({
   );
 }
 
-// ─── Hero: desktop uses CSS entry animations (no Framer), mobile is instant ───
 function HeroSection({
   name,
   title,
@@ -90,7 +89,6 @@ function HeroSection({
         paddingTop: "80px",
       }}
     >
-      {/* Grid overlay — lightweight SVG background, no JS */}
       <div
         aria-hidden
         style={{
@@ -103,7 +101,6 @@ function HeroSection({
         }}
       />
 
-      {/* Glows — reduced count + size on mobile */}
       <div
         aria-hidden
         style={{
@@ -135,7 +132,6 @@ function HeroSection({
         />
       )}
 
-      {/* Vertical rule — CSS animation, no Framer */}
       {!isMobile && (
         <div
           aria-hidden
@@ -165,9 +161,7 @@ function HeroSection({
         }}
       >
         <div className="hero-grid">
-          {/* Text column */}
           <div className={isMobile ? "" : "hero-text-animate"}>
-            {/* Badge */}
             <div
               style={{ marginBottom: "32px", animationDelay: "0ms" }}
               className={isMobile ? "" : "fade-up-1"}
@@ -205,7 +199,6 @@ function HeroSection({
               </div>
             </div>
 
-            {/* Name */}
             <h1
               className={isMobile ? "" : "fade-up-2"}
               style={{
@@ -221,7 +214,6 @@ function HeroSection({
               {name}
             </h1>
 
-            {/* Rule */}
             <div
               className={isMobile ? "" : "fade-up-3"}
               style={{
@@ -232,7 +224,6 @@ function HeroSection({
               }}
             />
 
-            {/* Summary */}
             <p
               className={isMobile ? "" : "fade-up-4"}
               style={{
@@ -247,7 +238,6 @@ function HeroSection({
               {summary}
             </p>
 
-            {/* Contact */}
             <div
               className={isMobile ? "" : "fade-up-5"}
               style={{
@@ -295,12 +285,10 @@ function HeroSection({
             </div>
           </div>
 
-          {/* Image column */}
           <div
             className={`hero-image-order hero-image-container ${isMobile ? "" : "fade-up-img"}`}
             style={{ position: "relative" }}
           >
-            {/* Glow blobs behind image */}
             {!isMobile && (
               <>
                 <div
@@ -401,7 +389,6 @@ function HeroSection({
   );
 }
 
-// ─── Skill cell ───────────────────────────────────────────────────────────────
 function SkillCell({
   skill,
   index,
@@ -463,7 +450,6 @@ function SkillCell({
   );
 }
 
-// ─── Main export ──────────────────────────────────────────────────────────────
 export function TeamMemberProfile({ member }: { member: MemberMeta }) {
   const t = useTranslations("team");
   const isMobile = useIsMobile();
@@ -490,7 +476,6 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
       }}
     >
       <style>{`
-        /* ── CSS entry animations (replaces Framer on desktop) ── */
         @keyframes fadeUpIn {
           from { opacity: 0; transform: translateY(28px); filter: blur(5px); }
           to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
@@ -511,7 +496,6 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
         .fade-up-5 { animation: fadeUpIn 0.65s cubic-bezier(0.16,1,0.3,1) 0.37s both; }
         .fade-up-img { animation: imgReveal 1s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
 
-        /* ── Layout ── */
         .hero-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -555,13 +539,16 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
           .hero-padding { padding: 32px 20px 56px; }
           .section-padding { padding: 48px 20px; }
           .cert-block { margin-top: 24px; }
-          /* No entry animations on mobile — instant render */
           .fade-up-1,.fade-up-2,.fade-up-3,.fade-up-4,.fade-up-5,.fade-up-img {
             animation: none !important;
             opacity: 1 !important;
             transform: none !important;
             filter: none !important;
           }
+          .hero-grid > div:first-child { text-align: center; }
+          .hero-grid > div:first-child p { margin-left: auto; margin-right: auto; }
+          .hero-grid > div:first-child > div:last-child { align-items: center; }
+          .hero-grid > div:first-child > div:nth-child(3) { margin-left: auto; margin-right: auto; }
         }
 
         @media (max-width: 480px) {
@@ -584,12 +571,10 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
         contactItems={contactItems}
       />
 
-      {/* Expertise section */}
       {Array.isArray(expertise) && expertise.length > 0 && (
         <section className="section-padding" style={{ background: "#f3f5f4" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div className="expertise-grid">
-              {/* Left: heading + certs */}
               <FadeUp>
                 <div
                   style={{

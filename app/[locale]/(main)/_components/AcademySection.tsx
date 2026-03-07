@@ -207,7 +207,7 @@ export default function AcademySection() {
                 setFormSubmitted(false);
                 setModalOpen(true);
               }}
-              className={`group relative inline-flex items-center self-start bg-blue-600 text-white font-medium rounded-xl transition-all duration-300
+              className={`group relative inline-flex cursor-pointer items-center self-start bg-blue-600 text-white font-medium rounded-xl transition-all duration-300
                 gap-3 px-8 py-4 text-sm md:text-base
                 3xl:gap-4 3xl:px-10 3xl:py-5 3xl:text-lg 3xl:rounded-2xl
                 4xl:gap-5 4xl:px-12 4xl:py-6 4xl:text-xl 4xl:rounded-2xl
@@ -244,9 +244,6 @@ export default function AcademySection() {
           {!formSubmitted ? (
             <>
               <DialogHeader className="mb-8">
-                <DialogTitle className="text-white font-semibold tracking-tight text-xl md:text-2xl">
-                  {t("academyModalTitle")}
-                </DialogTitle>
                 <DialogDescription className="text-white/50 text-sm mt-2">
                   {t("academyModalDesc")}
                 </DialogDescription>

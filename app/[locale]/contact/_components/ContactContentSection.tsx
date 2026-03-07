@@ -2,11 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -14,7 +9,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useTranslations } from "next-intl";
 import MapboxMap from "./MapBox";
 
@@ -124,53 +118,110 @@ export default function ContactContentSection() {
       icon: Phone,
       title: t("infoPhone"),
       lines: [t("phoneValue")],
-      color: "bg-blue-50 text-blue-600",
+      iconStyle: { background: "rgba(37,99,235,0.15)", color: "#60a5fa" },
     },
     {
       icon: Mail,
       title: t("infoEmail"),
       lines: [t("emailValue")],
-      color: "bg-cyan-50 text-cyan-600",
+      iconStyle: { background: "rgba(56,182,255,0.12)", color: "#38bdf8" },
     },
     {
       icon: MapPin,
       title: t("infoOffice"),
       lines: [t("addressValue")],
-      color: "bg-blue-50 text-blue-600",
+      iconStyle: { background: "rgba(37,99,235,0.15)", color: "#60a5fa" },
     },
   ];
 
+  const inputStyle = {
+    background: "rgba(255,255,255,0.06)",
+    border: "1px solid rgba(255,255,255,0.1)",
+    color: "#ffffff",
+  };
+
+  const focusHandlers = {
+    onFocus: (
+      e: React.FocusEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement
+      >,
+    ) => {
+      (e.target as HTMLElement).style.border = "1px solid rgba(59,130,246,0.6)";
+      (e.target as HTMLElement).style.background = "rgba(255,255,255,0.09)";
+      (e.target as HTMLElement).style.boxShadow =
+        "0 0 0 3px rgba(59,130,246,0.1)";
+    },
+    onBlur: (
+      e: React.FocusEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement
+      >,
+    ) => {
+      (e.target as HTMLElement).style.border =
+        "1px solid rgba(255,255,255,0.1)";
+      (e.target as HTMLElement).style.background = "rgba(255,255,255,0.06)";
+      (e.target as HTMLElement).style.boxShadow = "none";
+    },
+  };
+
   return (
-    <section className="pt-10 pb-12 px-6">
+    <section className="pb-12 px-6">
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           <FadeUp className="lg:col-span-4">
-            <Card className="rounded-[40px] p-10 border-none shadow-sm h-full flex flex-col bg-white">
-              <CardHeader className="p-0 mb-8 text-left">
-                <CardTitle className="text-3xl font-bold leading-tight text-gray-900">
-                  {t("infoTitle")}
-                </CardTitle>
-                <p className="text-gray-500 mt-4 text-sm leading-relaxed">
-                  {t("infoSubtitle")}
-                </p>
-              </CardHeader>
+            <div
+              className="rounded-[40px] p-10 h-full flex flex-col overflow-hidden"
+              style={{
+                background:
+                  "linear-gradient(145deg, #0d2050 0%, #0a1a3f 45%, #071430 100%)",
+                border: "1px solid rgba(59,130,246,0.2)",
+                boxShadow:
+                  "0 24px 60px rgba(10,26,63,0.25), inset 0 1px 0 rgba(255,255,255,0.06)",
+                position: "relative",
+              }}
+            >
+              <div
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  top: "-60px",
+                  right: "-60px",
+                  width: "200px",
+                  height: "200px",
+                  background:
+                    "radial-gradient(circle, rgba(59,130,246,0.16) 0%, transparent 70%)",
+                  borderRadius: "50%",
+                  pointerEvents: "none",
+                }}
+              />
 
-              <CardContent className="p-0 space-y-8">
+              <h2
+                className="text-3xl font-bold leading-tight mb-8"
+                style={{ color: "#ffffff" }}
+              >
+                {t("infoTitle")}
+              </h2>
+
+              <div className="space-y-8 flex-1">
                 {contactItems.map((item, i) => (
                   <div key={i} className="flex gap-4 items-center">
                     <div
-                      className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${item.color}`}
+                      className="w-12 h-12 rounded-2xl flex items-center justify-center shrink-0"
+                      style={item.iconStyle}
                     >
                       <item.icon className="w-5 h-5" />
                     </div>
                     <div className="text-left">
-                      <h4 className="text-gray-400 font-bold text-[11px] uppercase tracking-widest">
+                      <h4
+                        className="font-bold text-[11px] uppercase tracking-widest mb-0.5"
+                        style={{ color: "rgba(147,197,253,0.6)" }}
+                      >
                         {item.title}
                       </h4>
                       {item.lines.map((line, idx) => (
                         <p
                           key={idx}
-                          className="text-gray-900 font-semibold text-sm"
+                          className="font-semibold text-sm"
+                          style={{ color: "rgba(255,255,255,0.85)" }}
                         >
                           {line}
                         </p>
@@ -178,74 +229,139 @@ export default function ContactContentSection() {
                     </div>
                   </div>
                 ))}
+              </div>
 
-                <div className="mt-auto pt-10">
-                  <div className="bg-[#dbeafe] p-6 rounded-[32px] flex items-center gap-4">
-                    <div className="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
-                      <Clock className="w-5 h-5" />
-                    </div>
-                    <div className="text-left">
-                      <p className="text-xs font-bold text-blue-800">
-                        {t("hoursTitle")}
-                      </p>
-                      <p className="text-[11px] text-blue-600">
-                        {t("hoursValue")}
-                      </p>
-                    </div>
+              <div className="mt-10">
+                <div
+                  className="p-6 rounded-[32px] flex items-center gap-4"
+                  style={{
+                    background: "rgba(37,99,235,0.2)",
+                    border: "1px solid rgba(59,130,246,0.25)",
+                  }}
+                >
+                  <div
+                    className="h-10 w-10 rounded-full flex items-center justify-center shrink-0"
+                    style={{
+                      background: "linear-gradient(135deg, #2563eb, #3b82f6)",
+                    }}
+                  >
+                    <Clock className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="text-left">
+                    <p
+                      className="text-xs font-bold"
+                      style={{ color: "#93c5fd" }}
+                    >
+                      {t("hoursTitle")}
+                    </p>
+                    <p
+                      className="text-[11px]"
+                      style={{ color: "rgba(147,197,253,0.65)" }}
+                    >
+                      {t("hoursValue")}
+                    </p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </FadeUp>
 
           <FadeUp delay={120} className="lg:col-span-8">
-            <Card className="border-none shadow-sm rounded-[40px] bg-white overflow-hidden h-full">
-              <CardContent className="p-10">
+            <div
+              className="rounded-[40px] overflow-hidden h-full"
+              style={{
+                background:
+                  "linear-gradient(145deg, #0d2050 0%, #0a1a3f 45%, #071430 100%)",
+                border: "1px solid rgba(59,130,246,0.2)",
+                boxShadow:
+                  "0 24px 60px rgba(10,26,63,0.25), inset 0 1px 0 rgba(255,255,255,0.06)",
+                position: "relative",
+              }}
+            >
+              <div
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  bottom: "-50px",
+                  right: "-50px",
+                  width: "220px",
+                  height: "220px",
+                  background:
+                    "radial-gradient(circle, rgba(37,99,235,0.13) 0%, transparent 70%)",
+                  borderRadius: "50%",
+                  pointerEvents: "none",
+                }}
+              />
+
+              <div className="p-10 relative">
                 {submitStatus === "success" && (
-                  <Alert className="mb-8 bg-green-50 border-green-100 rounded-2xl">
-                    <CheckCircle2 className="w-5 h-5 text-green-600" />
-                    <AlertDescription className="text-green-800 font-medium ml-2">
+                  <div
+                    className="mb-8 rounded-2xl px-4 py-3 flex items-center gap-3"
+                    style={{
+                      background: "rgba(34,197,94,0.12)",
+                      border: "1px solid rgba(34,197,94,0.2)",
+                    }}
+                  >
+                    <CheckCircle2
+                      className="w-5 h-5 shrink-0"
+                      style={{ color: "#4ade80" }}
+                    />
+                    <span
+                      className="font-medium text-sm"
+                      style={{ color: "#86efac" }}
+                    >
                       {t("successMessage")}
-                    </AlertDescription>
-                  </Alert>
+                    </span>
+                  </div>
                 )}
 
                 {submitStatus === "error" && (
-                  <Alert className="mb-8 bg-red-50 border-red-100 rounded-2xl">
-                    <AlertDescription className="text-red-800 font-medium ml-2">
+                  <div
+                    className="mb-8 rounded-2xl px-4 py-3"
+                    style={{
+                      background: "rgba(239,68,68,0.12)",
+                      border: "1px solid rgba(239,68,68,0.2)",
+                    }}
+                  >
+                    <span
+                      className="font-medium text-sm"
+                      style={{ color: "#fca5a5" }}
+                    >
                       {t("errorMessage") ??
                         "Something went wrong. Please try again."}
-                    </AlertDescription>
-                  </Alert>
+                    </span>
+                  </div>
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-6 text-left">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="name"
-                        className="text-sm font-bold text-gray-700 ml-1"
+                      <label
+                        className="block text-sm font-bold ml-1"
+                        style={{ color: "rgba(147,197,253,0.7)" }}
                       >
                         {t("fieldName")}
-                      </Label>
-                      <Input
+                      </label>
+                      <input
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
                         placeholder={t("fieldNamePlaceholder")}
-                        className="h-14 rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-colors"
+                        className="w-full h-14 rounded-2xl px-4 text-sm transition-all outline-none placeholder:text-white/20"
+                        style={inputStyle}
+                        {...focusHandlers}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="email"
-                        className="text-sm font-bold text-gray-700 ml-1"
+                      <label
+                        className="block text-sm font-bold ml-1"
+                        style={{ color: "rgba(147,197,253,0.7)" }}
                       >
                         {t("fieldEmail")}
-                      </Label>
-                      <Input
+                      </label>
+                      <input
                         id="email"
                         type="email"
                         name="email"
@@ -253,42 +369,55 @@ export default function ContactContentSection() {
                         onChange={handleChange}
                         required
                         placeholder={t("fieldEmailPlaceholder")}
-                        className="h-14 rounded-2xl border-gray-100 bg-gray-50/50 focus:bg-white transition-colors"
+                        className="w-full h-14 rounded-2xl px-4 text-sm transition-all outline-none placeholder:text-white/20"
+                        style={inputStyle}
+                        {...focusHandlers}
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="phone"
-                        className="text-sm font-bold text-gray-700 ml-1"
+                      <label
+                        className="block text-sm font-bold ml-1"
+                        style={{ color: "rgba(147,197,253,0.7)" }}
                       >
                         {t("fieldPhone")}
-                      </Label>
-                      <Input
+                      </label>
+                      <input
                         id="phone"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder={t("fieldPhonePlaceholder")}
-                        className="h-14 rounded-2xl border-gray-100 bg-gray-50/50"
+                        className="w-full h-14 rounded-2xl px-4 text-sm transition-all outline-none placeholder:text-white/20"
+                        style={inputStyle}
+                        {...focusHandlers}
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label
-                        htmlFor="subject"
-                        className="text-sm font-bold text-gray-700 ml-1"
+                      <label
+                        className="block text-sm font-bold ml-1"
+                        style={{ color: "rgba(147,197,253,0.7)" }}
                       >
                         {t("fieldService")}
-                      </Label>
+                      </label>
                       <Select
                         value={formData.subject}
                         onValueChange={(v) =>
                           setFormData({ ...formData, subject: v })
                         }
                       >
-                        <SelectTrigger className="h-14 w-full rounded-2xl border-gray-100 bg-gray-50/50">
+                        <SelectTrigger
+                          className="h-14 w-full rounded-2xl text-sm outline-none border-0"
+                          style={{
+                            background: "rgba(255,255,255,0.06)",
+                            border: "1px solid rgba(255,255,255,0.1)",
+                            color: formData.subject
+                              ? "#ffffff"
+                              : "rgba(255,255,255,0.2)",
+                          }}
+                        >
                           <SelectValue
                             placeholder={t("fieldServicePlaceholder")}
                           />
@@ -318,13 +447,13 @@ export default function ContactContentSection() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label
-                      htmlFor="message"
-                      className="text-sm font-bold text-gray-700 ml-1"
+                    <label
+                      className="block text-sm font-bold ml-1"
+                      style={{ color: "rgba(147,197,253,0.7)" }}
                     >
                       {t("fieldMessage")}
-                    </Label>
-                    <Textarea
+                    </label>
+                    <textarea
                       id="message"
                       name="message"
                       value={formData.message}
@@ -332,21 +461,49 @@ export default function ContactContentSection() {
                       required
                       rows={5}
                       placeholder={t("fieldMessagePlaceholder")}
-                      className="rounded-2xl border-gray-100 bg-gray-50/50 resize-none p-4"
+                      className="w-full rounded-2xl px-4 py-3 text-sm transition-all outline-none resize-none placeholder:text-white/20"
+                      style={inputStyle}
+                      onFocus={(e) => {
+                        e.target.style.border =
+                          "1px solid rgba(59,130,246,0.6)";
+                        e.target.style.background = "rgba(255,255,255,0.09)";
+                        e.target.style.boxShadow =
+                          "0 0 0 3px rgba(59,130,246,0.1)";
+                      }}
+                      onBlur={(e) => {
+                        e.target.style.border =
+                          "1px solid rgba(255,255,255,0.1)";
+                        e.target.style.background = "rgba(255,255,255,0.06)";
+                        e.target.style.boxShadow = "none";
+                      }}
                     />
                   </div>
 
-                  <Button
+                  <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white rounded-full py-7 px-10 w-full flex items-center justify-center gap-2 group transition-colors font-bold"
+                    className="w-full flex items-center cursor-pointer justify-center gap-2 rounded-full py-4 px-10 font-bold text-sm text-white transition-all duration-300 disabled:opacity-60 hover:scale-[1.01] active:scale-[0.99] group"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #1d4ed8 100%)",
+                      boxShadow:
+                        "0 4px 20px rgba(37,99,235,0.4), inset 0 1px 0 rgba(255,255,255,0.15)",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.boxShadow =
+                        "0 8px 28px rgba(37,99,235,0.55), inset 0 1px 0 rgba(255,255,255,0.15)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.boxShadow =
+                        "0 4px 20px rgba(37,99,235,0.4), inset 0 1px 0 rgba(255,255,255,0.15)";
+                    }}
                   >
                     {isSubmitting ? t("submitting") : t("submitBtn")}
                     <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+                  </button>
                 </form>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </FadeUp>
         </div>
 

@@ -345,25 +345,8 @@ export default function Header() {
                 className="w-[300px] !bg-[#0a1a3f] !border-l !border-[rgba(255,255,255,0.1)] p-0 overflow-y-auto"
               >
                 <div className="flex flex-col h-full">
-                  <div className="flex items-center justify-between px-6 py-5 border-b border-[rgba(255,255,255,0.1)]">
-                    <Link href="/" onClick={() => setOpen(false)}>
-                      <Image
-                        src="/PrestigeLogo.png"
-                        alt="Logo"
-                        width={100}
-                        height={40}
-                        style={{ objectFit: "contain" }}
-                      />
-                    </Link>
-                    <button
-                      onClick={() => setOpen(false)}
-                      className="w-8 h-8 flex items-center justify-center rounded-lg border border-[rgba(255,255,255,0.2)] text-[rgba(255,255,255,0.7)] hover:text-white hover:bg-[rgba(255,255,255,0.1)] transition-colors"
-                    >
-                      <X size={16} />
-                    </button>
-                  </div>
-
-                  <nav className="flex flex-col px-4 py-6 gap-1">
+                  
+                  <nav className="flex flex-col px-4 py-6 gap-1 mt-10">
                     <Link
                       href="/"
                       onClick={() => setOpen(false)}

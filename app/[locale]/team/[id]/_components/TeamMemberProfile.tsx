@@ -339,7 +339,7 @@ function HeroSection({
                 src={member.image}
                 alt={name}
                 style={{ objectFit: "cover" }}
-                sizes="(max-width: 767px) 80vw, (max-width: 1023px) 55vw, 30vw"
+                sizes="(max-width: 767px) 80vw, (max-width: 1023px) 55vw, 22vw"
                 priority
               />
               <div
@@ -516,7 +516,7 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
         }
         .hero-padding      { padding: 80px 32px 100px; }
         .section-padding   { padding: 100px 32px; }
-        .hero-image-wrapper { width: 72%; }
+        .hero-image-wrapper { width: 58%; }
         .hero-image-container { display: flex; justify-content: center; }
         .cert-block { margin-top: 48px; }
 

@@ -3,6 +3,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
 
 export interface SharedTeamCardProps {
   name: string;
@@ -29,12 +30,13 @@ const SharedTeamCard = React.memo(
         aria-label={name}
       >
         <div className="relative aspect-[4/5] w-[95%] mx-auto overflow-hidden rounded-2xl bg-gray-900">
-          <img
+          <Image
             src={image}
             alt={name}
-            className="h-full w-full object-cover object-top"
+            fill
+            className="object-cover object-top"
             loading="lazy"
-            decoding="async"
+            sizes="95vw"
           />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-4 pb-4 pt-16 pointer-events-none">
             <h3 className="text-sm font-bold text-white leading-snug drop-shadow-md">
@@ -59,12 +61,13 @@ const SharedTeamCard = React.memo(
           4xl:rounded-[2rem]
           5xl:rounded-[2.5rem]"
         >
-          <img
+          <Image
             src={image}
             alt={name}
-            className="h-full w-full object-cover object-top transition-transform duration-700 ease-in-out group-hover:scale-105 will-change-transform"
+            fill
+            className="object-cover object-top transition-transform duration-700 ease-in-out group-hover:scale-105 will-change-transform"
             loading="lazy"
-            decoding="async"
+            sizes="(max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw"
           />
 
           <div

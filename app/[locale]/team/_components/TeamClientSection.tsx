@@ -221,7 +221,7 @@ export default function TeamClientSection() {
       rounded-t-[60px] md:rounded-t-[80px] 3xl:rounded-t-[88px] 4xl:rounded-t-[112px] 5xl:rounded-t-[128px]
       pt-14 3xl:pt-18 4xl:pt-24 5xl:pt-28
       pb-28 3xl:pb-32 4xl:pb-40 5xl:pb-48
-      px-10 md:px-16 3xl:px-20 4xl:px-32 5xl:px-36"
+      px-10 md:px-16 lg:px-24 3xl:px-28 4xl:px-32 5xl:px-36"
     >
       <div className="mx-auto max-w-7xl 3xl:max-w-[1600px] 4xl:max-w-[1800px] 5xl:max-w-[2100px]">
         <div className="mb-10 3xl:mb-12 4xl:mb-16 5xl:mb-20">

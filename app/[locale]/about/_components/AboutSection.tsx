@@ -6,7 +6,7 @@ export default async function AboutHeroSection() {
   const t = await getTranslations("about");
 
   return (
-    <section className="relative w-full bg-[#0a1a3f] pt-40 pb-40 px-5 overflow-hidden text-center">
+    <section className="relative w-full bg-[#0a1a3f] pt-40 pb-32 md:pb-40 px-5 overflow-hidden text-center">
       {/* Background image — pure CSS, no JS */}
       <div
         className="absolute inset-0 z-0 opacity-40 mix-blend-overlay pointer-events-none hero-bg-scale"

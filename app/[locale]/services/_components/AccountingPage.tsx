@@ -14,7 +14,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
   Carousel,
   CarouselContent,
@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/carousel";
 import { TEAM_MEMBERS } from "@/app/[locale]/team/[id]/_components/TeamMembers";
 import SharedTeamCard from "../../team/_components/SharedTeamCard";
+import { getDepartmentRole } from "../../team/[id]/_components/DepartmentRoles";
 
 const violet = {
   bg: "from-violet-50 via-purple-50 to-white",
@@ -58,7 +59,7 @@ function AccountingServiceCard({
 
   return (
     <motion.div
-      className={`group relative rounded-[28px] bg-gradient-to-br ${violet.bg} border border-transparent ${violet.border} p-6 shadow-sm hover:shadow-xl ${violet.hoverShadow} transition-all duration-500 overflow-hidden`}
+      className={`group relative rounded-[28px] h-[280px] md:h-auto bg-gradient-to-br ${violet.bg} border border-transparent ${violet.border} p-6 shadow-sm hover:shadow-xl ${violet.hoverShadow} transition-all duration-500 overflow-hidden`}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-20px" }}
@@ -84,6 +85,7 @@ function AccountingServiceCard({
 export default function AccountingServicesPage() {
   const t = useTranslations("accounting");
   const tTeam = useTranslations("team");
+  const locale = useLocale();
 
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -96,17 +98,6 @@ export default function AccountingServicesPage() {
   const accountingTeam = TEAM_MEMBERS.filter((m) =>
     m.departments.includes("accounting-services"),
   );
-
-  const checklist = [
-    t("checklist1"),
-    t("checklist2"),
-    t("checklist3"),
-    t("checklist4"),
-    t("checklist5"),
-    t("checklist6"),
-    t("checklist7"),
-    t("checklist8"),
-  ];
 
   const memberName = (id: string) => {
     try {
@@ -209,7 +200,6 @@ export default function AccountingServicesPage() {
           </div>
         </motion.div>
 
-        {/* Wave into f3f5f4 */}
         <div className="absolute bottom-0 left-0 right-0 z-10">
           <svg
             viewBox="0 0 1440 80"
@@ -225,12 +215,8 @@ export default function AccountingServicesPage() {
       </section>
 
       <div className="bg-[#f3f5f4]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="h-px bg-gray-200/80" />
-        </div>
-
         <section id="services" className="py-12 md:py-20">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="max-w-full px-6 lg:px-12">
             <motion.div
               className="text-center mb-10"
               initial={{ opacity: 0, y: 20 }}
@@ -256,7 +242,7 @@ export default function AccountingServicesPage() {
                   {accountingServiceIcons.map((_, i) => (
                     <CarouselItem
                       key={i}
-                      className="pl-6 basis-[85%] sm:basis-[70%]"
+                      className="pl-6 basis-[85%] sm:basis-[70%] py-1 "
                     >
                       <AccountingServiceCard iconIndex={i} index={i} />
                     </CarouselItem>
@@ -273,12 +259,8 @@ export default function AccountingServicesPage() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="h-px bg-gray-200/80" />
-        </div>
-
         <section className="py-12 md:py-20">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="w-full px-6 lg:px-12">
             <motion.div
               className="mb-8"
               initial={{ opacity: 0, y: 20 }}
@@ -300,44 +282,64 @@ export default function AccountingServicesPage() {
                 className="w-full"
               >
                 <CarouselContent className="-ml-0 mr-6">
-                  {accountingTeam.map((member) => (
-                    <CarouselItem
-                      key={member.id}
-                      className="pl-6 basis-[65%] sm:basis-[50%]"
-                    >
-                      <SharedTeamCard
-                        name={memberName(member.id)}
-                        title={memberTitle(member.id)}
-                        departmentLabel={t("heroBadge")}
-                        image={member.image}
-                        slug={member.id}
-                        viewProfileLabel={t("teamViewProfile")}
-                      />
-                    </CarouselItem>
-                  ))}
+                  {accountingTeam.map((member) => {
+                    const staticTitle = memberTitle(member.id);
+                    const contextRole = getDepartmentRole(
+                      member.id,
+                      "accounting-services",
+                      locale,
+                      staticTitle,
+                    );
+                    return (
+                      <CarouselItem
+                        key={member.id}
+                        className="pl-6 basis-[95%] sm:basis-[75%]"
+                      >
+                        <SharedTeamCard
+                          name={memberName(member.id)}
+                          title={staticTitle}
+                          departmentRole={contextRole}
+                          departmentLabel={t("heroBadge")}
+                          image={member.image}
+                          slug={member.id}
+                          viewProfileLabel={t("teamViewProfile")}
+                        />
+                      </CarouselItem>
+                    );
+                  })}
                 </CarouselContent>
               </Carousel>
             </div>
 
             <div className="hidden md:grid sm:grid-cols-3 lg:grid-cols-4 gap-5">
-              {accountingTeam.map((member, i) => (
-                <motion.div
-                  key={member.id}
-                  initial={{ opacity: 0, y: 32 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-20px" }}
-                  transition={{ duration: 0.55, delay: i * 0.07 }}
-                >
-                  <SharedTeamCard
-                    name={memberName(member.id)}
-                    title={memberTitle(member.id)}
-                    departmentLabel={t("heroBadge")}
-                    image={member.image}
-                    slug={member.id}
-                    viewProfileLabel={t("teamViewProfile")}
-                  />
-                </motion.div>
-              ))}
+              {accountingTeam.map((member, i) => {
+                const staticTitle = memberTitle(member.id);
+                const contextRole = getDepartmentRole(
+                  member.id,
+                  "accounting-services",
+                  locale,
+                  staticTitle,
+                );
+                return (
+                  <motion.div
+                    key={member.id}
+                    initial={{ opacity: 0, y: 32 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-20px" }}
+                    transition={{ duration: 0.55, delay: i * 0.07 }}
+                  >
+                    <SharedTeamCard
+                      name={memberName(member.id)}
+                      title={staticTitle}
+                      departmentRole={contextRole}
+                      departmentLabel={t("heroBadge")}
+                      image={member.image}
+                      slug={member.id}
+                      viewProfileLabel={t("teamViewProfile")}
+                    />
+                  </motion.div>
+                );
+              })}
             </div>
 
             <motion.div
@@ -367,7 +369,7 @@ export default function AccountingServicesPage() {
 
         <section className="px-6 lg:px-12 pb-16">
           <motion.div
-            className="max-w-7xl mx-auto relative overflow-hidden rounded-[36px] bg-[#1a0f3c] p-10 md:p-12 text-center"
+            className="w-full relative overflow-hidden rounded-[36px] bg-[#1a0f3c] p-10 md:p-12 text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

@@ -19,7 +19,6 @@ const partnersRow1: Clients[] = [
   { name: "Legi", logo: "/partners/Legi.webp" },
   { name: "Rogo", logo: "/partners/Rogo.jpg" },
   { name: "GGM", logo: "/partners/GGM.png" },
-  { name: "Next League", logo: "/partners/Next-league.svg" },
 ];
 
 const partnersRow2: Clients[] = [
@@ -36,7 +35,6 @@ const partnersRow2: Clients[] = [
 const partnersRow3: Clients[] = [
   { name: "Kerki", logo: "/partners/Kerki.jpeg" },
   { name: "Like House", logo: "/partners/Like-house.jpeg" },
-  { name: "Othniel", logo: "/partners/Othniel.png" },
   { name: "Prime Marine", logo: "/partners/Prime-marine.jpeg" },
   { name: "Shota", logo: "/partners/Shota.jpg" },
   { name: "Xelovnebis Uni", logo: "/partners/Xelovnebis-uni.jpeg" },

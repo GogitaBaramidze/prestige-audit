@@ -30,6 +30,7 @@ const partnersRow2: Clients[] = [
   { name: "Batumi Boulevard", logo: "/partners/Batumi-Boulevard.jpg" },
   { name: "Gazeti Adjara", logo: "/partners/Gazeti-adjara.png" },
   { name: "Junny", logo: "/partners/Junny.png" },
+  { name: "Premium", logo: "/partners/Premium.png" },
 ];
 
 const partnersRow3: Clients[] = [

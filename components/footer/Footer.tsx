@@ -55,7 +55,7 @@ export default function Footer() {
 
       <div
         className="relative z-10 mx-auto
-        px-5 sm:px-8 md:px-16 lg:px-20 2xl:px-32
+        px-5 sm:px-8 md:px-10 lg:px-12 2xl:px-32
         3xl:px-44
         4xl:px-56
         5xl:px-72

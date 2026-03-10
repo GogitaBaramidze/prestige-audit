@@ -621,7 +621,6 @@ export default function TeamSection() {
             )}
           </svg>
 
-          {/* Bottom grid of 4 cards */}
           <div className="grid grid-cols-4 relative z-20 gap-5 mx-4 3xl:gap-6 3xl:mx-6 4xl:gap-8 4xl:mx-8 5xl:gap-10 5xl:mx-12">
             {departments.slice(2).map((dept, i) => (
               <DeptCard

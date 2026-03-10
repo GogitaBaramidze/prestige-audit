@@ -51,19 +51,23 @@ const LogoCard = ({
   return (
     <div
       className={`my-2 mx-3
-        min-w-[180px] h-[100px]
-        md:min-w-[220px] md:h-[100px]
-        3xl:min-w-[260px] 3xl:mx-4 3xl:h-[120px]
-        4xl:min-w-[300px] 4xl:mx-5 4xl:h-[136px]
-        5xl:min-w-[360px] 5xl:mx-6 5xl:h-[164px]
+        min-w-[140px] h-[70px]
+    md:min-w-[180px] md:h-[88px]
+    lg:min-w-[200px] lg:h-[100px]
+    xl:min-w-[220px] xl:h-[112px]
+    3xl:min-w-[240px] 3xl:mx-4 3xl:h-[130px]
+    4xl:min-w-[260px] 4xl:mx-5 4xl:h-[150px]
+    5xl:min-w-[320px] 5xl:mx-6 5xl:h-[190px]
         ${!isTouch ? "transition-transform duration-300 hover:-translate-y-1 hover:scale-105" : ""}`}
     >
       <Card
-        className="flex items-center justify-center w-full h-full bg-white border-none shadow-sm hover:shadow-md transition-shadow duration-300 cursor-default
-        rounded-[24px] p-6
-        3xl:rounded-[28px] 3xl:p-7
-        4xl:rounded-[32px] 4xl:p-8
-        5xl:rounded-[40px] 5xl:p-10"
+        className="flex items-center justify-center w-full h-full bg-white border-none shadow-sm hover:shadow-md transition-shadow duration-300 cursor-default overflow-hidden
+        rounded-[24px] p-4
+        lg:p-5
+        xl:p-6
+        3xl:rounded-[28px] 3xl:p-8
+        4xl:rounded-[32px] 4xl:p-9
+        5xl:rounded-[40px] 5xl:p-11"
       >
         {isTextLogo ? (
           <span
@@ -80,11 +84,7 @@ const LogoCard = ({
           <img
             src={logo}
             alt={name}
-            className="object-contain
-              h-20 w-20
-              3xl:h-24 3xl:w-24
-              4xl:h-28 4xl:w-28
-              5xl:h-36 5xl:w-36"
+            className="object-contain max-h-full max-w-full w-full h-full rounded-lg"
           />
         )}
       </Card>

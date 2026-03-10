@@ -524,7 +524,7 @@ export default function TeamSection() {
                     "0 30px 80px rgba(0,0,0,0.3), 0 10px 30px rgba(37,99,235,0.2), 0 0 0 1px rgba(255,255,255,0.08)",
                 }}
               >
-                <div className="h-[420px] overflow-hidden">
+                <div className="h-[420px] 2xl:h-[480px] overflow-hidden">
                   <img
                     src="/team/maia-pheikrishvili.avif"
                     alt={t("teamCeoName")}

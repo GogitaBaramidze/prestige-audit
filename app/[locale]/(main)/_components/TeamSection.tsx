@@ -406,7 +406,7 @@ export default function TeamSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#f3f5f4] overflow-hidden min-h-screen py-16 3xl:py-20 4xl:py-24 5xl:py-32"
+      className="bg-[#f3f5f4] overflow-hidden py-16 3xl:py-20 4xl:py-24 5xl:py-32"
     >
       <style>{`
         @keyframes pulseGlow {
@@ -524,7 +524,7 @@ export default function TeamSection() {
                     "0 30px 80px rgba(0,0,0,0.3), 0 10px 30px rgba(37,99,235,0.2), 0 0 0 1px rgba(255,255,255,0.08)",
                 }}
               >
-                <div className="h-96 overflow-hidden">
+                <div className="h-[420px] overflow-hidden">
                   <img
                     src="/team/maia-pheikrishvili.avif"
                     alt={t("teamCeoName")}

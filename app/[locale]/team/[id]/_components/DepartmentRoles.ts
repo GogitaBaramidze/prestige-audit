@@ -25,7 +25,7 @@ const DEPARTMENT_ROLES: Record<string, Record<string, LocaleRoles>> = {
   "nato-romanadze": {
     "financial-audit": {
       en: "Senior Auditor",
-      ka: "სენიორ-აუდიტორი",
+      ka: "უფროსი-აუდიტორი",
     },
     "valuation-services": {
       en: "Valuer",
@@ -35,7 +35,7 @@ const DEPARTMENT_ROLES: Record<string, Record<string, LocaleRoles>> = {
   "mzia-gegechkori": {
     "financial-audit": {
       en: "Senior Auditor",
-      ka: "სენიორ-აუდიტორი",
+      ka: "უფროსი-აუდიტორი",
     },
     "valuation-services": {
       en: "Valuer",
@@ -45,7 +45,7 @@ const DEPARTMENT_ROLES: Record<string, Record<string, LocaleRoles>> = {
   "romili-beridze": {
     "financial-audit": {
       en: "Senior Auditor",
-      ka: "სენიორ-აუდიტორი",
+      ka: "უფროსი-აუდიტორი",
     },
     "valuation-services": {
       en: "Valuer",
@@ -65,7 +65,7 @@ const DEPARTMENT_ROLES: Record<string, Record<string, LocaleRoles>> = {
   "gogita-baramidze": {
     "financial-audit": {
       en: "Senior Auditor",
-      ka: "სენიორ-აუდიტორი",
+      ka: "უფროსი-აუდიტორი",
     },
     "valuation-services": {
       en: "Valuer",

@@ -5,7 +5,7 @@ import mapboxgl from "mapbox-gl";
 import { Layers, Navigation, Maximize2 } from "lucide-react";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN || "";
+mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || "";
 
 interface MapboxMapProps {
   latitude: number;

@@ -75,7 +75,7 @@ const DEPARTMENT_ROLES: Record<string, Record<string, LocaleRoles>> = {
   "mzia-melikishvili": {
     "financial-audit": {
       en: "Junior Auditor / Certified Accountant",
-      ka: "ჯუნიორ აუდიტორი / სერტიფიცირებული ბუღალტერი",
+      ka: "უმცროსი აუდიტორი / სერტიფიცირებული ბუღალტერი",
     },
     "valuation-services": {
       en: "Valuer",
@@ -85,7 +85,7 @@ const DEPARTMENT_ROLES: Record<string, Record<string, LocaleRoles>> = {
   "rusudan-gugeshashvili": {
     "financial-audit": {
       en: "Junior Auditor",
-      ka: "ჯუნიორ აუდიტორი",
+      ka: "უმცროსი აუდიტორი",
     },
     "valuation-services": {
       en: "Valuer",
@@ -95,7 +95,7 @@ const DEPARTMENT_ROLES: Record<string, Record<string, LocaleRoles>> = {
   "marine-lominadze": {
     "financial-audit": {
       en: "Junior Auditor",
-      ka: "ჯუნიორ აუდიტორი",
+      ka: "უმცროსი აუდიტორი",
     },
     "valuation-services": {
       en: "Valuer",
@@ -105,7 +105,7 @@ const DEPARTMENT_ROLES: Record<string, Record<string, LocaleRoles>> = {
   "giorgi-seperteladze": {
     "financial-audit": {
       en: "Junior Auditor",
-      ka: "ჯუნიორ აუდიტორი",
+      ka: "უმცროსი აუდიტორი",
     },
     "valuation-services": {
       en: "Valuer",

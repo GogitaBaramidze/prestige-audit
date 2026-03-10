@@ -277,112 +277,113 @@ function ServiceCard({
   const theme = cardThemes[index % cardThemes.length];
 
   const cardContent = (
-    <Card
-      className={`group relative my-2 border border-transparent ${theme.border} rounded-[32px] bg-gradient-to-br ${theme.bg} shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden
-        h-[420px] md:h-[440px] p-6
-        md:p-8
-        3xl:h-[480px] 3xl:p-9 3xl:rounded-[36px]
-        4xl:h-[520px] 4xl:p-10 4xl:rounded-[40px]
-        5xl:h-[600px] 5xl:p-12 5xl:rounded-[48px]`}
-    >
-      <div
-        className={`hidden md:block absolute -top-10 -right-10 w-36 h-36 rounded-full opacity-20 blur-2xl ${theme.iconBg} 3xl:w-44 3xl:h-44 4xl:w-52 4xl:h-52 5xl:w-64 5xl:h-64`}
-      />
-
-      <div className="flex flex-col h-full relative z-10">
+    <Link href={`${basePath}/${service.id}`} className="block h-full">
+      <Card
+        className={`group relative my-2 border border-transparent ${theme.border} rounded-[32px] bg-gradient-to-br ${theme.bg} shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden cursor-pointer
+          h-[420px] md:h-[440px] p-6
+          md:p-8
+          3xl:h-[480px] 3xl:p-9 3xl:rounded-[36px]
+          4xl:h-[520px] 4xl:p-10 4xl:rounded-[40px]
+          5xl:h-[600px] 5xl:p-12 5xl:rounded-[48px]`}
+      >
         <div
-          className={`flex items-center mb-4 gap-4 md:mb-6 3xl:mb-7 3xl:gap-5 4xl:mb-8 4xl:gap-6 5xl:mb-10 5xl:gap-7`}
-        >
+          className={`hidden md:block absolute -top-10 -right-10 w-36 h-36 rounded-full opacity-20 blur-2xl ${theme.iconBg} 3xl:w-44 3xl:h-44 4xl:w-52 4xl:h-52 5xl:w-64 5xl:h-64`}
+        />
+
+        <div className="flex flex-col h-full relative z-10">
           <div
-            className={`${theme.iconBg} text-white flex-shrink-0 md:group-hover:scale-105 transition-transform duration-500 ${theme.iconShadow} shadow-lg
-              w-11 h-11 p-2.5 rounded-xl
-              md:w-12 md:h-12 md:p-3 md:rounded-2xl
-              3xl:w-14 3xl:h-14 3xl:p-3.5 3xl:rounded-2xl
-              4xl:w-16 4xl:h-16 4xl:p-4 4xl:rounded-3xl
-              5xl:w-20 5xl:h-20 5xl:p-5 5xl:rounded-3xl`}
+            className={`flex items-center mb-4 gap-4 md:mb-6 3xl:mb-7 3xl:gap-5 4xl:mb-8 4xl:gap-6 5xl:mb-10 5xl:gap-7`}
           >
-            {service.icon}
-          </div>
-          <h3
-            className={`card-title text-gray-900 font-bold leading-tight
-            text-lg
-            md:text-xl
-            3xl:text-2xl
-            4xl:text-[26px]
-            5xl:text-3xl`}
-          >
-            {t(service.titleKey)}
-          </h3>
-        </div>
-
-        <p
-          className={`card-desc text-gray-600 line-clamp-3 md:line-clamp-4
-          text-sm mb-6
-          md:text-base
-          3xl:text-[17px] 3xl:mb-7
-          4xl:text-lg 4xl:mb-8
-          5xl:text-xl 5xl:mb-10`}
-        >
-          {t(service.descriptionKey)}
-        </p>
-
-        <ul
-          className={`mb-auto space-y-3 3xl:space-y-4 4xl:space-y-5 5xl:space-y-6`}
-        >
-          {service.featureKeys.map((key, idx) => (
-            <li
-              key={idx}
-              className="flex items-start gap-3 text-gray-700 3xl:gap-4 4xl:gap-4 5xl:gap-5"
+            <div
+              className={`${theme.iconBg} text-white flex-shrink-0 md:group-hover:scale-105 transition-transform duration-500 ${theme.iconShadow} shadow-lg
+                w-11 h-11 p-2.5 rounded-xl
+                md:w-12 md:h-12 md:p-3 md:rounded-2xl
+                3xl:w-14 3xl:h-14 3xl:p-3.5 3xl:rounded-2xl
+                4xl:w-16 4xl:h-16 4xl:p-4 4xl:rounded-3xl
+                5xl:w-20 5xl:h-20 5xl:p-5 5xl:rounded-3xl`}
             >
-              <CheckCircle2
-                className={`shrink-0 mt-0.5 ${theme.check}
-                  w-4 h-4
-                  md:w-[18px] md:h-[18px]
-                  3xl:w-5 3xl:h-5
-                  4xl:w-6 4xl:h-6
-                  5xl:w-7 5xl:h-7`}
-              />
-              <span
-                className={`card-feature leading-snug
-                text-xs
-                md:text-sm
-                3xl:text-base
-                4xl:text-[17px]
-                5xl:text-lg`}
-              >
-                {t(key)}
-              </span>
-            </li>
-          ))}
-        </ul>
+              {service.icon}
+            </div>
+            <h3
+              className={`card-title text-gray-900 font-bold leading-tight
+              text-lg
+              md:text-xl
+              3xl:text-2xl
+              4xl:text-[26px]
+              5xl:text-3xl`}
+            >
+              {t(service.titleKey)}
+            </h3>
+          </div>
 
-        <div className="mt-auto pt-4 3xl:pt-5 4xl:pt-6 5xl:pt-7">
-          <Link
-            href={`${basePath}/${service.id}`}
-            className={`group/link inline-flex items-center relative overflow-hidden rounded-full border ${theme.lightBorder} bg-gradient-to-r ${theme.lightBg} ${theme.text} service-btn shadow-sm transition-all duration-300 hover:shadow-lg ${theme.hoverShadow} hover:border-transparent hover:scale-[1.02]
-              gap-2.5 px-5 py-2.5 text-sm
-              md:text-base
-              3xl:gap-3 3xl:px-6 3xl:py-3 3xl:text-base
-              4xl:gap-3.5 4xl:px-7 4xl:py-3.5 4xl:text-[17px]
-              5xl:gap-4 5xl:px-8 5xl:py-4 5xl:text-lg`}
+          <p
+            className={`card-desc text-gray-600 line-clamp-3 md:line-clamp-4
+            text-sm mb-6
+            md:text-base
+            3xl:text-[17px] 3xl:mb-7
+            4xl:text-lg 4xl:mb-8
+            5xl:text-xl 5xl:mb-10`}
           >
-            <span
-              className={`absolute inset-0 rounded-full bg-gradient-to-r ${theme.gradient} opacity-0 group-hover/link:opacity-100 transition-opacity duration-300`}
-            />
-            <span className="relative z-10 group-hover/link:text-white transition-colors duration-300 font-semibold">
-              {t("servicesLearnMore")}
-            </span>
-            <ArrowRight
-              className={`relative z-10 ${theme.text} group-hover/link:text-white transition-all duration-300 group-hover/link:translate-x-1
-                w-4 h-4
-                3xl:w-5 3xl:h-5
-                4xl:w-5 4xl:h-5
-                5xl:w-6 5xl:h-6`}
-            />
-          </Link>
+            {t(service.descriptionKey)}
+          </p>
+
+          <ul
+            className={`mb-auto space-y-3 3xl:space-y-4 4xl:space-y-5 5xl:space-y-6`}
+          >
+            {service.featureKeys.map((key, idx) => (
+              <li
+                key={idx}
+                className="flex items-start gap-3 text-gray-700 3xl:gap-4 4xl:gap-4 5xl:gap-5"
+              >
+                <CheckCircle2
+                  className={`shrink-0 mt-0.5 ${theme.check}
+                    w-4 h-4
+                    md:w-[18px] md:h-[18px]
+                    3xl:w-5 3xl:h-5
+                    4xl:w-6 4xl:h-6
+                    5xl:w-7 5xl:h-7`}
+                />
+                <span
+                  className={`card-feature leading-snug
+                  text-xs
+                  md:text-sm
+                  3xl:text-base
+                  4xl:text-[17px]
+                  5xl:text-lg`}
+                >
+                  {t(key)}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-auto pt-4 3xl:pt-5 4xl:pt-6 5xl:pt-7">
+            <div
+              className={`group/link inline-flex items-center relative overflow-hidden rounded-full border ${theme.lightBorder} bg-gradient-to-r ${theme.lightBg} ${theme.text} service-btn shadow-sm transition-all duration-300 group-hover:shadow-lg ${theme.hoverShadow} group-hover:border-transparent group-hover:scale-[1.02]
+                gap-2.5 px-5 py-2.5 text-sm
+                md:text-base
+                3xl:gap-3 3xl:px-6 3xl:py-3 3xl:text-base
+                4xl:gap-3.5 4xl:px-7 4xl:py-3.5 4xl:text-[17px]
+                5xl:gap-4 5xl:px-8 5xl:py-4 5xl:text-lg`}
+            >
+              <span
+                className={`absolute inset-0 rounded-full bg-gradient-to-r ${theme.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+              />
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300 font-semibold">
+                {t("servicesLearnMore")}
+              </span>
+              <ArrowRight
+                className={`relative z-10 ${theme.text} group-hover:text-white transition-all duration-300 group-hover:translate-x-1
+                  w-4 h-4
+                  3xl:w-5 3xl:h-5
+                  4xl:w-5 4xl:h-5
+                  5xl:w-6 5xl:h-6`}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </Link>
   );
 
   if (isMobile) {

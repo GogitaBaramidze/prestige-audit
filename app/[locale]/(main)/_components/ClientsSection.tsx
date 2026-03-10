@@ -17,14 +17,29 @@ const partnersRow1: Clients[] = [
   { name: "Sheraton", logo: "/partners/Sheraton.png" },
   { name: "Eclipse", logo: "/partners/Eclipse.png" },
   { name: "Legi", logo: "/partners/Legi.webp" },
+  { name: "Rogo", logo: "/partners/Rogo.jpg" },
+  { name: "GGM", logo: "/partners/GGM.png" },
+  { name: "Next League", logo: "/partners/Next-league.svg" },
 ];
 
 const partnersRow2: Clients[] = [
-  { name: "Rogo", logo: "/partners/Rogo.jpg" },
   { name: "BAU Hospital", logo: "/partners/Bau.jpg" },
   { name: "Adjara Textile", logo: "/partners/Adjara-textile.png" },
   { name: "Stellar Navigation", logo: "/partners/Stellar.png" },
   { name: "BTM Textile", logo: "/partners/Btm.jpg" },
+  { name: "Avaliani", logo: "/partners/Avaliani.jpg" },
+  { name: "Batumi Boulevard", logo: "/partners/Batumi-Boulevard.jpg" },
+  { name: "Gazeti Adjara", logo: "/partners/Gazeti-adjara.png" },
+  { name: "Junny", logo: "/partners/Junny.png" },
+];
+
+const partnersRow3: Clients[] = [
+  { name: "Kerki", logo: "/partners/Kerki.jpeg" },
+  { name: "Like House", logo: "/partners/Like-house.jpeg" },
+  { name: "Othniel", logo: "/partners/Othniel.png" },
+  { name: "Prime Marine", logo: "/partners/Prime-marine.jpeg" },
+  { name: "Shota", logo: "/partners/Shota.jpg" },
+  { name: "Xelovnebis Uni", logo: "/partners/Xelovnebis-uni.jpeg" },
 ];
 
 const LogoCard = ({
@@ -106,6 +121,7 @@ export default function ClientsSection() {
         }
         .animate-marquee-left  { animation: scrollLeft  35s linear infinite; }
         .animate-marquee-right { animation: scrollRight 35s linear infinite; }
+        .animate-marquee-left-slow  { animation: scrollLeft  45s linear infinite; }
       `}</style>
 
       <motion.div
@@ -135,6 +151,7 @@ export default function ClientsSection() {
       </motion.div>
 
       <div className="relative space-y-6 3xl:space-y-8 4xl:space-y-10 5xl:space-y-12">
+        {/* Row 1 — scrolls left */}
         <motion.div
           className="flex overflow-hidden relative"
           initial={{ opacity: 0, y: 20 }}
@@ -151,6 +168,7 @@ export default function ClientsSection() {
           </div>
         </motion.div>
 
+        {/* Row 2 — scrolls right */}
         <motion.div
           className="flex overflow-hidden relative"
           initial={{ opacity: 0, y: 20 }}
@@ -163,6 +181,28 @@ export default function ClientsSection() {
           <div className="flex animate-marquee-right whitespace-nowrap">
             {[...partnersRow2, ...partnersRow2, ...partnersRow2].map((p, i) => (
               <LogoCard key={`r2-${i}`} {...p} isTouch={isTouch} />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Row 3 — scrolls left (slower) */}
+        <motion.div
+          className="flex overflow-hidden relative"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" as const }}
+        >
+          <div className="absolute inset-y-0 left-0 z-10 pointer-events-none bg-gradient-to-r from-[#f3f5f4] to-transparent w-32 3xl:w-40 4xl:w-52 5xl:w-64" />
+          <div className="absolute inset-y-0 right-0 z-10 pointer-events-none bg-gradient-to-l from-[#f3f5f4] to-transparent w-32 3xl:w-40 4xl:w-52 5xl:w-64" />
+          <div className="flex animate-marquee-left-slow whitespace-nowrap">
+            {[
+              ...partnersRow3,
+              ...partnersRow3,
+              ...partnersRow3,
+              ...partnersRow3,
+            ].map((p, i) => (
+              <LogoCard key={`r3-${i}`} {...p} isTouch={isTouch} />
             ))}
           </div>
         </motion.div>

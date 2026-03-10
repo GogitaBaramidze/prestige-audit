@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { TEAM_MEMBERS } from "../[id]/_components/TeamMembers";
 
 import {
@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import SharedTeamCard from "./SharedTeamCard";
+import { getDepartmentRole } from "../[id]/_components/DepartmentRoles";
 
 const DEPARTMENT_KEYS = [
   "financial-audit",
@@ -175,6 +176,7 @@ function DesktopAnimatedCard({
 
 export default function TeamClientSection() {
   const t = useTranslations("team");
+  const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   const isMobile = useIsMobile();
@@ -275,20 +277,32 @@ export default function TeamClientSection() {
             4xl:gap-10
             5xl:gap-12"
         >
-          {filtered.map((member, index) => (
-            <CardWrapper key={member.id} index={index} isMobile={isMobile}>
-              <SharedTeamCard
-                name={memberName(member.id)}
-                title={memberTitle(member.id)}
-                departmentLabel={getDeptLabel(
-                  member.departments[0] as DepartmentKey,
-                )}
-                image={member.image}
-                slug={member.id}
-                viewProfileLabel={t("ui.viewProfile")}
-              />
-            </CardWrapper>
-          ))}
+          {filtered.map((member, index) => {
+            const staticTitle = memberTitle(member.id);
+
+            const contextRole = getDepartmentRole(
+              member.id,
+              activeFilter,
+              locale,
+              staticTitle,
+            );
+
+            return (
+              <CardWrapper key={member.id} index={index} isMobile={isMobile}>
+                <SharedTeamCard
+                  name={memberName(member.id)}
+                  title={staticTitle}
+                  departmentRole={contextRole}
+                  departmentLabel={getDeptLabel(
+                    member.departments[0] as DepartmentKey,
+                  )}
+                  image={member.image}
+                  slug={member.id}
+                  viewProfileLabel={t("ui.viewProfile")}
+                />
+              </CardWrapper>
+            );
+          })}
         </div>
       </div>
     </section>

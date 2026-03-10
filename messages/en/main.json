@@ -5,7 +5,7 @@
   "heroTitleLine2": "",
   "heroBrand": "Prestige Audit",
   "heroCta": "Book Consultation",
-  "navTeachingCenter": "Teaching Center",
+  "navTeachingCenter": "Training Center",
   "servicesSectionLabel": "Our Services",
   "servicesLearnMore": "Learn More",
 
@@ -94,7 +94,7 @@
 
   "clientsSectionLabel": "Our Clients",
 
-  "academySectionLabel": "Accounting teaching center",
+  "academySectionLabel": "Accounting training center",
   "academyHeadingRegular": "Master Accounting",
   "academyHeadingItalic": "from Zero",
   "academyHeadingSuffix": "to Pro.",
@@ -106,7 +106,7 @@
   "academyFeature2": "Accredited certificate on graduation",
   "academyFeature3": "Mentorship from practicing accountants",
   "academyFeature4": "Access to recordings & study materials",
-  "academyCta": "Apply for the teaching center",
+  "academyCta": "Apply for the training center",
 
   "academyModalDesc": "Fill in your details and we'll contact you shortly.",
   "academyModalFieldName": "Full Name",
@@ -156,7 +156,7 @@
   "footerServiceConsulting": "Consulting",
 
   "tcHowItWorksTitle": "How It Works",
-  "tcHowItWorksSubtitle": "Four simple steps to start your journey with our teaching center.",
+  "tcHowItWorksSubtitle": "Four simple steps to start your journey with our training center.",
   "tcStep1Title": "Apply Online",
   "tcStep1Desc": "Fill out the enrollment form with your details and area of interest.",
   "tcStep2Title": "Consultation Call",

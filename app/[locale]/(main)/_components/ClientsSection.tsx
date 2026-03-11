@@ -24,7 +24,7 @@ const partnersRow1: Clients[] = [
 const partnersRow2: Clients[] = [
   { name: "BAU Hospital", logo: "/partners/Bau.jpg" },
   { name: "Adjara Textile", logo: "/partners/Adjara-textile.png" },
-  { name: "Stellar Navigation", logo: "/partners/Stellar.png" },
+  { name: "Stellar Navigation", logo: "/partners/Stellar-new.png" },
   { name: "BTM Textile", logo: "/partners/Btm.jpg" },
   { name: "Avaliani", logo: "/partners/Avaliani.jpg" },
   { name: "Batumi Boulevard", logo: "/partners/Batumi-Boulevard.jpg" },
@@ -39,6 +39,7 @@ const partnersRow3: Clients[] = [
   { name: "Prime Marine", logo: "/partners/Prime-marine.jpeg" },
   { name: "Shota", logo: "/partners/Shota.jpg" },
   { name: "Xelovnebis Uni", logo: "/partners/Xelovnebis-uni.jpeg" },
+  { name: "Georgian Stone", logo: "/partners/GeorgianStone.png" },
 ];
 
 const LogoCard = ({

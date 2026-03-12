@@ -3,17 +3,7 @@
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { useTranslations } from "next-intl";
-
-const BafLogo = () => (
-  <div className="w-full h-full flex flex-col items-center justify-center bg-[#1a2b5e] rounded-full">
-    <span className="text-[#f0c040] font-black text-[17px] leading-none tracking-wide">
-      BAF
-    </span>
-    <span className="text-white/70 text-[6px] uppercase tracking-wider mt-0.5 text-center leading-tight px-1">
-      Georgia
-    </span>
-  </div>
-);
+import BafLogo from "@/public/partners/baff.png";
 
 const AccaLogo = () => (
   <div className="w-full h-full flex items-center justify-center bg-[#c8102e] rounded-full">
@@ -53,7 +43,18 @@ const IasbLogo = () => (
 );
 
 const logos: { alt: string; Logo: () => React.ReactElement }[] = [
-  { alt: "BAF", Logo: BafLogo },
+  {
+    alt: "BAF",
+    Logo: () => (
+      <div className="w-full h-full flex items-center justify-center bg-white rounded-full overflow-hidden">
+        <Image
+          src={BafLogo}
+          alt="BAF"
+          className="object-contain w-[85%] h-[85%]"
+        />
+      </div>
+    ),
+  },
   { alt: "ACCA", Logo: AccaLogo },
   { alt: "IFAC", Logo: IfacLogo },
   { alt: "SARAS", Logo: SarasLogo },

@@ -10,11 +10,11 @@
     "readyToWorkWith": "Ready to work with",
     "sendEmail": "Send Email",
     "callNow": "Call Now",
-    "meetTheExperts": "Our Team",
+    "meetTheExperts": "Meet Our Team",
     "viewProfile": "View Profile",
     "showingMembers": "Showing {count} member",
     "showingMembersPlural": "Showing {count} members",
-    "clickToView": "Click to view Profile"
+    "clickToView": "Click to view profile"
   },
   "departments": {
     "financial-audit": "Financial Audit",
@@ -28,50 +28,50 @@
     "maia-pheikrishvili": {
       "name": "Maia Pheikrishvili",
       "title": "Managing Partner & Auditor",
-      "summary": "Distinguished auditor and financial expert with a Candidate of Economic Sciences degree and over 25 years of leadership experience in auditing and academia. Serving as the Director of Prestige-Audit LLC and the Adjara Branch of the Federation of Professional Accountants and Auditors of Georgia (GFPAA). Certified in IFRS for SMEs and ISO Management Quality Control, with extensive experience as a mentor and trainer for international development projects (SDC, UNDP).",
+      "summary": "Auditor and financial expert with a PhD in Economics. A leader with over 25 years of experience in auditing and the academic field. Director of Prestige-Audit LLC and the Adjara branch of the Georgian Federation of Professional Accountants and Auditors (GFPAA). Certified professional accountant with extensive experience as a financial analyst, mentor, trainer, and tax advisor for international projects (TACIS TRACECA, UNDP, SDC, ACEM).",
       "expertise": [
-        "Audit Leadership & Direction",
+        "Audit Leadership and Management",
         "IFRS for SMEs",
-        "ISO Management Quality Control",
-        "Academic & Mentorship",
+        "ISO Quality Management Control",
+        "Academic Activity and Mentoring",
         "International Development Projects",
-        "GFPAA Branch Management",
-        "Financial Advisory",
-        "Trainer — SDC & UNDP"
+        "GFPAA Department Management",
+        "Financial Consulting",
+        "Trainer — SDC and UNDP"
       ],
       "certifications": [
-        "Candidate of Economic Sciences",
-        "IFRS for SMEs Certified",
-        "ISO Management Quality Control",
-        "GFPAA Director — Adjara Branch",
-        "25+ Years Experience"
+        "Candidate of Economic Sciences (PhD)",
+        "IFRS for SMEs Certificate",
+        "ISO Quality Management Control",
+        "Director of GFPAA — Adjara Branch",
+        "25+ Years of Experience"
       ]
     },
     "nato-romanadze": {
       "name": "Nato Romanadze",
       "title": "Senior Auditor",
-      "summary": "Highly experienced Auditor and Chief Accountant with over 20 years of practice in financial management and auditing. Currently serving as an Auditor and Engagement Partner at Prestige-Audit LTD, with a proven track record as a Chief Accountant for multiple large enterprises. Holds a Professional Accountant qualification (GFPAA) and has been a certified General Auditor since 2012, recognized for professional excellence by the Georgian Federation of Professional Accountants and Auditors.",
+      "summary": "Experienced auditor and chief accountant with over 20 years of practice in financial management and auditing. Certified Professional Accountant (GFPAA).",
       "expertise": [
-        "General Auditing",
+        "General Audit",
         "Engagement Partner",
         "Chief Accountant — Large Enterprises",
         "Financial Management",
         "GFPAA Professional Accountant",
         "Audit Quality Assurance",
         "Financial Reporting",
-        "Compliance & Governance"
+        "Compliance and Corporate Governance"
       ],
       "certifications": [
         "GFPAA — Professional Accountant",
         "Certified General Auditor (2012)",
         "GFPAA Professional Excellence Award",
-        "20+ Years Experience"
+        "20+ Years of Experience"
       ]
     },
     "mzia-gegechkori": {
       "name": "Mzia Gegechkori",
       "title": "Senior Auditor",
-      "summary": "Professional Accountant with over 20 years of experience in financial management and auditing. Certified by the Georgian Federation of Professional Accountants and Auditors (GFPAA). Currently serving as an Auditor at Prestige Audit LTD and Accountant at Dekori LTD, with strong expertise in tax accounting and financial reporting using ORIS 5 software.",
+      "summary": "Experienced auditor and chief accountant with over 20 years of practice in financial management and auditing. Certified Professional Accountant (GFPAA).",
       "expertise": [
         "Financial Management",
         "Tax Accounting",
@@ -83,23 +83,23 @@
         "Compliance Reporting"
       ],
       "certifications": [
-        "GFPAA Certification",
+        "GFPAA Certificate",
         "ORIS 5 Software",
-        "20+ Years Experience",
-        "Auditor & Accountant Dual Role"
+        "20+ Years of Experience",
+        "Dual Role as Auditor and Accountant"
       ]
     },
     "romili-beridze": {
       "name": "Romili Beridze",
       "title": "Senior Auditor & Financial Manager",
-      "summary": "Accomplished financial professional with extensive experience in auditing and financial management. Currently serves as an Auditor and Group Manager at Prestige-Audit L.T.D. and as Financial Manager at Chateau Iveri Ltd. Holds a Bachelor of Economics degree and has completed significant ACCA program papers (F1–F8, P2, P7, SBL). Offers international perspective from studies in Norway and a strong background in business administration.",
+      "summary": "Certified auditor with significant parts of the ACCA program completed (F1–F8, P2, P7, SBL) and a Master's degree from HØGSKOLEN I SØRØST-NORGE. Specialist in audit process planning and financial statement analysis in accordance with IFRS/IFRS SME standards. Specializes in project management and providing strategic financial advice for SMEs. Experience working as an auditor and group manager.",
       "expertise": [
         "ACCA Program (F1–F8, P2, P7, SBL)",
-        "Audit Group Management",
+        "Audit Team Management",
         "Financial Management",
         "Business Administration",
         "International Finance",
-        "Economics & Reporting",
+        "Economics and Reporting",
         "Engagement Leadership",
         "Strategic Financial Planning"
       ],
@@ -112,10 +112,10 @@
     },
     "lali-chigogidze": {
       "name": "Lali Chigogidze",
-      "title": "Public Sector Auditor & Head Accountant",
-      "summary": "Distinguished financial expert with a Master's Degree and over 15 years of experience in auditing, accounting, and financial consulting. Certified Public Sector Auditor and Chief Accountant (GFPAA) with a strong foundation in IFRS for SMEs and tax legislation. Currently serving as an Audit Group Manager at Prestige Audit LLC, specializing in developing accounting policies, financial modeling, and managing complex audits for public and private sector entities.",
+      "title": "Public Sector Auditor & Chief Accountant",
+      "summary": "Public Sector Auditor and Certified Chief Accountant (GFPAA) with a Master's degree and over 15 years of experience in auditing, accounting, and financial analysis.",
       "expertise": [
-        "Public Sector Auditing",
+        "Public Sector Audit",
         "IFRS for SMEs",
         "Tax Legislation",
         "Accounting Policy Development",
@@ -129,20 +129,20 @@
         "GFPAA — Chief Accountant",
         "IFRS for SMEs",
         "Master's Degree",
-        "15+ Years Experience"
+        "15+ Years of Experience"
       ]
     },
     "gogita-baramidze": {
       "name": "Gogita Baramidze",
       "title": "Senior Auditor & Certified Accountant",
-      "summary": "Accomplished Certified Accountant and Audit Manager with a Master's Degree in Finance and extensive experience in financial consulting. Expert in planning audit processes, analyzing financial statements according to IFRS/GAAP standards, and ensuring tax compliance. Specialized in project management and providing strategic financial advice to SMEs using professional software like ORIS and FINA.",
+      "summary": "Certified auditor with significant parts of the ACCA program completed and an Audit Group Manager with a Master's degree. Expert in real estate and movable property appraisal. Specialist in audit process planning and financial statement analysis in accordance with IFRS/IFRS SME standards. Specializes in project management and strategic financial advice for SMEs.",
       "expertise": [
-        "Audit Planning & Execution",
+        "Audit Planning and Implementation",
         "IFRS / GAAP Compliance",
         "Financial Statement Analysis",
-        "Tax Compliance & Advisory",
-        "SME Strategic Consulting",
-        "ORIS & FINA Software",
+        "Tax Compliance and Consulting",
+        "Strategic Consulting for SMEs",
+        "ORIS and FINA Software",
         "Project Management",
         "Risk Assessment"
       ],
@@ -150,144 +150,144 @@
         "IFRS Compliance",
         "GAAP Standards",
         "Certified Accountant",
-        "Master's in Finance"
+        "Master in Finance"
       ]
     },
     "mzia-melikishvili": {
       "name": "Mzia Melikishvili",
       "title": "Junior Auditor & Certified Accountant",
-      "summary": "Certified Accountant (GFPAA) with a Master's Degree in Computer Modeling of Business Processes and over a decade of experience in financial management. Currently serving as an Assistant Auditor at Prestige-Audit LTD and Accountant at Lana LTD. Skilled in IFRS standards, tax legislation, and data analysis, with proficiency in ORIS 5 and ORIS 7 accounting software.",
+      "summary": "Certified accountant (ACCA graduate). Holds a Master's degree in Computer Modeling of Business Processes and has over ten years of experience in financial management. Specializes in IFRS standards and data analysis.",
       "expertise": [
         "IFRS Standards",
         "Tax Legislation",
         "Data Analysis",
-        "ORIS 5 & ORIS 7 Software",
+        "ORIS 5 and ORIS 7 Software",
         "Financial Management",
         "Business Process Modeling",
         "Audit Assistance",
         "Multi-entity Accounting"
       ],
       "certifications": [
-        "GFPAA Certification",
-        "Master's in Computer Modeling of Business Processes",
-        "ORIS 5 & ORIS 7 Certified",
-        "10+ Years Experience"
+        "GFPAA Certificate",
+        "Master in Computer Modeling of Business Processes",
+        "ORIS 5 and ORIS 7 Certificate",
+        "10+ Years of Experience"
       ]
     },
     "rusudan-gugeshashvili": {
       "name": "Rusudan Gugeshashvili",
       "title": "Junior Auditor",
-      "summary": "Financial professional with over 15 years of experience in accounting, auditing, and financial training. Currently serving as an Audit Assistant at Prestige Audit LTD, with a diverse background that includes roles as an Accountant for multiple organizations (Symbiozi LTD, Al-Me LTD) and as a Financial/Tax Accounting Trainer for Promolex Georgia LTD. Certified by the Georgian Federation of Professional Accountants and Auditors (GFPAA) and proficient in ORIS accounting software.",
+      "summary": "Specialist in accounting-reporting and auditing with over 15 years of experience. Trainer in financial accounting and reporting. Certified by the Georgian Federation of Professional Accountants and Auditors (GFPAA).",
       "expertise": [
-        "Financial & Tax Training",
+        "Financial and Tax Training",
         "ORIS Software",
         "Multi-entity Accounting",
         "Audit Assistance",
         "Tax Accounting",
         "GFPAA Certified",
         "Financial Reporting",
-        "Trainer & Educator"
+        "Trainer and Educator"
       ],
       "certifications": [
-        "GFPAA Certification",
+        "GFPAA Certificate",
         "ORIS Software Proficiency",
         "Financial Trainer — Promolex Georgia",
-        "15+ Years Experience"
+        "15+ Years of Experience"
       ]
     },
     "marine-lominadze": {
       "name": "Marine Lominadze",
       "title": "Junior Auditor",
-      "summary": "Detail-oriented financial professional with extensive experience in the banking and auditing sectors. Currently serving as an Audit Assistant at Prestige Audit LLC, with a strong background in credit administration, loan documentation, and corporate client relations gained at ProCredit Bank and Halyk Bank. Proficient in financial software including ORIS and FINA, with expertise in data verification and internal control assessments.",
+      "summary": "Specialist in the banking and audit sectors with years of experience in financial operations, credit process management, and financial documentation analysis. Experience working with international financial institutions (ProCredit Bank and Halyk Bank) in credit administration, loan documentation preparation, and management, as well as effective communication and relations with corporate clients. Skilled in detailed financial analysis, risk assessment, and process control.",
       "expertise": [
         "Credit Administration",
         "Loan Documentation",
         "Corporate Client Relations",
         "Internal Control Assessments",
         "Data Verification",
-        "ORIS & FINA Software",
+        "ORIS and FINA Software",
         "Banking Sector Experience",
         "Audit Assistance"
       ],
       "certifications": [
         "ProCredit Bank Experience",
         "Halyk Bank Experience",
-        "ORIS & FINA Proficiency",
-        "Internal Controls Expertise"
+        "ORIS and FINA Proficiency",
+        "Internal Control Expertise"
       ]
     },
     "giorgi-seperteladze": {
       "name": "Giorgi Seperteladze",
       "title": "Junior Auditor & Accountant",
-      "summary": "Dedicated and detail-oriented financial specialist with a Bachelor's Degree in Economics and over 3 years of experience in accounting and auditing. Proven expertise in financial documentation, tax liabilities, and audit procedures using FINA and ORIS software. Committed to accuracy and supporting business efficiency through rigorous financial analysis.",
+      "summary": "Specialist in accounting-reporting and auditing, certified chief accountant. Certified by the Georgian Federation of Professional Accountants and Auditors (GFPAA).",
       "expertise": [
         "Financial Documentation",
-        "Tax Liabilities",
+        "Tax Obligations",
         "FINA Software",
         "ORIS Software",
         "Audit Procedures",
         "Financial Analysis",
         "Accounting Support",
-        "Detail-oriented Reporting"
+        "Detail-Oriented Reporting"
       ],
       "certifications": [
-        "Bachelor's in Economics",
-        "FINA & ORIS Software",
-        "3+ Years Audit Experience",
+        "Bachelor of Economics",
+        "FINA and ORIS Software",
+        "3+ Years of Audit Experience",
         "Tax Compliance"
       ]
     },
     "nato-jabnidze": {
       "name": "Nato Jabnidze",
-      "title": "Head of Accounting & Reporting Department",
-      "summary": "Distinguished financial expert and academic holding a Candidate of Economic Sciences degree with over 20 years of experience. Currently serves as an Accounting Consultant at Prestige Audit LLC and Chief Accountant at LLC Iberia J, alongside an academic career as an Assistant Professor and Deputy Dean at Batumi Shota Rustaveli State University. Certified in IFRS for SMEs and taxation, with deep expertise in financial analysis and accounting policy development.",
+      "title": "Head of Accounting and Reporting Department",
+      "summary": "Financial expert and PhD in Economics, Head of the Accounting and Reporting Department. Associate Professor with over 20 years of professional experience. Certified Chief Accountant in IFRS for SMEs and Taxation. Specialist in financial analysis and the development of accounting policies.",
       "expertise": [
         "Accounting Policy Development",
         "IFRS for SMEs",
-        "Taxation & Compliance",
+        "Taxation and Compliance",
         "Financial Analysis",
-        "Academic Instruction",
+        "Academic Teaching",
         "Chief Accountant — Corporate",
-        "Consulting & Advisory",
+        "Consulting and Advisory Services",
         "Deputy Dean — Academic Leadership"
       ],
       "certifications": [
-        "Candidate of Economic Sciences",
-        "IFRS for SMEs Certified",
-        "Taxation Certified",
+        "Candidate of Economic Sciences (PhD)",
+        "IFRS for SMEs Certificate",
+        "Taxation Certificate",
         "Assistant Professor — Rustaveli University",
-        "20+ Years Experience"
+        "20+ Years of Experience"
       ]
     },
     "tamar-mzhavanadze": {
       "name": "Tamar Mzhavanadze",
       "title": "Chief Accountant",
-      "summary": "Highly experienced financial professional with a Bachelor's Degree in Finance and Banking and over 15 years of practice in accounting and financial management. Proven track record as a Head Accountant across construction and corporate sectors, with expertise in tax legislation, reporting, and software proficiency in ORIS 5 and FMG. Certified by the Federation of Professional Accountants and Auditors of Georgia (GFPAA).",
+      "summary": "Over 15 years of practical experience in accounting and financial management. Certified chief accountant, certified by the Georgian Federation of Professional Accountants and Auditors (GFPAA).",
       "expertise": [
         "Financial Management",
-        "Tax Legislation & Reporting",
-        "Head Accountant — Construction",
-        "Head Accountant — Corporate",
+        "Tax Legislation and Reporting",
+        "Chief Accountant — Construction",
+        "Chief Accountant — Corporate",
         "ORIS 5 Software",
         "FMG Software",
         "Financial Reporting",
         "GFPAA Certified"
       ],
       "certifications": [
-        "GFPAA Certification",
-        "Bachelor's in Finance & Banking",
-        "15+ Years Practice",
-        "Construction & Corporate Sectors"
+        "GFPAA Certificate",
+        "Bachelor in Finance and Banking",
+        "15+ Years of Practice",
+        "Construction and Corporate Sectors"
       ]
     },
     "rusudan-baramidze": {
       "name": "Rusudan Baramidze",
       "title": "Accountant",
-      "summary": "Ambitious financial professional with a Bachelor's Degree in Business Administration and a Master's in Computer Science. Currently serving as an Audit Assistant at Prestige-Audit LTD and as an Accountant at QSCert Georgia. Certified in ORIS 7 accounting software and financial reporting, with a diverse technical skillset including VBA, SQL, and web technologies.",
+      "summary": "Bachelor's degree in Business Administration and a Master's degree in Computer Science. Diverse technical skills including financial reporting, VBA, SQL, and web technologies.",
       "expertise": [
         "ORIS 7 Software",
         "Financial Reporting",
-        "VBA & SQL",
+        "VBA and SQL",
         "Web Technologies",
         "Business Administration",
         "Audit Assistance",
@@ -295,84 +295,84 @@
         "Multi-entity Accounting"
       ],
       "certifications": [
-        "ORIS 7 Certified",
-        "Financial Reporting Certified",
-        "Master's in Computer Science",
-        "Bachelor's in Business Administration"
+        "ORIS 7 Certificate",
+        "Financial Reporting Certificate",
+        "Master in Computer Science",
+        "Bachelor in Business Administration"
       ]
     },
     "tamta-ustalishvili": {
       "name": "Tamta Ustalishvili",
       "title": "Accountant",
-      "summary": "Diligent financial professional with a Bachelor's Degree in Finance, Banking, and Insurance and over a decade of experience in accounting and administrative roles. Currently serving as an Accountant at Prestige Audit LLC, with previous expertise as a Chief Accountant Assistant in the automotive sector. Skilled in financial reporting, Oris 5 software, and office management operations.",
+      "summary": "Over 10 years of practical experience in accounting and financial management.",
       "expertise": [
         "Financial Reporting",
         "ORIS 5 Software",
         "Office Management",
-        "Chief Accountant Assistance",
-        "Banking & Insurance",
+        "Assistant to Chief Accountant",
+        "Banking and Insurance",
         "Tax Accounting",
         "Administrative Operations",
         "Automotive Sector Experience"
       ],
       "certifications": [
-        "Bachelor's in Finance, Banking & Insurance",
-        "ORIS 5 Certified",
-        "10+ Years Practice",
+        "Bachelor in Finance, Banking and Insurance",
+        "ORIS 5 Certificate",
+        "10+ Years of Practice",
         "Automotive Sector Expertise"
       ]
     },
     "natia-khajishvili": {
       "name": "Natia Khajishvili",
       "title": "Accountant",
-      "summary": "Dedicated financial professional with a degree from Shota Rustaveli State University of Batumi and over 10 years of experience in accounting and auditing. Currently serving as an Audit Assistant at Prestige-Audit LLC, with extensive prior experience as an accountant for multiple organizations including LLC Belvoir. Certified in financial statement preparation by the Accounting, Reporting, and Audit Supervision Service, with strong proficiency in ORIS 5 and MS Office.",
+      "summary": "Specialist in accounting and auditing with over 10 years of experience. Extensive practice as an accountant. Certified in the preparation of financial statements.",
       "expertise": [
-        "Financial Statement Preparation",
+        "Preparation of Financial Statements",
         "ORIS 5 Software",
         "MS Office Proficiency",
         "Multi-entity Accounting",
         "Audit Assistance",
-        "Bookkeeping & Reporting",
+        "Bookkeeping and Reporting",
         "Tax Compliance",
         "Document Management"
       ],
       "certifications": [
-        "Financial Statement Preparation — Audit Supervision Service",
-        "ORIS 5 Certified",
+        "Preparation of Financial Statements — Service for Accounting, Reporting and Auditing Supervision",
+        "ORIS 5 Certificate",
         "Shota Rustaveli State University",
-        "10+ Years Experience"
+        "10+ Years of Experience"
       ]
     },
     "nutsa-jincharadze": {
       "name": "Nutsa Jincharadze",
       "title": "Assistant Accountant",
-      "summary": "Motivated finance student currently pursuing a Bachelor's Degree in Finance at Batumi Shota Rustaveli State University. Gaining practical experience as an Assistant Accountant at Prestige-Audit LTD since 2024. Certified in Financial Reporting and ORIS accounting software by 'Pheikrishvili & Company' LTD, with proficiency in multilingual communication and Microsoft Office tools.",
+      "summary": "Assistant Accountant",
       "expertise": [
         "Financial Reporting",
         "ORIS Software",
         "Microsoft Office",
         "Multilingual Communication",
         "Bookkeeping Assistance",
-        "Data Entry & Verification",
-        "Academic Finance Studies",
+        "Data Entry and Verification",
+        "Academic Financial Training",
         "Team Collaboration"
       ],
       "certifications": [
-        "Financial Reporting — Pheikrishvili & Company",
-        "ORIS Software Certified",
-        "Bachelor's in Finance (in progress)",
+        "Financial Reporting — Pheikrishvili and Company",
+        "ORIS Software Certificate",
+        "Bachelor in Finance (Ongoing)",
         "Microsoft Office Proficiency"
       ]
     },
     "tornike-sergeevi": {
       "name": "Tornike Sergeevi",
       "title": "AML Specialist & Data Analyst",
-      "summary": "Results-driven Data Analyst with an MBA and over 10 years of experience in data visualization, reporting, and automation using MS Excel, VBA, SQL, and Power BI. Proven expertise in building data pipelines, analyzing financial statements, and managing AML compliance procedures. Currently applying advanced data science techniques to support business decision-making at Prestige Audit LTD.",
+      "summary": "Data analyst with an MBA from European University of Lefke (Cyprus) and over 10 years of experience in data visualization, reporting, and automation using MS Excel, VBA, SQL, and Power BI. Expert in financial statement analysis and AML compliance procedure management. Uses advanced data analytical techniques to support business decisions at Prestige Audit LTD.",
       "expertise": [
         "Data Visualization",
-        "MS Excel & VBA Automation",
-        "SQL & Power BI",
-        "Data Pipeline Development",
+        "MS Excel and VBA Automation",
+        "SQL and Power BI",
+        "Data Pipeline Creation",
         "Financial Statement Analysis",
         "AML Compliance",
         "Business Intelligence",
@@ -380,30 +380,30 @@
       ],
       "certifications": [
         "MBA",
-        "Power BI Certified",
-        "10+ Years Data Analysis",
+        "Power BI Certificate",
+        "10+ Years of Data Analysis",
         "AML Compliance Procedures"
       ]
     },
     "lasha-seperteladze": {
       "name": "Lasha Seperteladze",
-      "title": "CEO & Founder | Lawyer, Tax Disputes Specialist",
-      "summary": "Accomplished lawyer and CEO & Founder of Prestige-Audit with an LLM from Northeastern University School of Law and graduate-level studies at Harvard University Extension School. Brings over a decade of experience spanning tax advisory, international law, civil litigation, and corporate legal counsel. Has represented clients before the Georgian Revenue Service, Ministry of Finance, and Court of Justice, and previously practiced law in Boston, USA.",
+      "title": "Executive Director & Founder | Lawyer, Tax Dispute Specialist",
+      "summary": "LLM graduate from Northeastern University School of Law and Harvard University Extension School alumnus, specialist in international law with practical experience in civil disputes in the USA. Over 15 years of experience in tax disputes, civil litigation, and corporate legal consulting. Represents clients before the Revenue Service and the Ministry of Finance Dispute Resolution Council, as well as various court instances.",
       "expertise": [
-        "Tax Advisory & Dispute Resolution",
-        "Civil & Administrative Litigation",
+        "Tax Consulting and Dispute Resolution",
+        "Civil and Administrative Litigation",
         "International Law",
-        "Corporate Legal Counsel",
-        "Contract Drafting & Negotiation",
-        "Revenue Service Representation",
+        "Corporate Legal Consulting",
+        "Contract Drafting and Negotiation",
+        "Representation at the Revenue Service",
         "Criminal Defense",
-        "Business Founding & Leadership"
+        "Business Founding and Leadership"
       ],
       "certifications": [
         "LLM — Northeastern University School of Law, Boston",
         "Harvard University Extension School",
         "LLB — University of Georgia, Tbilisi",
-        "Georgian, English, French & Russian Speaker"
+        "Fluent in Georgian, English, French, and Russian"
       ]
     }
   }

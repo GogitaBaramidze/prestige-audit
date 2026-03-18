@@ -87,6 +87,9 @@ function HeroSection({
         background: "#0a1a3f",
         overflow: "hidden",
         paddingTop: "80px",
+        borderBottomLeftRadius: "60px",
+        borderBottomRightRadius: "60px",
+        marginBottom: "86px",
       }}
     >
       <div
@@ -473,6 +476,8 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
         fontFamily: "'Georgia', 'Times New Roman', serif",
         background: "#f3f5f4",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <style>{`
@@ -514,7 +519,7 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
           grid-template-columns: 1fr 1fr;
           gap: 3px;
         }
-        .hero-padding      { padding: 80px 32px 100px; }
+        .hero-padding      { padding: 80px 32px 120px; }
         .section-padding   { padding: 100px 32px; }
         .hero-image-wrapper { width: 58%; }
         .hero-image-container { display: flex; justify-content: center; }
@@ -526,7 +531,7 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
           .hero-image-wrapper { width: 55%; }
           .expertise-grid { grid-template-columns: 1fr; gap: 48px; }
           .skills-grid { grid-template-columns: 1fr 1fr; }
-          .hero-padding { padding: 60px 32px 80px; }
+          .hero-padding { padding: 60px 32px 100px; }
           .section-padding { padding: 72px 32px; }
           .cert-block { margin-top: 32px; }
         }
@@ -536,7 +541,7 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
           .hero-image-order { order: -1; }
           .hero-image-wrapper { width: 78%; }
           .skills-grid { grid-template-columns: 1fr; gap: 6px; }
-          .hero-padding { padding: 32px 20px 56px; }
+          .hero-padding { padding: 32px 20px 72px; }
           .section-padding { padding: 48px 20px; }
           .cert-block { margin-top: 24px; }
           .fade-up-1,.fade-up-2,.fade-up-3,.fade-up-4,.fade-up-5,.fade-up-img {
@@ -571,7 +576,9 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
         contactItems={contactItems}
       />
 
-      {Array.isArray(expertise) && expertise.length > 0 && (
+      <div style={{ flex: 1 }} />
+
+      {/* {Array.isArray(expertise) && expertise.length > 0 && (
         <section className="section-padding" style={{ background: "#f3f5f4" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div className="expertise-grid">
@@ -689,7 +696,7 @@ export function TeamMemberProfile({ member }: { member: MemberMeta }) {
             </div>
           </div>
         </section>
-      )}
+      )} */}
     </div>
   );
 }
